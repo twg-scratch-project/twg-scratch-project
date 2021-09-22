@@ -4,11 +4,13 @@
   "description": "Codesmith Solo project for Sam Johnson",
   "main": "index.js",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
     "concurrently": "^6.2.1",
     "express": "^4.17.1",
     "mongoose": "^6.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "redux": "^4.1.1",
     "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0"
   },

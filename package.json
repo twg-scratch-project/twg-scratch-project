@@ -4,6 +4,7 @@
   "description": "Codesmith Solo project for Sam Johnson",
   "main": "index.js",
   "dependencies": {
+    "concurrently": "^6.2.1",
     "express": "^4.17.1",
     "mongoose": "^6.0.5",
     "react": "^17.0.2",
@@ -20,8 +21,9 @@
     "webpack-dev-server": "^4.2.0"
   },
   "scripts": {
-    "start": "node server/server.js",
-    "build": "webpack",
+    "start": "nodemon server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "concurrently \"nodemon server/server.js\" \"NODE_ENV=development webpack serve --open\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -1,5 +1,6 @@
 const path = require('path');
 
+
 module.exports = {
     entry: './client/index.js',
     output: {
@@ -29,6 +30,25 @@ module.exports = {
                 }
               }
             },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader", "sass-loader"],
+              },
+              {
+                test: /\.s[ac]ss$/i,
+                use: [
+                  // Creates `style` nodes from JS strings
+                  "style-loader",
+                  // Translates CSS into CommonJS
+                  "css-loader",
+                  // Compiles Sass to CSS
+                  "sass-loader",
+                ],
+              },
         ]
     },
+    resolve: {
+        // Enable importing JS / JSX files without specifying their extension
+        extensions: ['.js', '.jsx'],
+    }
 };

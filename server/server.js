@@ -1,17 +1,15 @@
-require('dotenv').config();
-const express = require('express');
-const app = express();
-const path = require('path');
-const apiRouter = require('./routes/api');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-// const connectENV = require('./.env');
-// connectENV();
+process.on('uncaughtException', (err) => {
+  console.log('UNCAUGHT EXCEPTION! 💥 shutting down...');
+  console.log(err.name, err.message);
+  process.exit(1);
+});
 
 dotenv.config({ path: './server/.env' });
 
 const app = require('./app');
-
-// console.log('DATAB', process.env.DATABASE);
 
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 
@@ -29,4 +27,10 @@ const server = app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
 
-module.exports = server;
+process.on('unhandledRejection', (err) => {
+  console.log('UNHANDLED REJECTION! 💥 shutting down...');
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});

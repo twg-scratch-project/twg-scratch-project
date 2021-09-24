@@ -1,5 +1,8 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const path = require('path');
+const apiRouter = require('./routes/api');
 
 // const connectENV = require('./.env');
 // connectENV();

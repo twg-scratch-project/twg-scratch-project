@@ -1,3 +1,4 @@
 /node_modules/*
 /build/*
 .env
+MONGO_URI mongodb+srv://ItsRae:406WxpFQMnkbcnd5@travelapp.39m4e.mongodb.net/TravelApp?retryWrites=true&w=majority

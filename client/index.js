@@ -5,7 +5,6 @@ import App from './App.jsx';
 import store from './store';
 import styles from './index.css';
 
-
 ReactDOM.render(
         <Provider store={store}>
             {/* <h1>React Hello World</h1> */}

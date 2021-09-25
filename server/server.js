@@ -1,13 +1,13 @@
-require('dotenv').config();
+//dotenv = require('dotenv').config();
 const express = require('express');
-const app = express();
+//const app = express();
 const path = require('path');
 const apiRouter = require('./routes/api');
 
 // const connectENV = require('./.env');
 // connectENV();
 
-dotenv.config({ path: './server/.env' });
+//dotenv.config({ path: './server/.env' });
 
 const app = require('./app');
 

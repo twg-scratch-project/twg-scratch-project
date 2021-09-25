@@ -19,6 +19,7 @@ app.use(cookieParser());
 
 app.use("/build", express.static(path.join(__dirname, "../build")));
 
+//Trip advisor API ?
 app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {

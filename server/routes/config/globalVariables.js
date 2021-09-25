@@ -7,6 +7,6 @@ const globalVariables = {
   jwtSecret: process.env.JWT_SECRET,
 };
 
-//console.log(globalVariables.mongoURI, "in globalVariables.js", `var`.bgBlue);
+// console.log(globalVar.mongoURI, "in globalVariables.js", `var`.bgBlue);
 
 module.exports = globalVariables;

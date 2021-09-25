@@ -1,16 +1,21 @@
 const express = require("express");
 const morgan = require("morgan");
 const colors = require("colors");
+// require("dotenv").config();
 
 const AppError = require("./utils/appError");
 
 const app = express();
+//initializing bodyParser
+app.use(express.json({ extended: false }));
 
 // Development logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+//receiving errors here!
+console.log(`error found here with get`.italic);
 app.get("/api/test-route", (req, res, next) => {
   return res.status(200).json({
     status: "success",

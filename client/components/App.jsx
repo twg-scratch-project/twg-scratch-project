@@ -1,17 +1,18 @@
 // import React, { Component } from "react"
+import React from 'react';
+import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 
-function Welcome(props) {
+function App(props) {
     return (
     <div>
-        <Welcome name="Rachel"/>;
+        <h1>Hey!</h1>;
     </div>
     
     )
   }
- //just adde Welcome component, needs to be further updated
-  ReactDOM.render(
-    <Welcome/>,
-    document.getElementById('app')
-  );
+ //just added Welcome component, needs to be further updated
+  // ReactDOM.render(
+  
 
-  export default Welcome;
+  export default App;

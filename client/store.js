@@ -1,12 +1,13 @@
 
- //just added, needs to be further updated / imports
-//import config store
-import { configureStore } from "@reduxjs/toolkit";
+// //import config store was not creating store
+// import { configureStore } from "@reduxjs/toolkit";
 
-export default configureStore({
-  reducer: {}
-})
+import { createStore } from 'redux';
 
-// function Welcome(props) {
-//     return <h1>Hello, {props.name}</h1>;
-//   }
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+import reducer from './reducers/index';
+
+const store = createStore(reducer, composeWithDevTools());
+
+export default store;

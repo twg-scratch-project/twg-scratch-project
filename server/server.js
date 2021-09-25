@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const apiRouter = require("./routes/api");
+const cookieParser = require('cookie-parser');
 
 const colors = require("colors");
 require("dotenv").config();
@@ -10,6 +11,11 @@ const PORT = process.env.PORT;
 //importing and connecting to DB
 const connectDB = require("./routes/config/db");
 connectDB();
+
+// include json body parser
+app.use(express.json({ extended: false }));
+
+app.use(cookieParser());
 
 app.use("/build", express.static(path.join(__dirname, "../build")));
 

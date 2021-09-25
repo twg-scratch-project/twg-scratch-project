@@ -3,7 +3,7 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-let config = require("./config/globalVar");
+let config = require("./config/globalVariables");
 require("dotenv").config();
 
 // must require model of the user in the route

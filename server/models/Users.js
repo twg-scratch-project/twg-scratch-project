@@ -14,10 +14,23 @@ const UserSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  cityOfOrigin: {
+    type: String,
+  },
+  countryOfOrigin: {
+    type: String,
+  },
+  mobile: {
+    type: String,
+    require: true,
+    unique: true,
+  },
   date: {
     type: Date,
     default: Date.now,
   },
+  // do we want time stamps instead?
+  //{timestamps: true}
 });
 
 module.exports = mongoose.model("user", UserSchema);

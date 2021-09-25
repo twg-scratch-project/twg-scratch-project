@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const colors = require("colors");
+
 // require("dotenv").config();
 
 const AppError = require("./utils/appError");
@@ -22,6 +23,11 @@ app.get("/api/test-route", (req, res, next) => {
     data: "GET request to test-route was succesful",
   });
 });
+
+//@route       GET api/users
+//@desc         Register a user
+//@access     Public
+app.get("/createUser", users);
 
 // IMPORTANT: Make sure to write all route handling BEFORE this one.
 // Handle 'page not found' error

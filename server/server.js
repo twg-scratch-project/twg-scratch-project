@@ -1,36 +1,14 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const express = require("express");
+const app = express();
+const path = require("path");
+const apiRouter = require("./routes/api");
 
-process.on('uncaughtException', (err) => {
-  console.log('UNCAUGHT EXCEPTION! 💥 shutting down...');
-  console.log(err.name, err.message);
-  process.exit(1);
+app.use("/build", express.static(path.join(__dirname, "../build")));
+
+app.use("/api", apiRouter);
+
+app.get("/", (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, "../index.html"));
 });
 
-dotenv.config({ path: './server/.env' });
-
-const app = require('./app');
-
-const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
-
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    // useCreateIndex: true,
-    // useFindAndModify: false,
-    // useUnifiedTopology: true,
-  })
-  .then(() => console.log('DB connection successful'));
-
-const port = process.env.PORT || 3000;
-const server = app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
-
-process.on('unhandledRejection', (err) => {
-  console.log('UNHANDLED REJECTION! 💥 shutting down...');
-  console.log(err.name, err.message);
-  server.close(() => {
-    process.exit(1);
-  });
-});
+app.listen(3000, () => console.log("Server started on port 3000"));

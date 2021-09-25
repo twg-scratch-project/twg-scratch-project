@@ -1,25 +1,26 @@
-const express = require('express');
-const morgan = require('morgan');
+const express = require("express");
+const morgan = require("morgan");
+const colors = require("colors");
 
-const AppError = require('./utils/appError');
+const AppError = require("./utils/appError");
 
 const app = express();
 
 // Development logging
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
 }
 
-app.get('/api/test-route', (req, res, next) => {
+app.get("/api/test-route", (req, res, next) => {
   return res.status(200).json({
-    status: 'success',
-    data: 'GET request to test-route was succesful',
+    status: "success",
+    data: "GET request to test-route was succesful",
   });
 });
 
 // IMPORTANT: Make sure to write all route handling BEFORE this one.
 // Handle 'page not found' error
-app.all('*', (req, res, next) => {
+app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 

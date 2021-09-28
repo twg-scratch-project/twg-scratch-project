@@ -1,11 +1,12 @@
 const colors = require("colors");
+require("dotenv").config();
 
-const globalVar = {
+const globalVariables = {
   mongoURI: process.env.DATABASE,
   //   need to put this file in .env for this purpose
-  jwtSecret: "secret",
+  jwtSecret: process.env.JWT_SECRET,
 };
 
-console.log(globalVar.mongoURI, "in globalVariables.js", `var`.bgBlue);
+// console.log(globalVar.mongoURI, "in globalVariables.js", `var`.bgBlue);
 
-module.exports = globalVar;
+module.exports = globalVariables;

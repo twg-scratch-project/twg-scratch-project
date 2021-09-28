@@ -2,7 +2,7 @@ body{
     background-color: #98DDCA;
 }
 
-h1{
+h1.h4 {
     text-align: center;
 }
 
@@ -19,7 +19,7 @@ h1{
     margin: -200px;
     height: 300px;
     width: 300px;
-    align-items: center;
+    text-align: center;
     /* display: flex; */
 }
 
@@ -37,4 +37,8 @@ h1{
     background-color: #D5ECC2;
     border-radius: 10px;
     border-width: 0px;
+}
+
+.loginSubHeading{
+    margin-top: 5%;
 }

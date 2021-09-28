@@ -1,18 +1,19 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  entry: "./client/index.js",
-  output: {
-    path: path.resolve(__dirname, "build"),
-    publicPath: "/build/",
-    filename: "bundle.js",
-  },
-  devServer: {
-    proxy: {
-      "/api": "http://localhost:3000",
+    entry: './client/index.js',
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        publicPath: '/build/',
+        filename: 'bundle.js',
     },
-    static: {
-      directory: __dirname,
+    devServer: {
+        proxy: {
+            '/api': 'http://localhost:3000',
+        },
+        static: {
+            directory: __dirname,
+        },
     },
     mode: 'development',
     module: {

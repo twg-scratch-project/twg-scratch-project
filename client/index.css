@@ -42,3 +42,44 @@ h1.h4 {
 .loginSubHeading{
     margin-top: 5%;
 }
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(7, 100px ); 
+    column-gap: 10px;
+    row-gap: 15px;
+    outline-color:blue;
+    padding: 20px;
+    
+}
+
+.itinerary{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr); 
+    column-gap: 10px;
+    row-gap: 15px;
+}
+.cell{
+    background-color: white;
+    height:100px;
+}
+
+.document{
+    display: flex;
+    justify-content: center;
+    background-color: whitesmoke;
+    width: 50%;
+    height: 75%;
+    margin-top: 10%;
+    border-radius: 5px;
+    border: 5px solid #D5ECC2;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; 
+    padding: 20px;
+    /* border: 3px solid black; */
+   
+}

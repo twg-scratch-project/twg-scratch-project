@@ -14,6 +14,7 @@ module.exports = {
         static: {
             directory: __dirname,
         },
+        historyApiFallback: true,
     },
     mode: 'development',
     module: {

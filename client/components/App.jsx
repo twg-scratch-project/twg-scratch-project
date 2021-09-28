@@ -3,7 +3,17 @@
 
 import React, {useState, useEffect} from 'react';
 import style from '../index.css';
-import Login from './login.jsx';
+import Login from './Login.jsx';
+import GroupItin from './GroupItin.jsx';
+import PersonalTripDetails from './PersonalTripDetails.jsx';
+import Registration from './Registration.jsx';
+import UserProfile from './UserProfile.jsx';
+
+import { 
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link } from 'react-router-dom';
 
 function App() {
   //onCLick function in state here as well?
@@ -24,11 +34,32 @@ function App() {
       setUserName(name)
       console.log('user password ', setUserName(pass));
   }
-
     return (
-      <div>
-        <Login password={password} onChange={userPassEntry} userName={userName}onChange={userNameEntry}/>
-      </div>
+      <Router>
+        <div>
+          <Switch> 
+            <Route path="/Login">
+              <Login password={password} onChange={userPassEntry} userName={userName}onChange={userNameEntry}/>
+            </Route>
+            <Route path="/GroupItin">
+              <GroupItin/>
+            </Route>
+            <Route path="/PersonalTripDetails">
+              <PersonalTripDetails/>
+            </Route>
+            <Route path="/Registration">
+              <Registration/>
+            </Route>
+            <Route path="/UserProfile">
+              <UserProfile/>
+            </Route>
+            <Route path="/">
+              <Login/>
+            </Route>
+          </Switch>
+        </div>
+        
+      </Router>
     )
   }
 

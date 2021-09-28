@@ -7,6 +7,7 @@ const colors = require("colors");
 const AppError = require("./utils/appError");
 
 const app = express();
+
 //initializing bodyParser
 app.use(express.json({ extended: false }));
 
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 //receiving errors here!
-console.log(`error found here with get`.italic);
+// console.log(`error found here with get`.italic);
 app.get("/api/test-route", (req, res, next) => {
   return res.status(200).json({
     status: "success",
@@ -24,10 +25,13 @@ app.get("/api/test-route", (req, res, next) => {
   });
 });
 
-//@route       GET api/users
-//@desc         Register a user
-//@access     Public
-app.get("/createUser", users);
+//ROUTES
+//User route
+app.use("/users", require("./routes/users"));
+//Friend route
+app.use("/friends", require("./routes/friends"));
+//Trip route
+//To be continued...
 
 // IMPORTANT: Make sure to write all route handling BEFORE this one.
 // Handle 'page not found' error

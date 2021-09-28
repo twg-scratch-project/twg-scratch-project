@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     require: true,
@@ -27,10 +27,12 @@ const UserSchema = mongoose.Schema({
   },
   date: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   // do we want time stamps instead?
   //{timestamps: true}
+  // will use a middleware to slugify
+  slug: String,
 });
 
 module.exports = mongoose.model("user", UserSchema);

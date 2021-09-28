@@ -1,20 +1,24 @@
 const express = require("express");
 const router = express.Router();
+
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-let config = require("./config/globalVariables");
+let configure = require("../routes/config/globalVariables");
 require("dotenv").config();
 
-// must require model of the user in the route
 const User = require("../models/Users");
+
+// include json body parser
+router.use(express.json({ extended: false }));
+
+const userController = require("../controllers/userController");
 
 //@route        POST api/users
 //@desc         Register a user
 //@access     Public
-
 router.post(
-  "/",
+  "/login",
   // checks are set by express-validator
   [
     check("name", "Please add name").not().isEmpty(),
@@ -72,5 +76,7 @@ router.post(
     //return res.send("passed");
   }
 );
+
+//router.post("/login");
 
 module.exports = router;

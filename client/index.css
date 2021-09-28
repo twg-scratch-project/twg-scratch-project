@@ -1,3 +1,40 @@
 body{
-    background-color: aquamarine;
+    background-color: #98DDCA;
+}
+
+h1{
+    text-align: center;
+}
+
+.loginMain{
+    background: whitesmoke;
+    border: 2px solid #D5ECC2;
+    border-radius: 50px;    
+    border-width: 5px;
+    position: fixed;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    right: 50%;
+    margin: -200px;
+    height: 300px;
+    width: 300px;
+    align-items: center;
+    /* display: flex; */
+}
+
+.button{
+    width: 153px;
+    height: 21px;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    border-radius: 10px;
+    border-width: 2px;
+    outline: none;
+}
+.SubmitButton{
+    width: 153px;
+    height: 21px;
+    background-color: #D5ECC2;
+    border-radius: 10px;
+    border-width: 0px;
 }

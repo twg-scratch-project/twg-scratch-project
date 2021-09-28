@@ -2,12 +2,14 @@
 import React from 'react';
 import {render} from 'react-dom';
 import ReactDOM from 'react-dom';
+import style from '../index.css';
+import Login from './login.jsx';
 
 function App(props) {
     return (
-    <div>
-        <h1>Hey!</h1>;
-    </div>
+      <div>
+        <Login/>
+      </div>
     
     )
   }

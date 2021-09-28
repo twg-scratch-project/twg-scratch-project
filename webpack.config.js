@@ -14,21 +14,24 @@ module.exports = {
     static: {
       directory: __dirname,
     },
-  },
-  mode: "development",
-  module: {
-    rules: [
-      {
-        test: /\.jsx?/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ["@babel/plugin-proposal-object-rest-spread"],
-          },
-        },
-      },
-    ],
-  },
+    mode: 'development',
+    module: {
+        rules: [
+            {
+              test: /\.jsx?/,
+              exclude: /(node_modules|bower_components)/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  presets: ['@babel/preset-env','@babel/preset-react'],
+                  plugins: ['@babel/plugin-proposal-object-rest-spread']
+                }
+              }
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+              }
+        ]
+    },
 };

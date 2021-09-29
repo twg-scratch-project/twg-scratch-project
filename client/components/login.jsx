@@ -38,16 +38,16 @@ function Login(props) {
             {/* //do a need an action prop here and a page? */}
             <form type='text'> 
                 <div className='userInput'>
-                    <h4>Travel Planner</h4>
-                    <label for='html'>Username/Email:</label><br/>
+                    <h3>Travel Planner</h3>
+                    <label for='html'></label><br/>
                     <input type='text' userName={props.userName} onChange={userNameEntry} placeholder='Enter User Name'/><br/>
-                    <label for='pass'>Password:</label><br/> 
+                    <label for='pass'></label><br/> 
                     <input type='text' id='pass' password={props.password} onChange={userPassEntry} placeholder='Enter Password'/><br/>
                         <p><button className='SubmitButton' onClick={submitLogin}>Submit</button></p>
                         <div className='loginSubHeading'>
-                            <button style={{border:'none', backgroundColor:'whiteSmoke'}}>Forgot password? 
+                            <button style={{border:'none', fontSize:'10px'}}>Forgot password? 
                             </button><br/>
-                            <button style={{border:'none'}}>Register</button>
+                            <button style={{border:'none', fontSize:'10px'}}>Register</button>
                         </div>
                 </div> 
             </form>

@@ -6,7 +6,10 @@ import style from '../index.css';
 
 function UserProfile(props) {
     return (
-      <div>
+      <div className='container'>
+         <h1>[user]Profile</h1>
+         
+        
       </div>
     
     )

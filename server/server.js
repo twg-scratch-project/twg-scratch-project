@@ -44,3 +44,9 @@ app.use("/api", apiRouter);
 app.get("/", (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "../index.html"));
 });
+
+app.use((err, req, res, next) => {
+  // TODO: Implement version for production (ie. less detailed error response)
+  console.log('err handler ', err);
+  return res.status(500).json(err);
+});

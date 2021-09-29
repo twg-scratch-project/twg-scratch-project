@@ -3,7 +3,7 @@ body{
     color: rgb(70, 78, 103);
 }
 
-h1.h4{
+h1, h4{
     text-align: center;
 }
 

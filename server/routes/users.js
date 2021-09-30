@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const colors = require("colors");
 
-const { check, validationResult } = require("express-validator");
+const { check, validationResult, body } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 let configure = require("../routes/config/globalVariables");
@@ -13,6 +14,17 @@ const User = require("../models/Users");
 router.use(express.json({ extended: false }));
 
 const userController = require("../controllers/userController");
+
+//@route        GET api/user/
+//@desc         Get all users
+//@access     Private (for Coordinator),
+//add auth middleware!
+router.get("/", userController.getAllUsers);
+
+//@route        GET api/user/:id
+//@desc         Get a user
+//@access     Public (because verifying user)
+router.patch("/verifyUser", userController.verifyUser);
 
 //@route        POST api/users
 //@desc         Register a user
@@ -58,7 +70,7 @@ router.post(
       //to send a token, it must be signed
       jwt.sign(
         payload,
-        config.jwtSecret,
+        configure.jwtSecret,
         {
           //num in seconds
           expiresIn: 360000,
@@ -68,15 +80,33 @@ router.post(
           return res.json({ token });
         }
       );
-      //res.send("User saved");
     } catch (e) {
       console.error(e.message, `in users.js`.magenta);
       res.status(500).send("Server error");
     }
-    //return res.send("passed");
   }
 );
 
-//router.post("/login");
+//@route        PATCH api/users
+//@desc         Update a user
+//@access     Public (because updating a password)
+
+router.patch(
+  "/updatePassword",
+  [
+    check(
+      "password",
+      "Please enter a password with 6 or more characters"
+    ).isLength({ min: 6 }),
+  ],
+  userController.updatePassword
+);
+
+//@route        DELETE api/users
+//@desc         Delete a user
+//@access     Private
+// add middleware
+
+router.delete("/deleteUser/:id", userController.deleteUser);
 
 module.exports = router;

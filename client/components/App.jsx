@@ -21,25 +21,39 @@ function App() {
   //assign useState with its val
   //make a copy of this arr when updating since invoking with replace it?
   const [password, setPassword] = useState('');
-  const [userName, setUserName] = useState('');
+  const [name, setUserName] = useState('');
   const [isLoggedIn, setLoginStatus] = useState(false);
   const [travelers, updateTravelers] = useState([]);
+  const [regInfo, storeRegInfo] = useState({});
 
   function userPassEntry (pass) {
-        setPassword(pass)
+        setPassword(pass);
         console.log('user password ', setPassword(pass));
     }
   
-  function userNameEntry (name) {
-      setUserName(name)
-      console.log('user password ', setUserName(pass));
+  //   (name) {
+  //     setUserName(name);
+  //     console.log('user password ', setUserName(name));
+  // }
+
+  function regSubmit (regObj) {
+    //stores users reg info
+    storeRegInfo(regObj);
+    // const regInfo = {
+    //     firstName: firstName,
+    //     lastName: lastName,
+    //     password: password,
+    //     userEmail: email
+    // }
+    console.log('reg deets ',regDetails)
   }
+  //for reg component: firstName={regObj.regInfo.firstName} userEmail={regObj.regInfo.email} lastName={regObj.regInfo.lastName} password={regObj.regInfo.password} onChange={regSubmit}
     return (
       <Router>
         <div>
           <Switch> 
             <Route path="/Login">
-              <Login password={password} onChange={userPassEntry} userName={userName}onChange={userNameEntry}/>
+              <Login password={password} onChangePass={pass => setUserName(pass)} name={name} onChangeUser={name => setUserName(name)}/>
             </Route>
             <Route path="/GroupItin">
               <GroupItin/>
@@ -48,7 +62,7 @@ function App() {
               <PersonalTripDetails/>
             </Route>
             <Route path="/Registration">
-              <Registration/>
+              <Registration onChange={regSubmit}/>
             </Route>
             <Route path="/UserProfile">
               <UserProfile/>

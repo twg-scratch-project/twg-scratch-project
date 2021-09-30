@@ -10,7 +10,7 @@ function Registration(props) {
   const regSubmit = () => {
     const regDetails = {
         'first name': userName,
-        'last password': password,
+        'password': password,
         'email': email
     }
     console.log('reg deets ',regDetails)
@@ -19,7 +19,7 @@ function Registration(props) {
       <div>
         <h1>Travel Planner Registration</h1>
         <div className="document">
-          <form action="" method="post">
+          <form action="/localhost:3000/users/login" method="post">
             <div>
               <h2>Travel Planner Registration</h2>
               <p>

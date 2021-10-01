@@ -21,7 +21,7 @@ exports.createTrip = async (req, res, next) => {
 exports.getTrip = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const trip = await Trip.findById(id);
+    const trip = await Trip.findById(id).populate('comments');
 
     if (!trip) {
       return next(new AppError('No trip found with that ID.', 404));

@@ -8,6 +8,6 @@ const tripRouter = require('./trip');
 
 router.use('/auth', authRouter);
 router.use('/users', userRouter);
-router.use('/trip', tripRouter);
+router.use('/trips', tripRouter);
 
 module.exports = router;

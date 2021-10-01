@@ -4,8 +4,8 @@ exports.addComment = async (req, res, next) => {
   try {
     const { user, body, date } = req.body;
 
-    const newComment = Comment.create({
-      trip: req.params.trip,
+    const newComment = await Comment.create({
+      trip: req.params.tripId,
       user,
       body,
       date,

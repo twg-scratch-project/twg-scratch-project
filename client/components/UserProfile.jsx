@@ -3,11 +3,16 @@
 
 import React from 'react';
 import style from '../index.css';
+import {useDispatch, useSelector} from 'react-redux';
+
+
 
 function UserProfile(props) {
+  const user = useSelector((state) => state.user);
+
     return (
       <div className='container'>
-         <h1>[user]Profile</h1>
+         <h1>Hello {user.name}</h1>
          
         
       </div>

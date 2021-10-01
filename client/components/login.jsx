@@ -10,6 +10,7 @@ function Login(props) {
     const [password, setPassword] = useState('');
     const [name, setUserName] = useState('');
 
+    const history = useHistory();
     const user = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
@@ -35,22 +36,21 @@ function Login(props) {
     //invoked with forms request to server
     const myFunc = (e) => {
         e.preventDefault();
-        console.log('name and pass redux', name, password)
+        //console.log('name and pass redux', name, password)
         //dispatch(actions.loginUser(name, password));
-        loginUser(username, password);
-        console.log('test', user);
-        console.log(props);
+        loginUser(name, password);
+        history.push('/UserProfile');
     }
     return (
     <div>
-        <h1>Welcome to Your Travel Planner {user.email}</h1>
+        <h1>Welcome to Your Travel Planner {user.name ? user.name : ''}</h1>
         {/* travel planner logo */}
         <img src=''/>
         <div className='loginMain'>
             {/* /* //needs to be a fetch request */}
             <form  method='POST'> 
                 <div className='userInput'>
-                    <h3>Travel Journal {props.user.name}</h3>
+                    <h3>Travel Journal</h3>
                     <label for='html'></label><br/>
                     <input type='text' value={name} onChange={e => setUserName(e.target.value)} placeholder='Enter User Name'/><br/>
                     <label for='pass'></label><br/> 

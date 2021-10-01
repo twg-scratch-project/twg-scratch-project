@@ -1,3 +1,4 @@
+/* eslint-disable implicit-arrow-linebreak */
 const app = require('./app');
 
 process.on('uncaughtException', (err) => {
@@ -6,26 +7,27 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-//To do
-//Yelp API ?
-//see yelp-notes.txt
-const yelpRouter = require('./routes/yelp_api');
+// To do
+// Yelp API ?
+// see yelp-notes.txt
 
 const colors = require('colors');
 require('dotenv').config();
 const PORT = process.env.PORT;
 
-//importing and connecting to DB in MongoDB
+// importing and connecting to DB in MongoDB
 // Ideally, server should not run until the db is connected
 const connectDB = require('./routes/config/db');
-connectDB().then(() =>
-  app.listen(PORT, () =>
+
+let server;
+connectDB().then(() => {
+  server = app.listen(PORT, () =>
     console.log(
       `Server running in node env: ${process.env.NODE_ENV} listening on port: ${PORT}`.brightCyan
         .bold,
     ),
-  ),
-);
+  );
+});
 
 process.on('unhandledRejection', (err) => {
   console.log('UNHANDLED REJECTION! 💥 shutting down...');

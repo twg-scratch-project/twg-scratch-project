@@ -20,8 +20,7 @@ function App() {
   //decl state variable by init and passing updating function 
   //assign useState with its val
   //make a copy of this arr when updating since invoking with replace it?
-  const [password, setPassword] = useState('');
-  const [name, setUserName] = useState('');
+  
   const [isLoggedIn, setLoginStatus] = useState(false);
   const [travelers, updateTravelers] = useState([]);
   const [regInfo, storeRegInfo] = useState({});
@@ -53,14 +52,14 @@ function App() {
         <div>
           <Switch> 
             <Route path="/Login">
-              <Login password={password} onChangePass={pass => setUserName(pass)} name={name} onChangeUser={name => setUserName(name)}/>
+              <Login/>
             </Route>
             <Route path="/GroupItin">
               <GroupItin/>
             </Route>
-            <Route path="/PersonalTripDetails">
+            {/* <Route path="/PersonalTripDetails">
               <PersonalTripDetails/>
-            </Route>
+            </Route> */}
             <Route path="/Registration">
               <Registration onChange={regSubmit}/>
             </Route>

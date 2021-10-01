@@ -1,13 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
 const colors = require('colors');
-
+const cookieParser = require('cookie-parser');
 const AppError = require('./utils/appError');
 
 const app = express();
 
 // initializing bodyParser
 app.use(express.json({ extended: false }));
+app.use(cookieParser());
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
@@ -16,7 +17,6 @@ if (process.env.NODE_ENV === 'development') {
 
 // ROUTES
 // API
-// app.use('/api', require('./routes/api'));
 // User route
 app.use('/api/users', require('./routes/users'));
 // Friend route
@@ -25,6 +25,7 @@ app.use('/api/friends', require('./routes/friends'));
 app.use('/api/trips', require('./routes/trip'));
 // Comment routej
 app.use('/api/comments', require('./routes/comment'));
+app.use('/api', require('./routes/api'));
 
 // IMPORTANT: Make sure to write all route handling BEFORE this one.
 // Handle 'page not found' error

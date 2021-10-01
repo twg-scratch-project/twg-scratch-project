@@ -7,7 +7,7 @@ exports.addComment = async (req, res, next) => {
 
     const newComment = await Comment.create({
       trip: req.params.tripId,
-      user,
+      user: req.user,
       body,
       date,
     });
@@ -32,8 +32,6 @@ exports.deleteComment = async (req, res, next) => {
     if (!comment) {
       return next(new AppError('No document found with that ID', 404));
     }
-
-    console.log(comment);
 
     return res.status(204).json({
       status: 'success',

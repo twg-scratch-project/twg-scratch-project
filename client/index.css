@@ -28,14 +28,14 @@ img{
 } */
 
 div{
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .loginMain{
     background: #FFFF;
     border: 2px solid #D5ECC2;
     border-radius: 50px;    
-    border-width: 100px;
+    border-width: 50px;
     position: fixed;
     padding: 20px;
     top: 50%;
@@ -84,7 +84,6 @@ input{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(7, 100px ); 
-    /* column-gap: 10px; */
     row-gap: 15px;
     outline-color:blue;
     padding: 20px;

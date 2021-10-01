@@ -9,7 +9,7 @@ function PersonalTripDetails(props) {
     return (
       <div>
         [props.userName], you're on your way to: <br/>
-        <img src={logo} alt='Travel Planner logo'/>
+        <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a>
          <p><h3>[location]</h3></p>
         {/* {stored User Name} */}
         <div className="itinerary">

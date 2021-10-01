@@ -22,7 +22,7 @@ function JournalForm (props) {
     return (
       <div>
         {/* {props.userName}, you're on your way to: <br/> */}
-        <img src={logo} alt='Travel Planner logo'/> <h2>My Trip Journal...</h2>
+        <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a>  <h2>My Trip Journal...</h2>
         <form> 
           <div>
             <div className="itinerary">

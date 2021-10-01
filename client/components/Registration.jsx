@@ -41,7 +41,7 @@ function Registration(props) {
 }
     return (
       <div>
-        <h1> <img src={logo} alt='Travel Planner logo'/> Travel Planner Registration</h1>
+        <h1> <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a> Your Travel Journal </h1>
         <div className="document"> 
           <form action="" method="post">
             <div>
@@ -52,10 +52,6 @@ function Registration(props) {
               </p>
                 <label for="email"></label>
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email"></input>
-                {/* <p>
-                <label for="mobile"> </label>
-                <input type="phone" required value={mobile} onChange={e => setMobile(e.target.value)} placeholder="Mobile"></input><br/>
-              </p> */}
               <p>
                 <label for="password"> </label>
                 <input type="password" required password={password} onChange={e => setUserPassword(e.target.value)} placeholder="Password"></input><br/>

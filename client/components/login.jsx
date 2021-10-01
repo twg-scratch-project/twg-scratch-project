@@ -35,7 +35,7 @@ function Login(props) {
             {/* /* //needs to be a fetch request */}
             <form method='POST'> 
                 <div >
-                    <h3>Travel Journal</h3>
+                    <h3>Travel Journal Login</h3>
                     <label for='html'></label><br/>
                     <input class='loginInput' type='text' value={name} onChange={e => setUserName(e.target.value)} placeholder='Enter User Name'/><br/>
                     <label for='pass'></label><br/> 

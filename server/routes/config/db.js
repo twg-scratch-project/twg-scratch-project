@@ -9,9 +9,9 @@ const connectDB = async () => {
     useNewUrlParser: true,
   });
   try {
-    console.log("Database is connected in server.js".yellow);
+    console.log("Database is connected in db.js".yellow);
   } catch (e) {
-    console.log(e.message, `error`.bgCyan);
+    console.log(e.message, `error in db`.bgCyan);
     process.exit(1);
   }
 };

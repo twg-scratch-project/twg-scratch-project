@@ -2,10 +2,15 @@ const mongoose = require("mongoose");
 
 const FriendSchema = new mongoose.Schema({
   //link contacts to the user/inviter
+  //using references to relate documents and populate them
   user: {
-    //look into further
+    //stores a target id
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+    //Mosh
+    // id: "ref",
+    //name of target collection
+    ref: "Users",
+    required: true,
   },
   name: {
     type: String,

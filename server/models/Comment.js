@@ -9,8 +9,8 @@ const commentSchema = new mongoose.Schema({
 
   body: { type: String, required: [true, 'Comment must have a body!'] },
 
-  //! Took out 'required' just for testing. Must uncomment before production.
-  Date: { type: Date /* , required: [true, 'Comment must refer to a date.'] */ },
+  //! Remove default date
+  Date: { type: Date, default: Date.now() },
 
   createdAt: { type: Date, default: Date.now() },
 

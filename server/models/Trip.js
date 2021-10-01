@@ -8,7 +8,7 @@ const tripSchema = new mongoose.Schema(
     },
     departureDate: {
       type: Date,
-      // TODO: Remove default date
+      //! Remove default date
       default: Date.now,
       required: [true, 'Please provide a departure date.'],
     },

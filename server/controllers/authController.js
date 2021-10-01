@@ -1,7 +1,7 @@
 const User = require('../models/Users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { promisify } = require('promisify');
+const { promisify } = require('util');
 
 const AppError = require('../utils/appError');
 
@@ -16,7 +16,7 @@ authController.logIn = async (req, res, next) => {
   const userRecord = await User.findOne({ email });
 
   if (userRecord) {
-    //found the user, check if the credentials match those provided from the req
+    // found the user, check if the credentials match those provided from the req
     const hashMatch = await bcrypt.compare(password, userRecord.password);
 
     if (hashMatch) {
@@ -30,7 +30,8 @@ authController.logIn = async (req, res, next) => {
       };
 
       // create the encoded jwt token
-      const token = await jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 60 * 60 });
+      // const token = await jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 60 * 60 });
+      const token = await promisify(jwt.sign)(payload, process.env.JWT_SECRET);
 
       // save the jwt token to the cookie in the response
       res.cookie('AUTH_TOKEN', token, { httpOnly: true });
@@ -79,8 +80,8 @@ authController.protect = async (req, res, next) => {
   try {
     // 1) Getting the token and check if it's there
     let token;
-    if (req.cookies.jwt) {
-      token = req.cookies.jwt;
+    if (req.cookies.AUTH_TOKEN) {
+      token = req.cookies.AUTH_TOKEN;
     }
 
     if (!token) {
@@ -90,7 +91,8 @@ authController.protect = async (req, res, next) => {
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
     // 3) Check if user still exists
-    const currentUser = await User.findById(decoded.id);
+    const currentUser = await User.findById(decoded.user.id);
+
     if (!currentUser) {
       return next(new AppError('The user belonging to this token no longer exists.', 401));
     }

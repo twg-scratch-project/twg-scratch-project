@@ -7,7 +7,7 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-// To do
+// TODO
 // Yelp API ?
 // see yelp-notes.txt
 

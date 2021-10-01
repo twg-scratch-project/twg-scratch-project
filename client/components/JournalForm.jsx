@@ -43,16 +43,6 @@ function JournalForm (props) {
     
     )
 
-
-    function JournalFunctionality (props) {
-      const handleDelete = () => {deleteEntry};
-      const handleEdit = () => {editEntry};
-
-      // return(
-        
-      // )
-
-    }
   }
 
   export default JournalForm;

@@ -5,7 +5,7 @@ import React, {useState, useEffect} from 'react';
 import style from '../index.css';
 import Login from './Login.jsx';
 import GroupItin from './GroupItin.jsx';
-import PersonalTripDetails from './PersonalTripDetails.jsx';
+import MyTripJournal from './MyTripJournal.jsx';
 import Registration from './Registration.jsx';
 import UserProfile from './UserProfile.jsx';
 
@@ -14,7 +14,7 @@ import {
   Switch,
   Route,
   Link } from 'react-router-dom';
-
+//create a sextion to add friends
 function App() {
   //onCLick function in state here as well?
   //decl state variable by init and passing updating function 
@@ -23,17 +23,8 @@ function App() {
   
   const [isLoggedIn, setLoginStatus] = useState(false);
   const [travelers, updateTravelers] = useState([]);
-  const [regInfo, storeRegInfo] = useState({});
+ 
 
-  function userPassEntry (pass) {
-        setPassword(pass);
-        console.log('user password ', setPassword(pass));
-    }
-  
-  //   (name) {
-  //     setUserName(name);
-  //     console.log('user password ', setUserName(name));
-  // }
 
   function regSubmit (regObj) {
     //stores users reg info
@@ -57,9 +48,9 @@ function App() {
             <Route path="/GroupItin">
               <GroupItin/>
             </Route>
-            {/* <Route path="/PersonalTripDetails">
-              <PersonalTripDetails/>
-            </Route> */}
+            <Route path="/MyTripJournal">
+              <MyTripJournal/>
+            </Route>
             <Route path="/Registration">
               <Registration onChange={regSubmit}/>
             </Route>
@@ -71,7 +62,6 @@ function App() {
             </Route>
           </Switch>
         </div>
-        
       </Router>
     )
   }

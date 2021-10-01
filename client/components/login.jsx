@@ -43,7 +43,7 @@ function Login(props) {
     }
     return (
     <div>
-        <h1>Welcome to Your Travel Planner</h1>
+        <h1>Your Travel Journal</h1>
         {/* travel planner logo */}
         <img src=''/>
         <div className='loginMain'>

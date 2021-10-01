@@ -3,15 +3,14 @@
 
 import React from 'react';
 import style from '../index.css';
+import {name} from './Login.jsx';
 
 function UserProfile(props) {
+ console.log(console.log('props ', props.name))
     return (
       <div className='container'>
-         <h1>[user]Profile</h1>
-         
-        
+         <h1>{props.name} Profile</h1>
       </div>
-    
     )
   }
 

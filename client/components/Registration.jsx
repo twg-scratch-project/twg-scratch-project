@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import React from 'react';
 import style from '../index.css';
+import logo from '../images/journalLogo.png';
 
 function Registration(props) {
   //needs to be coded with props and functionality 
@@ -14,8 +15,7 @@ function Registration(props) {
 
   
   const [password, setUserPassword] = useState('');
-  const [firstName, setfirstName] = useState('');
-  const [lastName, setlastName] = useState('');
+  const [fullname, setfirstName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
 
@@ -30,9 +30,9 @@ function Registration(props) {
         },
         body: JSON.stringify(
             {
-            firstname: firstName,
-            lastname: lastName,
-            password: password
+            fullname,
+            email,
+            password
             })
     })
     .then(response => response.json())
@@ -41,28 +41,29 @@ function Registration(props) {
 }
     return (
       <div>
-        <h1>Travel Planner Registration</h1>
+        <h1> <img src={logo} alt='Travel Planner logo'/> Travel Planner Registration</h1>
         <div className="document"> 
           <form action="" method="post">
             <div>
               <h2>Travel Planner Registration</h2>
               <p>
-                <label for="firstname"></label>
-                <input type="text" value={firstName} onChange={e => setfirstName(e.target.value)} placeholder="First Name"></input><br/>
-              </p>
-              <p>
-                <label for="lastname"> </label>
-                <input type="text" required value={lastName} onChange={e => setlastName(e.target.value)} placeholder="Last Name"></input><br/>
+                <label for="name"></label>
+                <input type="text" value={fullname} onChange={e => setfirstName(e.target.value)} placeholder="First Name"></input><br/>
               </p>
                 <label for="email"></label>
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email"></input>
-                <p>
+                {/* <p>
                 <label for="mobile"> </label>
                 <input type="phone" required value={mobile} onChange={e => setMobile(e.target.value)} placeholder="Mobile"></input><br/>
-              </p>
+              </p> */}
               <p>
                 <label for="password"> </label>
                 <input type="password" required password={password} onChange={e => setUserPassword(e.target.value)} placeholder="Password"></input><br/>
+              </p>
+
+              <p>
+                <label for="mobile"> </label>
+                <input type="phone" required mobile={mobile} onChange={e => setMobile(e.target.value)} placeholder="Mobile"></input><br/>
               </p>
               <button className="SubmitButton" onClick={submitFunc}>Submit</button>
             </div>

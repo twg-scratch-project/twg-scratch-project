@@ -2,10 +2,9 @@
 //onclick functions to be established here and passed as props??
 
 import React, {useState, useEffect} from 'react';
-import style from '../index.css';
 import Login from './Login.jsx';
 import GroupItin from './GroupItin.jsx';
-import MyTripJournal from './MyTripJournal.jsx';
+import JournalForm from './JournalForm.jsx';
 import Registration from './Registration.jsx';
 import UserProfile from './UserProfile.jsx';
 
@@ -13,25 +12,20 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link } from 'react-router-dom';
-//create a sextion to add friends
+  Link 
+  } from 'react-router-dom';
+
 function App() {
   //assign useState with its val
   //make a copy of this arr when updating since invoking with replace it?
-  
-  const [isLoggedIn, setLoginStatus] = useState(false);
-  const [travelers, updateTravelers] = useState([]);
 
+  //create a sextion to tag friends
+  const [travelers, updateTravelers] = useState([]);
 
   function regSubmit (regObj) {
     //stores users reg info
     storeRegInfo(regObj);
-    // const regInfo = {
-    //     firstName: firstName,
-    //     lastName: lastName,
-    //     password: password,
-    //     userEmail: email
-    // }
+   
     console.log('reg deets ',regDetails)
   }
   //for reg component: firstName={regObj.regInfo.firstName} userEmail={regObj.regInfo.email} lastName={regObj.regInfo.lastName} password={regObj.regInfo.password} onChange={regSubmit}
@@ -45,8 +39,8 @@ function App() {
             <Route path="/GroupItin">
               <GroupItin/>
             </Route>
-            <Route path="/MyTripJournal">
-              <MyTripJournal/>
+            <Route path="/JournalForm">
+              <JournalForm/>
             </Route>
             <Route path="/Registration">
               <Registration onChange={regSubmit}/>

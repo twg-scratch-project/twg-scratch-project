@@ -18,18 +18,42 @@ exports.createTrip = async (req, res, next) => {
   }
 };
 
-exports.addComment = async (req, res, next) => {
+exports.getTrip = async (req, res, next) => {
   try {
-    const trip = await Trip.findById(req.params.id);
+    const { id } = req.params;
+    const trip = await Trip.findById(id);
 
-    const { user, body, date } = req.body;
+    if (!trip) {
+      return next(new AppError('No trip found with that ID.', 404));
+    }
 
-    trip.comments.push({ user, body, date });
-
-    console.log(trip.comments);
-
-    return res.status(200);
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        trip,
+      },
+    });
   } catch (err) {
     next(err);
   }
+};
+
+exports.updateTrip = (Model) => async (req, res, next) => {
+  const trip = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!trip) {
+    return next(new AppError('No trip found with that ID', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: {
+        trip,
+      },
+    },
+  });
 };

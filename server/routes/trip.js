@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/createtrip', tripController.createTrip);
 
-router.post('/comment', tripController.addComment);
+router.route('/:id').get(tripController.getTrip).patch(tripController.updateTrip);
 
 module.exports = router;

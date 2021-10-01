@@ -2,13 +2,11 @@ const express = require('express');
 const morgan = require('morgan');
 const colors = require('colors');
 
-// require("dotenv").config();
-
 const AppError = require('./utils/appError');
 
 const app = express();
 
-//initializing bodyParser
+// initializing bodyParser
 app.use(express.json({ extended: false }));
 
 // Development logging
@@ -16,14 +14,14 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-//ROUTES
-//API
-app.use("/api", require("./routes/api"));
-//User route
+// ROUTES
+// API
+app.use('/api', require('./routes/api'));
+// User route
 app.use('/api/users', require('./routes/users'));
-//Friend route
+// Friend route
 app.use('/api/friends', require('./routes/friends'));
-//Trip route
+// Trip route
 app.use('/api/trips', require('./routes/trip'));
 
 // IMPORTANT: Make sure to write all route handling BEFORE this one.

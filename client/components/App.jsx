@@ -5,7 +5,7 @@ import React, {useState, useEffect} from 'react';
 import style from '../index.css';
 import Login from './Login.jsx';
 import GroupItin from './GroupItin.jsx';
-import PersonalTripDetails from './PersonalTripDetails.jsx';
+import MyTripJournal from './MyTripJournal.jsx';
 import Registration from './Registration.jsx';
 import UserProfile from './UserProfile.jsx';
 
@@ -14,17 +14,18 @@ import {
   Switch,
   Route,
   Link } from 'react-router-dom';
-
+//create a sextion to add friends
 function App() {
   //onCLick function in state here as well?
   //decl state variable by init and passing updating function 
   //assign useState with its val
   //make a copy of this arr when updating since invoking with replace it?
-  const [password, setPassword] = useState('');
-  const [name, setUserName] = useState('');
+  
   const [isLoggedIn, setLoginStatus] = useState(false);
   const [travelers, updateTravelers] = useState([]);
-  const [regInfo, storeRegInfo] = useState({});
+ 
+
+
 
   function userPassEntry (pass) {
         setPassword(pass);
@@ -53,13 +54,13 @@ function App() {
         <div>
           <Switch> 
             <Route path="/Login">
-              <Login password={password} onChangePass={pass => setUserName(pass)} name={name} onChangeUser={name => setUserName(name)}/>
+              <Login/>
             </Route>
             <Route path="/GroupItin">
               <GroupItin/>
             </Route>
-            <Route path="/PersonalTripDetails">
-              <PersonalTripDetails/>
+            <Route path="/MyTripJournal">
+              <MyTripJournal/>
             </Route>
             <Route path="/Registration">
               <Registration onChange={regSubmit}/>
@@ -72,7 +73,6 @@ function App() {
             </Route>
           </Switch>
         </div>
-        
       </Router>
     )
   }

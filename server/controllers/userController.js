@@ -46,13 +46,26 @@ const updatePassword = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   //user must be signed in to delete themselves
   try {
-    const users = await User.findOneAndDelete({ name: req.body.name });
+    console.log(req.body.name, `req.body.name`.red);
+    const user = await User.findOneAndDelete(
+      { name: req.body.name }
+      // (err, doc) => {
+      //   proof
+      //   console.log(`${doc}`.bgRed);
+      // }
+    );
+    if (!user) {
+      res.status(404).send("User not found");
+    }
     res.status(201).send("user deleted");
   } catch (e) {
-    res.status(404).send("User not found");
+    res.status(500).send("Server Error");
   }
 };
 
+//@route        GET api/user/
+//@desc         Get all users
+//@access     Private (for Coordinator),
 const getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find();
@@ -80,7 +93,7 @@ const verifyUser = async (req, res, next) => {
       .status(200)
       .json({ success: true, number: user.length, data: user });
   } catch (e) {
-    console.error(`e.message in userController`.bgYellow);
+    //console.error(`e.message in userController`.bgYellow);
     res.status(500).json({ e: e.message });
   }
 };

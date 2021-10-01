@@ -17,6 +17,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 //ROUTES
+//API
+app.use("/api", require("./routes/api"));
 //User route
 app.use('/api/users', require('./routes/users'));
 //Friend route

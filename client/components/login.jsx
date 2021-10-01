@@ -6,20 +6,7 @@ import React, {useState, useEffect} from 'react';
 function Login(props) {
     const [password, setPassword] = useState('');
     const [name, setUserName] = useState('');
-    // const userNameEntry = (event) => {
-    //     console.log(setUserName(event.target.value));
-    // }
-
-    // function userPassEntry (event) {
-    //     //add validation/if event is not a string...
-    //     props.onChange(event.target.value);
-    //     console.log('password ', props.onChange(event => event.target.value))
-    // }
-    // function userNameEntry (event) {
-    //     //add validation/if event is not a string...
-    //     props.onChange(event.target.value);
-    //     console.log('password ', event.target.value)
-    // }
+    
 
     //invoked with forms request to server
     const myFunc = (e) => {

@@ -1,19 +1,36 @@
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require("express-validator");
+const colors = require("colors");
+
+const { check, validationResult, body } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-let config = require("./config/globalVar");
+let configure = require("../routes/config/globalVariables");
 require("dotenv").config();
 
-// must require model of the user in the route
 const User = require("../models/Users");
+
+// include json body parser
+router.use(express.json({ extended: false }));
+
+const userController = require("../controllers/userController");
+
+//@route        GET api/user/
+//@desc         Get all users
+//@access     Private (for Coordinator),
+//add auth middleware!
+router.get("/", userController.getAllUsers);
+
+//@route        GET api/user/:id
+//@desc         Get a user
+//@access     Public (because verifying user)
+router.patch("/verifyUser", userController.verifyUser);
 
 //@route        POST api/users
 //@desc         Register a user
 //@access     Public
 router.post(
-  "/",
+  "/login",
   // checks are set by express-validator
   [
     check("name", "Please add name").not().isEmpty(),
@@ -30,13 +47,13 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { name, email, password } = req.body;
+    const { name, email, password, mobile } = req.body;
     try {
       let user = await User.findOne({ email });
       if (user) return res.status(400).json({ msg: "User already exists" });
       //if no user found?
       //a new instance of the user is made
-      user = new User({ name, email, password });
+      user = new User({ name, email, password, mobile });
       //before sending user to the database, encrypt
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
@@ -53,7 +70,7 @@ router.post(
       //to send a token, it must be signed
       jwt.sign(
         payload,
-        config.jwtSecret,
+        configure.jwtSecret,
         {
           //num in seconds
           expiresIn: 360000,
@@ -63,13 +80,33 @@ router.post(
           return res.json({ token });
         }
       );
-      //res.send("User saved");
     } catch (e) {
       console.error(e.message, `in users.js`.magenta);
       res.status(500).send("Server error");
     }
-    //return res.send("passed");
   }
 );
+
+//@route        PATCH api/users
+//@desc         Update a user
+//@access     Public (because updating a password)
+
+router.patch(
+  "/updatePassword",
+  [
+    check(
+      "password",
+      "Please enter a password with 6 or more characters"
+    ).isLength({ min: 6 }),
+  ],
+  userController.updatePassword
+);
+
+//@route        DELETE api/users
+//@desc         Delete a user
+//@access     Private
+// add middleware
+
+router.delete("/deleteUser/:id", userController.deleteUser);
 
 module.exports = router;

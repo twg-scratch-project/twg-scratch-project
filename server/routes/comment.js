@@ -5,4 +5,6 @@ const router = express.Router({ mergeParams: true });
 
 router.post('/', commentController.addComment);
 
+router.delete('/:id', commentController.deleteComment);
+
 module.exports = router;

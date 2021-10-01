@@ -25,6 +25,8 @@ function App() {
   const [travelers, updateTravelers] = useState([]);
   const [regInfo, storeRegInfo] = useState({});
 
+
+
   function userPassEntry (pass) {
         setPassword(pass);
         console.log('user password ', setPassword(pass));

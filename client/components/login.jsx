@@ -1,4 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
+import * as actions from '../actions/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 //research importing an img file for logo!
 //import '../TP_Logo/TravelPlanner_Logo/TravelPlanner_Logo.png';
 
@@ -6,6 +9,14 @@ import React, {useState, useEffect} from 'react';
 function Login(props) {
     const [password, setPassword] = useState('');
     const [name, setUserName] = useState('');
+
+    const user = useSelector((state) => state.user);
+
+    const dispatch = useDispatch();
+    const loginUser = useCallback((username, password) => dispatch(
+        actions.loginUser(username, password)
+    ), [dispatch]);
+
     // const userNameEntry = (event) => {
     //     console.log(setUserName(event.target.value));
     // }
@@ -24,33 +35,22 @@ function Login(props) {
     //invoked with forms request to server
     const myFunc = (e) => {
         e.preventDefault();
-        console.log('name and pass ', name, password)
-        fetch('/users/verifyUser', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(
-                {
-                name: name,
-                password: password
-                })
-        })
-        .then(response => response.json())
-        .then( data => console.log(data))
-        .catch(() => console.log('fetch error has occurred'))
+        console.log('name and pass redux', name, password)
+        //dispatch(actions.loginUser(name, password));
+        loginUser(username, password);
+        console.log('test', user);
+        console.log(props);
     }
     return (
     <div>
-        <h1>Welcome to Your Travel Planner</h1>
+        <h1>Welcome to Your Travel Planner {user.email}</h1>
         {/* travel planner logo */}
         <img src=''/>
         <div className='loginMain'>
             {/* /* //needs to be a fetch request */}
             <form  method='POST'> 
                 <div className='userInput'>
-                    <h3>Travel Journal</h3>
+                    <h3>Travel Journal {props.user.name}</h3>
                     <label for='html'></label><br/>
                     <input type='text' value={name} onChange={e => setUserName(e.target.value)} placeholder='Enter User Name'/><br/>
                     <label for='pass'></label><br/> 

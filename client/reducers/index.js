@@ -1,17 +1,8 @@
+import { combineReducers } from 'redux';
+import userReducer from './userReducer';
 
-import action from '../actions/actions';
+const reducers = combineReducers({
+    user: userReducer
+});
 
-const initialState = {
-    user: '',
-    travelers: 0,
-    location: ""
-    }
-
-function travelReducer(state = initialState, action) {
-    if (typeof state === 'undefined') {
-        return `Trip details not set`;
-    }
-    
-}
-
-export default travelReducer;
+export default reducers;

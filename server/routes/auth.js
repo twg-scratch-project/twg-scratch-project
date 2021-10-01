@@ -11,7 +11,7 @@ router.get("/", authController.isLoggedIn, (req, res) => res.send(`Logged in as 
 //@route        POST api/auth
 //@desc         Auth user and get token
 //@access     Public
-router.post("/", authController.logIn, (req, res) => res.send("Log in user"));
+router.post("/", authController.logIn, (req, res) => res.json(res.locals.user));
 
 //@route        GET api/auth/logout
 //@desc         Log out the current user

@@ -33,6 +33,9 @@ authController.logIn = async (req, res, next) => {
       // save the jwt token to the cookie in the response
       res.cookie('AUTH_TOKEN', token, {httpOnly: true});
 
+      // save the user in res.locals
+      res.locals.user = userRecord;
+
       // continue with the next middleware
       return next();
     }

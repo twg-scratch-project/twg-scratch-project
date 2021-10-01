@@ -26,6 +26,8 @@ app.get("/api/test-route", (req, res, next) => {
 });
 
 //ROUTES
+//API
+app.use("/api", require("./routes/api"));
 //User route
 app.use("/users", require("./routes/users"));
 //Friend route

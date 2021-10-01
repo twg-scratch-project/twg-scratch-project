@@ -26,6 +26,17 @@ function App() {
  
 
 
+
+  function userPassEntry (pass) {
+        setPassword(pass);
+        console.log('user password ', setPassword(pass));
+    }
+  
+  //   (name) {
+  //     setUserName(name);
+  //     console.log('user password ', setUserName(name));
+  // }
+
   function regSubmit (regObj) {
     //stores users reg info
     storeRegInfo(regObj);

@@ -1,10 +1,10 @@
-const express = require("express");
-const morgan = require("morgan");
-const colors = require("colors");
+const express = require('express');
+const morgan = require('morgan');
+const colors = require('colors');
 
 // require("dotenv").config();
 
-const AppError = require("./utils/appError");
+const AppError = require('./utils/appError');
 
 const app = express();
 
@@ -12,30 +12,21 @@ const app = express();
 app.use(express.json({ extended: false }));
 
 // Development logging
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
 }
-
-//receiving errors here!
-// console.log(`error found here with get`.italic);
-app.get("/api/test-route", (req, res, next) => {
-  return res.status(200).json({
-    status: "success",
-    data: "GET request to test-route was succesful",
-  });
-});
 
 //ROUTES
 //User route
-app.use("/users", require("./routes/users"));
+app.use('/api/users', require('./routes/users'));
 //Friend route
-app.use("/friends", require("./routes/friends"));
+app.use('/api/friends', require('./routes/friends'));
 //Trip route
-//To be continued...
+app.use('/api/trips', require('./routes/trip'));
 
 // IMPORTANT: Make sure to write all route handling BEFORE this one.
 // Handle 'page not found' error
-app.all("*", (req, res, next) => {
+app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 

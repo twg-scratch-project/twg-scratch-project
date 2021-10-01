@@ -1,16 +1,10 @@
-const express = require("express");
-const tripController = require("../controllers/tripController");
+const express = require('express');
+const tripController = require('../controllers/tripController');
+
 const router = express.Router();
-const { validationResult } = require('express-validator');
 
+router.post('/createtrip', tripController.createTrip);
 
-router.get("/", (req, res) => res.send('Trip'));
-
-router.post(
-  "/", 
-  tripController.validate,
-  tripController.create,
-  (req, res) => res.send(`Saved trip ${res.locals.savedTrip}`));
-
+router.post('/comment', tripController.addComment);
 
 module.exports = router;

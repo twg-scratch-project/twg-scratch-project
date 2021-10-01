@@ -1,41 +1,35 @@
-const { body, validationResult } = require('express-validator/check');
-const Trip = require("../models/Trip");
+const Trip = require('../models/Trip');
 const AppError = require('../utils/appError');
 
-
-const tripController = {};
-
-tripController.create = async (req, res, next) => {
-
-  const {name, departureDate, numDays} = req.body;
+exports.createTrip = async (req, res, next) => {
   try {
-    const trip = new Trip({name, departureDate, numDays});
-    await trip.save();
-    res.locals.savedTrip = trip;
-    next();
-  } catch (e) {
-    res.status(500).send("Server error");
+    const { name, departureDate, numDays } = req.body;
+    // TODO: Adjust to work data that we decide to use.
+    const newTrip = await Trip.create({ name, departureDate, numDays });
+
+    return res.status(201).json({
+      status: 'success',
+      data: {
+        trip: newTrip,
+      },
+    });
+  } catch (err) {
+    next(err);
   }
-  
 };
 
-tripController.update = async (req, res, next) => {
-  next();
-};
+exports.addComment = async (req, res, next) => {
+  try {
+    const trip = await Trip.findById(req.params.id);
 
-tripController.validate = [
-  body('name', 'Name doesn\'t exist').exists(),
-  body('departureDate', 'Invalid departureDate').exists().isDate(),
-  body('numDays', 'numDays not provided').exists().isInt(),
-  (req, res, next) => {
-    const validationErrs = validationResult(req);
-    if (!validationErrs.isEmpty()) {
-      const err = new AppError('Validation error for trip', 500, validationErrs);
-      next(err);
-    } else {
-      next();
-    }
+    const { user, body, date } = req.body;
+
+    trip.comments.push({ user, body, date });
+
+    console.log(trip.comments);
+
+    return res.status(200);
+  } catch (err) {
+    next(err);
   }
-];
-
-module.exports = tripController;
+};

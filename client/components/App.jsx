@@ -24,9 +24,6 @@ function App() {
   const [travelers, updateTravelers] = useState([]);
 
 
-  //create a sextion to tag friends
-  const [travelers, updateTravelers] = useState([]);
-
   function regSubmit (regObj) {
     //stores users reg info
     storeRegInfo(regObj);
@@ -46,6 +43,7 @@ function App() {
             </Route>
             <Route path="/JournalForm">
               <JournalForm/>
+            </Route>
             <Route path="/MyTripJournal">
               <MyTripJournal/>
             </Route>

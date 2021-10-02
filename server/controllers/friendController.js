@@ -1,39 +1,32 @@
-require("dotenv").config();
-const { check, validationResult } = require("express-validator");
-const Friend = require("../models/Friends");
+require('dotenv').config();
+const { check, validationResult } = require('express-validator');
+const Friend = require('../models/Friends');
 
-const getAllFriends = (req, res, next) => {};
-
-const getASingleFriend = (req, res, next) => {};
-
-const friendCreator = (req, res, next) => {
-  // checks are set by express-validator
-  //Sanitizing
-  [
-    check("name", "Please add name").not().isEmpty().trim().escape(),
-    check("email", "Please include a valid email").isEmail().normalizeEmail(),
-  ],
-    async (req, res) => {
-      //data sent to the route
-      //only for routes that accept data
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-      }
-      const { name, email, mobile } = req.body;
-      try {
-        let Friend = await Friend.findOne({ email });
-        if (Friend)
-          return res.status(400).json({ msg: "Friend already exists" });
-        //if no Friend found, a new instance of the Friend is made
-        Friend = new Friend({ name, email, mobile });
-        await Friend.save();
-      } catch (e) {
-        console.error(e.message, `in Friends.js`.magenta);
-        res.status(500).send("Server error");
-      }
-    };
+// @route        GET all api/friends
+// @desc         Get user's friends
+// @access     Private
+const getAllFriends = async (req, res) => {
+  try {
+    const friends = await Friend.find();
+    if (!friends.length) {
+      res.status(404).json({ message: 'No friends found. Invite some friends' });
+    }
+    return res.status(200).json({ success: true, number: friends.length, data: friends });
+  } catch (e) {
+    console.error('e.message in userController'.bgYellow);
+    res.status(500).json({ e: e.message });
+  }
 };
+
+// @route        GET one api/friends
+// @desc         Get user's friends
+// @access     Private
+const grabFriendsUser = (req, res) => {};
+
+// @route        GET one api/friends
+// @desc         Get user's friends
+// @access     Private
+const getASingleFriend = (req, res) => {};
 
 const friendRemover = (req, res, next) => {};
 
@@ -42,7 +35,7 @@ const friendUpdater = (req, res, next) => {};
 module.exports = {
   getAllFriends,
   getASingleFriend,
-  friendCreator,
+
   friendRemover,
   friendUpdater,
 };

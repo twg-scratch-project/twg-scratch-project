@@ -1,41 +1,59 @@
-const { body, validationResult } = require('express-validator/check');
-const Trip = require("../models/Trip");
+const Trip = require('../models/Trip');
 const AppError = require('../utils/appError');
 
-
-const tripController = {};
-
-tripController.create = async (req, res, next) => {
-
-  const {name, departureDate, numDays} = req.body;
+exports.createTrip = async (req, res, next) => {
   try {
-    const trip = new Trip({name, departureDate, numDays});
-    await trip.save();
-    res.locals.savedTrip = trip;
-    next();
-  } catch (e) {
-    res.status(500).send("Server error");
+    const { name, departureDate, numDays } = req.body;
+    // TODO: Adjust to work data that we decide to use.
+    const newTrip = await Trip.create({ name, departureDate, numDays });
+
+    return res.status(201).json({
+      status: 'success',
+      data: {
+        trip: newTrip,
+      },
+    });
+  } catch (err) {
+    next(err);
   }
-  
 };
 
-tripController.update = async (req, res, next) => {
-  next();
-};
+exports.getTrip = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const trip = await Trip.findById(id).populate('comments');
 
-tripController.validate = [
-  body('name', 'Name doesn\'t exist').exists(),
-  body('departureDate', 'Invalid departureDate').exists().isDate(),
-  body('numDays', 'numDays not provided').exists().isInt(),
-  (req, res, next) => {
-    const validationErrs = validationResult(req);
-    if (!validationErrs.isEmpty()) {
-      const err = new AppError('Validation error for trip', 500, validationErrs);
-      next(err);
-    } else {
-      next();
+    if (!trip) {
+      return next(new AppError('No trip found with that ID.', 404));
     }
-  }
-];
 
-module.exports = tripController;
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        trip,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.updateTrip = (Model) => async (req, res, next) => {
+  const trip = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!trip) {
+    return next(new AppError('No trip found with that ID', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: {
+        trip,
+      },
+    },
+  });
+};

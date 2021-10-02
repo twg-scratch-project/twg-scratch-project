@@ -3,6 +3,7 @@
 
 import React from 'react';
 import style from '../index.css';
+/**<<<<<<< updatedLogin
 import {name} from './Login.jsx';
 
 function UserProfile(props) {
@@ -10,6 +11,20 @@ function UserProfile(props) {
     return (
       <div className='container'>
          <h1>{props.name} Profile</h1>
+=======**/
+import {useDispatch, useSelector} from 'react-redux';
+
+
+
+function UserProfile(props) {
+  const user = useSelector((state) => state.user);
+
+    return (
+      <div className='container'>
+         <h1>Hello {user.name}</h1>
+         
+        
+
       </div>
     )
   }

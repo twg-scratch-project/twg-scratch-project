@@ -1,35 +1,54 @@
-import React, {useState, useEffect} from 'react';
 import logo from '../images/journalLogo.png';
+import React, {useState, useEffect, useCallback} from 'react';
+import * as actions from '../actions/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+//research importing an img file for logo!
+//import '../TP_Logo/TravelPlanner_Logo/TravelPlanner_Logo.png';
+
 
 
 function Login(props) {
     const [password, setPassword] = useState('');
     const [name, setUserName] = useState('');
-    
+
+    const history = useHistory();
+    const user = useSelector((state) => state.user);
+
+    const dispatch = useDispatch();
+    const loginUser = useCallback((username, password) => dispatch(
+        actions.loginUser(username, password)
+    ), [dispatch]);
+
+    // const userNameEntry = (event) => {
+    //     console.log(setUserName(event.target.value));
+    // }
+
+    // function userPassEntry (event) {
+    //     //add validation/if event is not a string...
+    //     props.onChange(event.target.value);
+    //     console.log('password ', props.onChange(event => event.target.value))
+    // }
+    // function userNameEntry (event) {
+    //     //add validation/if event is not a string...
+    //     props.onChange(event.target.value);
+    //     console.log('password ', event.target.value)
+    // }
+
+
     //invoked with forms request to server
     const myFunc = (e) => {
         e.preventDefault();
-        console.log('name and pass ', name, password)
-        fetch('/users/verifyUser', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(
-                {
-                name: name,
-                password: password
-                })
-        })
-        .then(response => response.json())
-        .then( data => console.log(data))
-        .catch(() => console.log('fetch error has occurred'))
+        //console.log('name and pass redux', name, password)
+        //dispatch(actions.loginUser(name, password));
+        loginUser(name, password);
+        history.push('/UserProfile');
     }
     return (
     <div>
+
         <h1> <img src={logo} alt='Travel Planner logo'/> Your Travel Journal</h1>
-        
+
         {/* travel planner logo */}
         <div className='loginMain'>
             {/* /* //needs to be a fetch request */}

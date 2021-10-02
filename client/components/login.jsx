@@ -7,6 +7,7 @@ import {useHistory} from 'react-router-dom';
 function Login(props) {
     const [password, setPassword] = useState('');
     const [name, setUserName] = useState('');
+    const [loginFail, setLoginFail] = useState(false);
 
     const history = useHistory();
     const user = useSelector((state) => state.user);
@@ -23,7 +24,15 @@ function Login(props) {
         //console.log('name and pass redux', name, password)
         //dispatch(actions.loginUser(name, password));
         loginUser(name, password);
-        history.push('/JournalForm');
+        /*if (user) {
+            setLoginFail(false);
+            history.push('/UserProfile');
+        } else {
+            setLoginFail(true)
+            console.log('login fail');
+        }*/
+        history.push('/UserProfile');
+        //
     }
     return (
     <div>
@@ -33,6 +42,7 @@ function Login(props) {
             <form method='POST'> 
                 <div >
                     <h3>Travel Journal Login</h3>
+                    <span style={{color: 'red'}} hidden={!loginFail}>The credentials entered were incorrect.</span>
                     <label for='html'></label><br/>
                     <input class='loginInput' type='text' value={name} onChange={e => setUserName(e.target.value)} placeholder='Enter User Name'/><br/>
                     <label for='pass'></label><br/> 

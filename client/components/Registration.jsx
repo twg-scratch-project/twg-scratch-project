@@ -6,14 +6,7 @@ import style from '../index.css';
 import logo from '../images/journalLogo.png';
 
 function Registration(props) {
-  //needs to be coded with props and functionality 
-  // function regSubmit (e) {
-  //   props.onChange(e.target.value)
-  //   // e.preventDefault()
-  //   console.log('reg deets ',regDetails)
-  // }
 
-  
   const [password, setUserPassword] = useState('');
   const [fullname, setfirstName] = useState('');
   const [email, setEmail] = useState('');
@@ -41,7 +34,7 @@ function Registration(props) {
 }
     return (
       <div>
-        <h1> <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a> Your Travel Journal </h1>
+        <h1> <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a> </h1>
         <div className="document"> 
           <form action="" method="post">
             <div>

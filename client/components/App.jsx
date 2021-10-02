@@ -3,7 +3,6 @@
 
 import React, {useState, useEffect} from 'react';
 import Login from './Login.jsx';
-import GroupItin from './GroupItin.jsx';
 import JournalForm from './JournalForm.jsx';
 import Registration from './Registration.jsx';
 import UserProfile from './UserProfile.jsx';
@@ -16,11 +15,18 @@ import {
   } from 'react-router-dom';
 
 function App() {
-  //assign useState with its val
-  //make a copy of this arr when updating since invoking with replace it?
-
   //create a sextion to tag friends
   const [travelers, updateTravelers] = useState([]);
+
+  function userPassEntry (pass) {
+        setPassword(pass);
+        console.log('user password ', setPassword(pass));
+    }
+  
+  //   (name) {
+  //     setUserName(name);
+  //     console.log('user password ', setUserName(name));
+  // }
 
   function regSubmit (regObj) {
     //stores users reg info
@@ -35,9 +41,6 @@ function App() {
           <Switch> 
             <Route path="/Login">
               <Login/>
-            </Route>
-            <Route path="/GroupItin">
-              <GroupItin/>
             </Route>
             <Route path="/JournalForm">
               <JournalForm/>

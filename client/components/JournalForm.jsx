@@ -25,17 +25,34 @@ function JournalForm (props) {
         <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a> <h2>My Trip Journal...</h2>
         <form> 
           <div>
-            <div className="itinerary">
+            <div className="currentEntry">
               {/* map displaying dynamic trip entries */}
                 <textarea className="cell">
-                  <h3 class="newEntry">New Entry</h3>
+                  New Entry
                 </textarea><br/>
+                <button class='SubmitButton' onClick={handleSubmission}>Submit Entry </button>
+                <br/>
             </div>
             <div className="allEntries">
-                <div className="cell">Prev Entries:</div>
+                <div className="cell" className='divScroll'>
+                  Prev Entries:
+                <p>
+                slfjslkfjs klfjsklfj fkljsfkl
+                slfjslkfjs fkljs flksfj sklfj
+                </p>
+                <p>
+                slfjslkfjs klfjsklfj fkljsfkl
+                slfjslkfjs fkljs flksfj sklfj
+                </p>
+                <p>
+                slfjslkfjs klfjsklfj fkljsfkl
+                slfjslkfjs fkljs flksfj sklfj
+                </p>
+                </div><br/>
             </div>
+            <button class='SubmitButton' onClick={handleSubmission}>Edit An Entry</button>
+            <button class='SubmitButton' onClick={handleSubmission}>Delete An Entry </button>
             <label for='html'></label><br/>
-            <button class='SubmitButton' onClick={handleSubmission}>Submit Entry </button>
         </div>
         </form>
           

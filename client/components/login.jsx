@@ -42,12 +42,12 @@ function Login(props) {
         //console.log('name and pass redux', name, password)
         //dispatch(actions.loginUser(name, password));
         loginUser(name, password);
-        history.push('/UserProfile');
+        history.push('/JournalForm');
     }
     return (
     <div>
 
-        <h1> <img src={logo} alt='Travel Planner logo'/> Your Travel Journal</h1>
+        <h1> <img src={logo} alt='Travel Planner logo'/> Your Travel Journal  {user.name ? user.name : ''}</h1>
 
         {/* travel planner logo */}
         <div className='loginMain'>

@@ -56,7 +56,6 @@ function Registration(props) {
                 <label for="password"> </label>
                 <input type="password" required password={password} onChange={e => setUserPassword(e.target.value)} placeholder="Password"></input><br/>
               </p>
-
               <p>
                 <label for="mobile"> </label>
                 <input type="phone" required mobile={mobile} onChange={e => setMobile(e.target.value)} placeholder="Mobile"></input><br/>

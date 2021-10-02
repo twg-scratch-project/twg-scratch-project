@@ -10,16 +10,16 @@ function Login(props) {
     const myFunc = (e) => {
         e.preventDefault();
         console.log('name and pass ', name, password)
-        fetch('/users/verifyUser', {
+        fetch('http://localhost:3000/users/verifyUser', {
             method: 'POST',
-            mode: 'cors',
+            mode: 'no-cors',
             headers: {
                 "Content-type": "application/json"
             },
             body: JSON.stringify(
                 {
-                name: name,
-                password: password
+                name,
+                password
                 })
         })
         .then(response => response.json())

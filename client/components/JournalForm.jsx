@@ -13,7 +13,7 @@ function JournalForm (props) {
     const [deleter, entryDeleter] = useState('');
     const [editor, entryEditor] = useState('');
     const [{_id: entryId, entry, title}] = useState({});
-
+    //endpoint to create a comment: api/trips/:tripId/comments
     const handleSubmission = () => {};
     //function that makes a get request to trip journal endpoint
     //send back note data which we'll render on page
@@ -22,14 +22,14 @@ function JournalForm (props) {
     return (
       <div>
         {/* {props.userName}, you're on your way to: <br/> */}
-        <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a>  <h2>My Trip Journal...</h2>
+        <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a> <h2>My Trip Journal...</h2>
         <form> 
           <div>
             <div className="itinerary">
               {/* map displaying dynamic trip entries */}
-                <div className="cell">
+                <textarea className="cell">
                   <h3 class="newEntry">New Entry</h3>
-                </div><br/>
+                </textarea><br/>
             </div>
             <div className="allEntries">
                 <div className="cell">Prev Entries:</div>

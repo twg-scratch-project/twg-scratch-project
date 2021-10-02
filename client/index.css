@@ -8,6 +8,8 @@ body{
 h1{
     font-size: 60px;
     font-family: 'Architects Daughter', cursive;
+    position: relative;
+    text-align: center;
 }
 
 h1, h4{

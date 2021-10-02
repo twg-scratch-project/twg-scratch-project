@@ -1,9 +1,7 @@
-// import React, { Component } from "react"
-//onclick functions to be established here and passed as props??
-
 import React, {useState, useEffect} from 'react';
 import Login from './Login.jsx';
 import JournalForm from './JournalForm.jsx';
+import MyTripJournal from './MyTripJournal.jsx';
 import Registration from './Registration.jsx';
 import UserProfile from './UserProfile.jsx';
 
@@ -11,12 +9,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link 
-  } from 'react-router-dom';
+  Link } from 'react-router-dom';
+//create a sextion to add friends
 
 function App() {
-  //create a sextion to tag friends
-  const [travelers, updateTravelers] = useState([]);
+  //assign useState with its val
+  //make a copy of this arr when updating since invoking with replace it?
+  // const [isLoggedIn, setLoginStatus] = useState(false);
+  // const [travelers, updateTravelers] = useState([]);
+  // //create a sextion to tag friends
 
   function userPassEntry (pass) {
         setPassword(pass);
@@ -44,6 +45,9 @@ function App() {
             </Route>
             <Route path="/JournalForm">
               <JournalForm/>
+              </Route>
+            <Route path="/MyTripJournal">
+              <MyTripJournal/>
             </Route>
             <Route path="/Registration">
               <Registration onChange={regSubmit}/>

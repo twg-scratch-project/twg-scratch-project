@@ -4,16 +4,18 @@ import * as actions from '../actions/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
-
 function Login(props) {
     const [password, setPassword] = useState('');
     const [name, setUserName] = useState('');
+
     const history = useHistory();
     const user = useSelector((state) => state.user);
+
     const dispatch = useDispatch();
     const loginUser = useCallback((username, password) => dispatch(
         actions.loginUser(username, password)
     ), [dispatch]);
+
 
     //invoked with forms request to server
     const myFunc = (e) => {
@@ -26,8 +28,8 @@ function Login(props) {
     return (
     <div>
         <h1> <img src={logo} alt='Travel Planner logo'/> {user.name ? user.name : ''} Travel Journal</h1>
+
         <div className='loginMain'>
-            {/* /* //needs to be a fetch request */}
             <form method='POST'> 
                 <div >
                     <h3>Travel Journal Login</h3>

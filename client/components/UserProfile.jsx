@@ -3,6 +3,15 @@
 
 import React from 'react';
 import style from '../index.css';
+/**<<<<<<< updatedLogin
+import {name} from './Login.jsx';
+
+function UserProfile(props) {
+ console.log(console.log('props ', props.name))
+    return (
+      <div className='container'>
+         <h1>{props.name} Profile</h1>
+=======**/
 import {useDispatch, useSelector} from 'react-redux';
 
 
@@ -15,8 +24,8 @@ function UserProfile(props) {
          <h1>Hello {user.name}</h1>
          
         
+
       </div>
-    
     )
   }
 

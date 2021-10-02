@@ -1,14 +1,15 @@
-//onclick functions to be established here and passed as props??
-//planning page for trip
+
+//May be able to delete PTD component and place all in JournalForm component
 
 import React from 'react';
-import style from '../index.css';
+import logo from '../images/journalLogo.png';
 
 function PersonalTripDetails(props) {
     //'my itinerary': Day1, Day2, etc
     return (
       <div>
         [props.userName], you're on your way to: <br/>
+        <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a>
          <p><h3>[location]</h3></p>
         {/* {stored User Name} */}
         <div className="itinerary">

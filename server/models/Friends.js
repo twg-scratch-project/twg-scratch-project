@@ -5,12 +5,10 @@ const FriendSchema = new mongoose.Schema({
   //using references to relate documents and populate them
   user: {
     //stores a target id
-    type: mongoose.Schema.Types.ObjectId,
-    //Mosh
-    // id: "ref",
+    type: mongoose.Schema.ObjectId,
     //name of target collection
-    ref: "Users",
-    required: true,
+    ref: "user",
+    required: [true, "Friend must have a person who invited them"],
   },
   name: {
     type: String,
@@ -33,4 +31,4 @@ const FriendSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("friend", FriendSchema);
+module.exports = mongoose.model("Friend", FriendSchema);

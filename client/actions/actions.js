@@ -30,6 +30,13 @@ export const loginUser = (username, password) => {
       });
 
   }).
-    catch(e => console.log(e));
+    catch(e => {
+      dispatch({
+        type: types.SET_CURRENT_USER,
+        payload: {
+          name: 'LOGIN_FAIL'
+        }
+        });
+    });
   };
 };

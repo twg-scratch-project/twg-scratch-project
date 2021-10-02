@@ -46,7 +46,7 @@ const updatePassword = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   //user must be signed in to delete themselves
   try {
-    console.log(req.body.name, `req.body.name`.red);
+    //console.log(req.body.name, `req.body.name`.red);
     const user = await User.findOneAndDelete(
       { name: req.body.name }
       // (err, doc) => {
@@ -68,7 +68,7 @@ const deleteUser = async (req, res, next) => {
 //@access     Private (for Coordinator),
 const getAllUsers = async (req, res, next) => {
   try {
-    const users = await User.find();
+    const users = await User.find().populate("friends");
     return res
       .status(200)
       .json({ success: true, number: users.length, data: users });
@@ -84,7 +84,7 @@ const getAllUsers = async (req, res, next) => {
 
 const verifyUser = async (req, res, next) => {
   try {
-    console.log(`${req.body.name}.f`);
+    //console.log(`${req.body.name}`);
     const user = await User.findOne({ name: req.body.name });
     if (!user) {
       return res.status(404).json({ message: "User not found" });

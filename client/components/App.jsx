@@ -19,15 +19,11 @@ function App() {
   // const [travelers, updateTravelers] = useState([]);
   // //create a sextion to tag friends
 
-  function userPassEntry (pass) {
-        setPassword(pass);
-        console.log('user password ', setPassword(pass));
-    }
-  
-  //   (name) {
-  //     setUserName(name);
-  //     console.log('user password ', setUserName(name));
-  // }
+
+  const [isLoggedIn, setLoginStatus] = useState(false);
+  const [travelers, updateTravelers] = useState([]);
+
+
 
   function regSubmit (regObj) {
     //stores users reg info
@@ -45,7 +41,7 @@ function App() {
             </Route>
             <Route path="/JournalForm">
               <JournalForm/>
-              </Route>
+            </Route>
             <Route path="/MyTripJournal">
               <MyTripJournal/>
             </Route>

@@ -1,34 +1,47 @@
-const express = require('express');
-const router = express.Router();
-const colors = require('colors');
-const mongoose = require('mongoose');
-const authController = require('../controllers/authController');
+const express = require("express");
+const colors = require("colors");
+const mongoose = require("mongoose");
 
-const { check, validationResult, body } = require('express-validator');
-const friendController = require('../controllers/friendController');
-const Friends = require('../models/Friends');
+const { check, validationResult } = require("express-validator");
+const Friends = require("../models/Friends");
+const friendController = require("../controllers/friendController");
+const authController = require("../controllers/authController");
+
+//Without mergeParams, there would be no access to the userId from any of the routes connected to this Router.
+const router = require("express").Router({ mergeParams: true });
+router.use("/:friendsId/users", require("./users"));
 
 //@route        GET all api/friends
 //@desc         Get user's friends
 //@access     Private
-router.get('/', authController.protect, friendController.getAllFriends);
+router.get("/", authController.protect, friendController.getAllFriends);
 
 //@route        GET one api/friends
 //@desc         Get user's friends
 //@access     Private
 
-router.get('/:id', (req, res) => res.send("Get one of user's friends"));
+router.get("/:id", authController.protect, friendController.getASingleFriend);
+
+//@route        GET user from friend
+//@desc         Get  friend's user
+//@access     Private
+router.get(
+  "/:id/all",
+  authController.protect,
+  friendController.getAllUsersFriends
+);
 
 //@route        POST api/friends
 //@desc         Add new friends
 //@access     Private
 router.post(
-  '/makeAFriend',
+  "/:id",
+  authController.protect,
   // checks are set by express-validator
   //Sanitizing
   [
-    check('name', 'Please add name').not().isEmpty().trim().escape(),
-    check('email', 'Please include a valid email').isEmail().normalizeEmail(),
+    check("name", "Please add name").not().isEmpty().trim().escape(),
+    check("email", "Please include a valid email").isEmail().normalizeEmail(),
   ],
   async (req, res) => {
     //data sent to the route
@@ -38,39 +51,35 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { name, email, mobile } = req.body;
-    // console.log(req.body.user);
+    const { name, email, mobile, user } = req.body;
     try {
       let friend = await Friends.findOne({ mobile });
-
       if (friend) {
-        console.log(`${friend}`.zebra);
-        return res.status(400).json({ msg: 'friend already exists' });
+        return res.status(400).json({ msg: "friend already exists" });
       }
       //if no friend found, a new instance of the friend is made
-      friend = new Friends({
-        user: new mongoose.Types.ObjectId(),
+      friend = await Friends.create({
+        user: req.params.id,
         name,
         email,
         mobile,
       });
-      console.log(`${friend}`.bgBlue);
       await friend.save();
-      return res.status(201).json({ msg: 'Friend Made' });
+      return res.status(201).json({ msg: "Friend Made" });
     } catch (e) {
       return res.status(500).json({ e: e.message });
     }
-  },
+  }
 );
 
-//@route        PUT api/friends
+//@route        PATCH api/friends
 //@desc         Update user's friends
 //@access     Private
-router.put('/:id', (req, res) => res.send(`Update friend ${req.params.id}`));
+router.patch("/:id", authController.protect, friendController.friendUpdater);
 
 //@route        DELETE api/friends
-//@desc         delet user's friend
+//@desc         delete user's friend
 //@access     Private
-router.delete('/:id', (req, res) => res.send(`Delete friend ${req.params.id}`));
+router.delete("/:id", authController.protect, friendController.friendRemover);
 
 module.exports = router;

@@ -17,14 +17,19 @@ export const loginUser = (username, password) => {
         password: password
       })
     }).then(response => response.json())
-    .then(data => dispatch({
+    .then(data => {
+
+      console.log('Data received: ', data);
+      dispatch({
       type: types.SET_CURRENT_USER,
       payload: {
-        name: data.name,
-        email: data.email,
-        id: data._id
+        name: data.data.user.name,
+        email: data.data.user.email,
+        id: data.data.user._id
       }
-    })).
+      });
+
+  }).
     catch(e => console.log(e));
   };
 };

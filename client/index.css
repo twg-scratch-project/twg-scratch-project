@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
 body{
-    background-color: #98DDCA;
+    background-color: rgb(93, 145, 167);
     color: rgb(70, 78, 103);
+    font-family: 'Architects Daughter';
 }
 
 h1{
-    font-size: 60px;
+    font-size: 50px;
     font-family: 'Architects Daughter', cursive;
+    position:static;
+    width: 100px;
+    margin: 10%;
+    padding: 10px;
+    
 }
 
 h1, h4{
@@ -18,14 +24,16 @@ img{
     border-radius: 20px;
     height: 100px;
     margin-left: 5%;
-    margin-top: 5px;
-    margin-bottom: 2px;
+    margin-top: -75%;
+    margin-bottom: 0px;
     position: left;
 }
 
-/* form{
-    border-radius: 10px;
-} */
+textarea{
+    width: 675px;
+    font-family: 'Architects Daughter';
+   
+}
 
 div{
     border-radius: 10px;
@@ -35,7 +43,7 @@ div{
     background: #FFFF;
     border: 2px solid #D5ECC2;
     border-radius: 50px;    
-    border-width: 50px;
+    border-width: 25px;
     position: fixed;
     padding: 20px;
     top: 50%;
@@ -45,16 +53,26 @@ div{
     height: 300px;
     width: 300px;
     text-align: center;
-    /* display: flex; */
 }
 
-.button{
+/* .button{
     width: 153px;
     height: 21px;
     background-color: white;
     border-radius: 10px;
     border-width: 2px;
     outline: none;
+    font-family: 'Architects Daughter';
+} */
+
+button{
+    width: 153px;
+    height: 21px;
+    background-color: white;
+    border-radius: 10px;
+    border-width: 2px;
+    outline: none;
+    font-family: 'Architects Daughter';
 }
 
 .SubmitButton{
@@ -64,6 +82,7 @@ div{
     background-color: #D5ECC2;
     border-radius: 10px;
     border-width: 0px;
+    margin: 10px;
 }
 
 input{
@@ -89,7 +108,7 @@ input{
     padding: 20px;
 }
 
-.itinerary{
+.currentEntry{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(1, 1fr); 
@@ -106,7 +125,7 @@ input{
 }
 
 .document{
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     background-color: whitesmoke;
     width: 300px;
@@ -119,6 +138,16 @@ input{
     margin-right: auto;
     text-align: center; 
     padding: 20px;
-    /* border: 3px solid black; */
    
+}
+
+.divScroll{
+                margin:4px, 4px;
+                padding:4px;
+                background-color: #D5ECC2;
+                width: 500px;
+                height: 110px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
 }

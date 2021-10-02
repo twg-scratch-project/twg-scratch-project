@@ -1,9 +1,5 @@
-// import React, { Component } from "react"
-//onclick functions to be established here and passed as props??
-
 import React, {useState, useEffect} from 'react';
 import Login from './Login.jsx';
-import GroupItin from './GroupItin.jsx';
 import JournalForm from './JournalForm.jsx';
 import MyTripJournal from './MyTripJournal.jsx';
 import Registration from './Registration.jsx';
@@ -19,9 +15,14 @@ import {
 function App() {
   //assign useState with its val
   //make a copy of this arr when updating since invoking with replace it?
+  // const [isLoggedIn, setLoginStatus] = useState(false);
+  // const [travelers, updateTravelers] = useState([]);
+  // //create a sextion to tag friends
+
 
   const [isLoggedIn, setLoginStatus] = useState(false);
   const [travelers, updateTravelers] = useState([]);
+
 
 
   function regSubmit (regObj) {
@@ -37,9 +38,6 @@ function App() {
           <Switch> 
             <Route path="/Login">
               <Login/>
-            </Route>
-            <Route path="/GroupItin">
-              <GroupItin/>
             </Route>
             <Route path="/JournalForm">
               <JournalForm/>

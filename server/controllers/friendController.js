@@ -3,6 +3,7 @@ require("dotenv").config();
 const { check, validationResult } = require("express-validator");
 const Friend = require("../models/Friends");
 const AppError = require("../utils/appError");
+const Friends = require("../models/Friends");
 
 // @route        GET all api/friends
 // @desc         Get user's friends
@@ -56,7 +57,7 @@ const friendRemover = async (req, res, next) => {
     if (!friend) {
       return next(new AppError("Friend not Found.", 404));
     }
-    //console.log(`${friend}`.bgGreen);
+    console.log(`${friend}`.bgGreen);
     return res.json({ msg: "Friend Found" });
   } catch (e) {
     return next(e);
@@ -75,10 +76,18 @@ const friendUpdater = async (req, res, next) => {
   }
 };
 
+const deleteUserFriends = async (req, res, next) => {
+  console.log(req.body);
+  const friend = await Friend.deleteMany({ user: req.params.id });
+  console.log(`${friend}`.bgCyan);
+  next();
+};
+
 module.exports = {
   getAllFriends,
   getAllUsersFriends,
   getASingleFriend,
   friendRemover,
+  deleteUserFriends,
   friendUpdater,
 };

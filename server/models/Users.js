@@ -38,6 +38,7 @@ const UserSchema = new mongoose.Schema(
 );
 
 //Reverse populate with virtuals
+//for calc values, virtuals for functional updates
 UserSchema.virtual("friends", {
   ref: "Friend",
   localField: "_id",

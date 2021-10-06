@@ -14,20 +14,28 @@ router.use("/:friendsId/users", require("./users"));
 //@route        GET all api/friends
 //@desc         Get user's friends
 //@access     Private
-router.get("/", authController.protect, friendController.getAllFriends);
+router.get(
+  "/",
+  //authController.protect,
+  friendController.getAllFriends
+);
 
 //@route        GET one api/friends
 //@desc         Get user's friends
 //@access     Private
 
-router.get("/:id", authController.protect, friendController.getASingleFriend);
+router.get(
+  "/:id",
+  //authController.protect,
+  friendController.getASingleFriend
+);
 
 //@route        GET user from friend
 //@desc         Get  friend's user
 //@access     Private
 router.get(
   "/:id/all",
-  authController.protect,
+  //authController.protect,
   friendController.getAllUsersFriends
 );
 
@@ -36,7 +44,7 @@ router.get(
 //@access     Private
 router.post(
   "/:id",
-  authController.protect,
+  //authController.protect,
   // checks are set by express-validator
   //Sanitizing
   [
@@ -75,11 +83,25 @@ router.post(
 //@route        PATCH api/friends
 //@desc         Update user's friends
 //@access     Private
-router.patch("/:id", authController.protect, friendController.friendUpdater);
+router.patch(
+  "/:id",
+  //authController.protect,
+  friendController.friendUpdater
+);
 
 //@route        DELETE api/friends
+//@desc         delete friends
+//@access     Private
+
+router.delete(
+  "/:id",
+  //authController.protect,
+  friendController.friendRemover
+);
+
+//@route        DELETE api/users/friends
 //@desc         delete user's friend
 //@access     Private
-router.delete("/:id", authController.protect, friendController.friendRemover);
+router.delete("/:userId", friendController.deleteUserFriends);
 
 module.exports = router;

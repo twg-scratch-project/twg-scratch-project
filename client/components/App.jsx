@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import JournalForm from "./JournalForm.jsx";
-
+import TripDetails from "./TripDetails.jsx";
 import Registration from "./Registration.jsx";
 import UserProfile from "./UserProfile.jsx";
 
@@ -44,6 +44,9 @@ function App() {
           </Route>
           <Route path="/">
             <Login />
+          </Route>
+          <Route path= "/TripDetails">
+            <TripDetails/>
           </Route>
         </Switch>
       </div>

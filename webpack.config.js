@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './client/index.js',
@@ -49,6 +50,10 @@ module.exports = {
                   },
                 ],
               },
-        ]
+        ],
+        // plugins: [
+        //   // add the plugin to your plugins array
+        //   new webpack.DefinePlugin({ `process.env.MAPBOX`: JSON.stringify(${env.MAPBOX}) })
+        // ]
     },
 };

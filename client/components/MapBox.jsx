@@ -12,8 +12,18 @@ export default function MapBox () {
     const mapRef = useRef()
     // Could be a single marker instance or an array
     let [marker, setMarker] = useState()
-
-    mapboxgl.accessToken = process.env.MAPBOX;
+    
+    fetch("/api/mapboxToken", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "text",
+      },
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      mapboxgl.accessToken = response;
+    })
     useLayoutEffect(() => {   
         // Initialize Map
         const map = new mapboxgl.Map({

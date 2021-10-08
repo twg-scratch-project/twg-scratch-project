@@ -5,8 +5,10 @@ import JournalForm from "./JournalForm.jsx";
 import Registration from "./Registration.jsx";
 import UserProfile from "./UserProfile.jsx";
 
+import MapBox from "./MapBox.jsx"
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//create a sextion to add friends
+
 
 function App() {
   //assign useState with its val
@@ -41,6 +43,10 @@ function App() {
           </Route>
           <Route path="/UserProfile">
             <UserProfile />
+          </Route>
+          {/* Tester route made by c */}
+          <Route path="/Playgrounds">
+            <MapBox />
           </Route>
           <Route path="/">
             <Login />

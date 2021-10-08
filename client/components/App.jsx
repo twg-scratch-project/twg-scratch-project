@@ -6,6 +6,8 @@ import Registration from "./Registration.jsx";
 
 import MapBox from "./MapBox.jsx"
 
+import Map from "./Map.jsx";
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 
@@ -32,6 +34,12 @@ function App() {
           <Route path="/Login">
             <Login />
           </Route>
+
+
+          <Route path="/map">
+            <Map />
+          </Route>
+
           <Route path="/Registration">
             <Registration onChange={regSubmit} />
           </Route>

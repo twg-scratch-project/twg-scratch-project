@@ -4,8 +4,10 @@ import JournalForm from "./Main.jsx";
 
 import Registration from "./Registration.jsx";
 
+import MapBox from "./MapBox.jsx"
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//create a sextion to add friends
+
 
 function App() {
   //assign useState with its val
@@ -31,14 +33,21 @@ function App() {
           <Route path="/Login">
             <Login />
           </Route>
-          <Route path="/JournalForm">
-            <JournalForm />
-          </Route>
           <Route path="/Registration">
             <Registration onChange={regSubmit} />
           </Route>
-          <Route path="/">
+          <Route path="/Main">
+            <Main />
+          </Route>
+          {/* Tester route made by c */}
+          <Route path="/Playgrounds">
+            <MapBox />
+          </Route>
+          <Route exact path="/">
             <Login />
+          </Route>
+          <Route>
+            404 Here
           </Route>
         </Switch>
       </div>

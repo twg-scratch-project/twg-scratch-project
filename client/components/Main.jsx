@@ -3,6 +3,8 @@
 
 import React, { useEffect, useState } from 'react';
 import logo from '../images/journalLogo.png';
+import MapBox from './MapBox.jsx';
+import TripDetail from './TripDetail.jsx';
 
 function Main (props) {
     //'my itinerary': Day1, Day2, etc
@@ -65,7 +67,8 @@ function Main (props) {
         {/* {props.userName}, you're on your way to: <br/> */}
         <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a> <h2>My Trip Journal...</h2>
 
-        <Map />
+        {/* <Map /> */}
+        <MapBox />
         {renderTripDetailOrAddTrip}
         <button id='addTripButton' onClick={() => {}}>Add a Trip</button>
         

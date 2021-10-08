@@ -56,7 +56,7 @@ export default function MapBox () {
                 <option value="airport">CPH Airport</option>
             </select> 
         </div>
-        <div id="map" style={{width: "100%", height: "100%"}} ref={mapRef}>
+        <div id="map" style={{width: "50%", height: "50%", marginRight:"auto", marginLeft:"auto"}} ref={mapRef}>
         {/* Map inserted here */}
         </div>
     </>

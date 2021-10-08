@@ -1,5 +1,5 @@
-//onclick functions to be established here and passed as props??
-//page for individual user registration
+//will be combined with login and delted 
+
 import { useState } from 'react';
 import React from 'react';
 import style from '../index.css';

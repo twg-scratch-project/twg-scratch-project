@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import Main from "./Main.jsx";
-
 import Registration from "./Registration.jsx";
-
 import MapBox from "./MapBox.jsx"
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import TripDetail from "./TripDetail.jsx";
 
 function App() {
   //assign useState with its val
@@ -31,15 +28,15 @@ function App() {
       <div>
         <Switch>
           <Route path="/Login">
-            <Login />
-          </Route>
-          <Route path="/Registration">
-            <Registration onChange={regSubmit} />
+            <Login onChange={regSubmit} />
           </Route>
           <Route path="/Main">
             <Main />
           </Route>
           {/* Tester route made by c */}
+          <Route path="/TripDetail">
+            <TripDetail />
+          </Route>
           <Route path="/Playgrounds">
             <MapBox />
           </Route>

@@ -4,7 +4,10 @@
   "description": "Codesmith Solo project for Sam Johnson",
   "main": "index.js",
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^4.12.3",
+    "@mui/material": "^5.0.3",
     "@reduxjs/toolkit": "^1.6.1",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",

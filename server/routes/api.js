@@ -1,13 +1,9 @@
 const express = require('express');
-
 const router = express.Router();
+const apiController = require('../controllers/apiController');
 
-const authRouter = require('./auth');
-const userRouter = require('./users');
-const tripRouter = require('./trip');
-
-router.use('/auth', authRouter);
-router.use('/users', userRouter);
-router.use('/trips', tripRouter);
-
+router.get('/getuser/:email', apiController.findUser, (req, res, next) => {
+  const user = res.locals.user;
+  res.status(200).json({user});
+})
 module.exports = router;

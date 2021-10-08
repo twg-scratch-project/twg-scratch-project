@@ -46,7 +46,7 @@ function App() {
             <Login />
           </Route>
           <Route>
-            404 Here
+            {/* 404 Here */}
           </Route>
         </Switch>
       </div>

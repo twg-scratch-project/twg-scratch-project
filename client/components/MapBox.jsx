@@ -15,7 +15,7 @@ export default function MapBox () {
     const [center, setCenter] = useState([12.567898,55.67583]);
 
 
-    mapboxgl.accessToken = '';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZWNrc2RlZWVlZSIsImEiOiJja3VoZzU2aWcyZHk5Mm5xamVjYjJmYzBoIn0.jeBXbfS27jfUNY1XikYJ8w';
     useLayoutEffect(() => {   
         // Initialize Map
         const map = new mapboxgl.Map({

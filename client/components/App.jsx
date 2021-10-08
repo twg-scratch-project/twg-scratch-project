@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
-import JournalForm from "./Main.jsx";
+import Main from "./Main.jsx";
 
 import Registration from "./Registration.jsx";
 
@@ -21,7 +21,6 @@ function App() {
 
   function regSubmit(regObj) {
     //stores users reg info
-    storeRegInfo(regObj);
 
     console.log("reg deets ", regDetails);
   }

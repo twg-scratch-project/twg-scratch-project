@@ -12,7 +12,7 @@ export default function MapBox () {
     // Could be a single marker instance or an array
     let [marker, setMarker] = useState()
 
-    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX;
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZWNrc2RlZWVlZSIsImEiOiJja3VoZzU2aWcyZHk5Mm5xamVjYjJmYzBoIn0.jeBXbfS27jfUNY1XikYJ8w';
     useLayoutEffect(() => {   
         // Initialize Map
         const map = new mapboxgl.Map({

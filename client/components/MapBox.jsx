@@ -1,5 +1,5 @@
 // import { load } from 'dotenv'
-import "dotenv/config.js";
+// import "dotenv/config.js";
 import React, {useState, useLayoutEffect, useRef} from 'react'
 import mapboxgl from "mapbox-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';

@@ -1,16 +1,15 @@
 //onclick functions to be established here and passed as props??
 //planning page for trip
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../images/journalLogo.png';
-import {useState} from 'react';
 
 function Main (props) {
     //'my itinerary': Day1, Day2, etc
     const [totalDays, updateDays] = useState('');
     const [location, locationSetter] = useState('');
     const [journalEntry, journalUpdater] = useState('');
-    const [{_id: entryId, entry, title}] = useState({});
+
     const [tripDetailOrAddTrip, setTripDetailOrAddTrip] = useState('tripDetail'); // to conditionally render either TripDetail or AddTrip component
     // const [deleter, entryDeleter] = useState('');
     // const [editor, entryEditor] = useState('');

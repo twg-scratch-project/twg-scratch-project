@@ -46,9 +46,6 @@ function App() {
           <Route exact path="/">
             <Login />
           </Route>
-          <Route path="/TripDetails">
-            <TripDetails/>
-          </Route>
           <Route>
             {/* 404 Here */}
           </Route>

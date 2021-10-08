@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import Main from "./Main.jsx";
 import MapBox from "./MapBox.jsx"
+
+import Map from "./Map.jsx";
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import TripForm from "./TripForm.jsx";
 import TripDetail from "./TripDetail.jsx";
@@ -13,7 +16,7 @@ function App() {
 
   function regSubmit(regObj) {
     //stores users reg info
-    storeRegInfo(regObj);
+    //storeRegInfo(regObj);
     console.log("reg deets ", regDetails);
   }
   //for reg component: firstName={regObj.regInfo.firstName} userEmail={regObj.regInfo.email} lastName={regObj.regInfo.lastName} password={regObj.regInfo.password} onChange={regSubmit}
@@ -33,6 +36,9 @@ function App() {
           </Route>
           <Route path="/TripDetail">
             <TripDetail/>
+          </Route>
+          <Route path="/map">
+            <Map />
           </Route>
           <Route path="/Playgrounds">
             <MapBox />

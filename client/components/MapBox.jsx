@@ -1,5 +1,4 @@
 // import { load } from 'dotenv'
-import "dotenv/config.js";
 import React, {useState, useLayoutEffect, useRef} from 'react'
 import mapboxgl from "mapbox-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -13,7 +12,7 @@ export default function MapBox () {
     // Could be a single marker instance or an array
     let [marker, setMarker] = useState()
 
-    mapboxgl.accessToken = process.env.MAPBOX;
+    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX;
     useLayoutEffect(() => {   
         // Initialize Map
         const map = new mapboxgl.Map({

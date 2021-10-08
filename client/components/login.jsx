@@ -1,6 +1,5 @@
 import logo from '../images/journalLogo.png';
 import React, {useState, useEffect, useCallback} from 'react';
-import * as actions from '../actions/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 

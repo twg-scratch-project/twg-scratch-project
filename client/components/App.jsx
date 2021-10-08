@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
-import JournalForm from "./JournalForm.jsx";
+import JournalForm from "./Main.jsx";
 
 import Registration from "./Registration.jsx";
-import UserProfile from "./UserProfile.jsx";
 
 import MapBox from "./MapBox.jsx"
 
@@ -34,22 +33,21 @@ function App() {
           <Route path="/Login">
             <Login />
           </Route>
-          <Route path="/JournalForm">
-            <JournalForm />
-          </Route>
-          <Route path="/MyTripJournal"></Route>
           <Route path="/Registration">
             <Registration onChange={regSubmit} />
           </Route>
-          <Route path="/UserProfile">
-            <UserProfile />
+          <Route path="/Main">
+            <Main />
           </Route>
           {/* Tester route made by c */}
           <Route path="/Playgrounds">
             <MapBox />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Login />
+          </Route>
+          <Route>
+            404 Here
           </Route>
         </Switch>
       </div>

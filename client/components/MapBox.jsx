@@ -11,15 +11,17 @@ export default function MapBox () {
     // Used to tell mapbox which element to insert the map instance into
     const mapRef = useRef()
     // Could be a single marker instance or an array
-    let [marker, setMarker] = useState()
+    let [marker, setMarker] = useState();
+    const [center, setCenter] = useState([12.567898,55.67583]);
 
-    mapboxgl.accessToken = process.env.MAPBOX;
+
+    mapboxgl.accessToken = '';
     useLayoutEffect(() => {   
         // Initialize Map
         const map = new mapboxgl.Map({
             container: mapRef.current,
             style: 'mapbox://styles/mapbox/dark-v10',
-            center:  [ 12.567898, 55.67583 ],
+            center: center,
             zoom: 9
         })
         // Initialize Map Marker && State
@@ -33,12 +35,13 @@ export default function MapBox () {
         return ()=>{
             // cleanup map.on(event) with map.off(event) here
         }
-    }, [])
+    }, [center])
 
     // Change marker lat/lng based on the value attribute of <option />
     function handleSelectChange(e) {
         const location = e.target.value
         marker.setLngLat(trips[location])
+        setCenter(trips[location])
     }
     // Dummy lat/lng
     const trips = {

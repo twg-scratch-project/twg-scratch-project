@@ -18,14 +18,7 @@ if (process.env.NODE_ENV === 'development') {
 // ROUTES
 // API
 // User route
-app.use('/api/users', require('./routes/users'));
-// Friend route
-app.use('/api/friends', require('./routes/friends'));
-// Trip route
-app.use('/api/trips', require('./routes/trip'));
-// Comment routej
-app.use('/api/comments', require('./routes/comment'));
-app.use('/api', require('./routes/api'));
+
 
 // IMPORTANT: Make sure to write all route handling BEFORE this one.
 // Handle 'page not found' error

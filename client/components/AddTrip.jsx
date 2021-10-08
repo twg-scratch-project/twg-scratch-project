@@ -1,28 +1,13 @@
-//page for individual user profile details
-import React from "react";
-import style from "../index.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect, useCallback } from "react";
-import logo from "../images/journalLogo.png";
-import { useHistory } from "react-router-dom";
-//import { name } from "./Login.jsx";
-
-function UserProfile(props) {
-  //to set dynamic dates
-  const history = useHistory();
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const loginUser = useCallback(
-    (username, password) => dispatch(actions.loginUser(username, password)),
-    [dispatch]
-  );
-
-  //useState hooks
+import React, { useState, useEffect } from "react"; 
+import logo from '../images/journalLogo';
+import {useState} from "react";   
+          
+function addTrip(props) {
   const [trip, setTrip] = useState("");
   const [number, setNumber] = useState(null);
   // const date = useSelector((state) => state.date);
 
-  const createTrip = (e) => {
+  const createTrip = (e) => { // REFACTOR
     e.preventDefault();
 
     fetch("/api/trips/createTrip", {
@@ -38,22 +23,17 @@ function UserProfile(props) {
       .catch(() => console.log("fetch error has occurred"));
   };
 
-  //onClick Button Fx
-
-  //onSubmit Fx
-
   return (
-    <div className="container">
-      <h1>
-        {" "}
-        <a href="http://localhost:8080/Login">
-          {" "}
-          <img src={logo} alt="Travel Planner logo" />{" "}
-        </a>{" "}
-        Travel Journal{" "}
-      </h1>
+    <form> 
+      <div className="currentEntry"> {/* input field to add new journal entry. neeeds to be combined with input fields for date & trip duration. */}
+            <textarea className="cell" value={props.journalEntry} onChange={e => props.journalUpdater(e.target.value)}>
+              New Entry
+            </textarea><br/>
+            <button class='SubmitButton' onClick={handleSubmission}>Submit Entry </button> {/*on submission, also include lat&long values in body */}
+            <br/>
+        </div>
 
-      <div class="itinerary">
+        <div class="itinerary">
         <div>
           <p>
             <form>
@@ -87,19 +67,10 @@ function UserProfile(props) {
         </div>
       </div>
 
-      <h1> Profile</h1>
-    </div>
-    // import {useDispatch, useSelector} from 'react-redux';
 
-    // function UserProfile(props) {
-    //   const user = useSelector((state) => state.user);
-
-    //     return (
-    //       <div className='container'>
-    //          <h1>Hello {user.name}</h1>
-
-    //       </div>
-  );
-}
-
-export default UserProfile;
+    </form> 
+  )
+  
+}        
+            
+export default addTrip;

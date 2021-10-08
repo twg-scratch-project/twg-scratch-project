@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
-import JournalForm from "./JournalForm.jsx";
+import JournalForm from "./Main.jsx";
 
 import Registration from "./Registration.jsx";
-import UserProfile from "./UserProfile.jsx";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //create a sextion to add friends
@@ -35,12 +34,8 @@ function App() {
           <Route path="/JournalForm">
             <JournalForm />
           </Route>
-          <Route path="/MyTripJournal"></Route>
           <Route path="/Registration">
             <Registration onChange={regSubmit} />
-          </Route>
-          <Route path="/UserProfile">
-            <UserProfile />
           </Route>
           <Route path="/">
             <Login />

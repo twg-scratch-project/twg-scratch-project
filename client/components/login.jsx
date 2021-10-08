@@ -1,15 +1,46 @@
 import logo from '../images/journalLogo.png';
 import React, {useState, useEffect, useCallback} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 function Login(props) {
-  
+
+  const loginUser = (username, password) => {
+    fetch("/api/auth", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: username,
+        password: password,
+      }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Data received: ", data);
+      dispatch({
+        type: types.SET_CURRENT_USER,
+        payload: {
+          name: data.data.user.name,
+          email: data.data.user.email,
+          id: data.data.user._id,
+        },
+      });
+    })
+    .catch((e) => console.log(e));
+
+  };
+
+    const [password, setPassword] = useState('');
+    const [name, setUserName] = useState('');
+    const [loginFail, setLoginFail] = useState(false);
+
+    const history = useHistory();
+
+
     return (
-    <div>
-        <h1> <img src={logo} alt='Travel Planner logo'/> Travel Journal</h1>
-    </div>
-    
+    <div>login page</div>
     )
   }
   

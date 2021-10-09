@@ -1,74 +1,89 @@
 import React, { useState, useEffect } from "react"; 
-import logo from '../images/journalLogo';
-import {useState} from "react";   
+// import logo from '../images/journalLogo';
           
-function addTrip(props) {
-  const [trip, setTrip] = useState("");
+function addTrip(props, setAllTrips) {
+  const [tripName, setTripName] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const [notes, setNotes] = useState("");
+  // const [newTrip, setNewTrip] = useState({});
   const [number, setNumber] = useState(null);
   // const date = useSelector((state) => state.date);
 
-  const createTrip = (e) => { // REFACTOR
-    e.preventDefault();
+  // const [deleter, entryDeleter] = useState('');
+  // const [editor, entryEditor] = useState('');
 
-    fetch("/api/trips/createTrip", {
-      method: "POST",
-      mode: "cors",
+  let renderTripDetailOrAddTrip;
+
+  const handleSubmission = (e) => { // moved from Main
+    e.preventDefault();
+    console.log('submitted', newTrip);
+    // add new journal entry to DB
+    fetch(`/api/addTrip`, {
+      method: 'POST',
+      mode: 'cors',
       headers: {
-        "Content-type": "application/json",
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ trip, number }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch(() => console.log("fetch error has occurred"));
+      body: JSON.stringify({
+        trip: newTrip,
+        date: e.timeStamp
+      })
+    }).then(response => response.json())
+    .then(response => {
+      setAllTrips(response); // update list of all trips in state. should trigger a re-invokation of useLayoutEffect in Main & rerender Map markers
+    });
   };
 
+
   return (
-    <form> 
-      <div className="currentEntry"> {/* input field to add new journal entry. neeeds to be combined with input fields for date & trip duration. */}
-            <textarea className="cell" value={props.journalEntry} onChange={e => props.journalUpdater(e.target.value)}>
-              New Entry
-            </textarea><br/>
-            <button class='SubmitButton' onClick={handleSubmission}>Submit Entry </button> {/*on submission, also include lat&long values in body */}
-            <br/>
-        </div>
+    // <form> 
+    //   <div className="currentEntry"> {/* input field to add new journal entry. neeeds to be combined with input fields for date & trip duration. */}
+    //         <textarea className="cell" value={notes} onChange={e => props.setNotes(e.target.value)}>
+    //           New Entry
+    //         </textarea><br/>
+    //         <button class='SubmitButton' onClick={handleSubmission}>Submit Entry </button> {/*on submission, also include lat&long values in body */}
+    //         <br/>
+    //     </div>
 
-        <div class="itinerary">
-        <div>
-          <p>
-            <form>
-              <label for="">Where Do You Want to Go?</label>
+    //     <div class="itinerary">
+    //     <div>
+    //       <p>
+    //         <form>
+    //           <label for="">Where Do You Want to Go?</label>
 
-              <input
-                type="text"
-                className="cell"
-                onChange={(e) => setTrip(e.target.value)}
-              />
-              <br />
-              <br />
-              <label for=""> How Many Days Will You be Away?</label>
-              <input
-                type="number"
-                formMethod="post"
-                value={number}
-                onChange={(e) => numberSetter(e.target.value)}
-              />
-              <br />
-              <br />
-              <label htmlFor="">When Are You Leaving?</label>
-              <br />
-              <br />
-              <input type="date" />
-              <br />
-              <br />
-              <button onClick={createTrip}>Lets Go!</button>
-            </form>
-          </p>
-        </div>
-      </div>
+    //           <input
+    //             type="text"
+    //             className="cell"
+    //             onChange={(e) => setTripName(e.target.value)}
+    //           />
+    //           <br />
+    //           <br />
+    //           <label htmlFor="">When Are You Leaving?</label>
+    //           <br />
+    //           <br />
+    //           <label for=""> When are you returning?</label>
+    //           <input
+    //             type="number"
+    //             formMethod="post"
+    //             value={number}
+    //             onChange={(e) => startDate(e.target.value)}
+    //           />
+    //           <br />
+    //           <br />
+    //           <input type="date" />
+    //           <br />
+    //           <br />
+    //           <button onClick={handleSubmission}>Lets Go!</button>
+    //         </form>
+    //       </p>
+    //     </div>
+    //   </div>
 
 
-    </form> 
+    // </form> 
+    <div>Hello this is the AddTrip component, thanks</div>
   )
   
 }        

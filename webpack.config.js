@@ -9,11 +9,13 @@ module.exports = {
         filename: 'bundle.js',
     },
     devServer: {
-        proxy: {
-            '/api/**': 'http://localhost:3000',
+      proxy: {
+        '/api/**': {
+          target: 'http://localhost:3000/',
         },
-        proxy: {
-          '/auth/**': 'http://localhost:3000',
+        '/auth/**': {
+          target: 'http://localhost:3000/',
+        }
       },
         static: {
             directory: __dirname,

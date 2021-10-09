@@ -1,6 +1,5 @@
 const path = require('path');
 
-
 module.exports = {
     entry: './client/index.js',
     output: {
@@ -15,6 +14,7 @@ module.exports = {
         static: {
             directory: __dirname,
         },
+        historyApiFallback: true,
     },
     mode: 'development',
     module: {
@@ -32,23 +32,23 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader", "sass-loader"],
-            },
-            {
-                test: /\.s[ac]ss$/i,
+                use: ["style-loader", "css-loader"],
+              },
+              {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+              
                 use: [
-                  // Creates `style` nodes from JS strings
-                  "style-loader",
-                  // Translates CSS into CommonJS
-                  "css-loader",
-                  // Compiles Sass to CSS
-                  "sass-loader",
+                  'file-loader',
+                  {
+                    loader: 'image-webpack-loader',
+                    options: {
+                      bypassOnDebug: true, // webpack@1.x
+                      disable: true, // webpack@2.x and newer
+                    },
+                  
+                  },
                 ],
-            },
+              },
         ]
     },
-    resolve: {
-        // Enable importing JS / JSX files without specifying their extension
-        extensions: ['.js', '.jsx'],
-    }
 };

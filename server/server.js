@@ -1,32 +1,38 @@
-require('dotenv').config();
-const express = require('express');
-const app = express();
-const path = require('path');
-const apiRouter = require('./routes/api');
-
-// const connectENV = require('./.env');
-// connectENV();
-
-dotenv.config({ path: './server/.env' });
-
+/* eslint-disable implicit-arrow-linebreak */
 const app = require('./app');
 
-// console.log('DATAB', process.env.DATABASE);
-
-const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
-
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    // useCreateIndex: true,
-    // useFindAndModify: false,
-    // useUnifiedTopology: true,
-  })
-  .then(() => console.log('DB connection successful'));
-
-const port = process.env.PORT || 3000;
-const server = app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
+process.on('uncaughtException', (err) => {
+  console.log('UNCAUGHT EXCEPTION! 💥 shutting down...');
+  console.log(err.name, err.message);
+  process.exit(1);
 });
 
-module.exports = server;
+// TODO
+// Yelp API ?
+// see yelp-notes.txt
+
+const colors = require('colors');
+require('dotenv').config();
+const PORT = process.env.PORT;
+
+// importing and connecting to DB in MongoDB
+// Ideally, server should not run until the db is connected
+const connectDB = require('./routes/config/db');
+
+let server;
+connectDB().then(() => {
+  server = app.listen(PORT, () =>
+    console.log(
+      `Server running in node env: ${process.env.NODE_ENV} listening on port: ${PORT}`.brightCyan
+        .bold,
+    ),
+  );
+});
+
+process.on('unhandledRejection', (err) => {
+  console.log('UNHANDLED REJECTION! 💥 shutting down...');
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});

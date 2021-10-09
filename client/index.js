@@ -1,15 +1,15 @@
 import React from 'react';
 import {render} from 'react-dom';
-import { Provider } from 'react-redux';
-import App from './App.jsx';
+import App from './components/App.jsx';
 import store from './store';
-import styles from './index.css';
+import { Provider } from 'react-redux';
 
 
-ReactDOM.render(
-        <Provider store={store}>
-            {/* <h1>React Hello World</h1> */}
-            <App/>
-        </Provider>,
-        document.getElementById('app')
+render(
+    <Provider store={store}>
+         <App/>
+        {/* <h1>React Hello World</h1> */}
+    </Provider>,
+
+    document.getElementById('app')
 );

@@ -1,6 +1,14 @@
 
- //just added, needs to be further updated / imports
+// //import config store was not creating store
+// import { configureStore } from "@reduxjs/toolkit";
 
-function Welcome(props) {
-    return <h1>Hello, {props.name}</h1>;
-  }
+import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import reducers from './reducers/index';
+import thunk from 'redux-thunk';
+
+const store = createStore(
+  reducers, composeWithDevTools(applyMiddleware(thunk))
+);
+
+export default store;

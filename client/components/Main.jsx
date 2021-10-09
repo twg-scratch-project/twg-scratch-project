@@ -2,18 +2,15 @@
 //planning page for trip
 
 import React, { useEffect, useState } from 'react';
-import logo from '../images/journalLogo.png';
-import MapBox from './MapBox.jsx';
 import AddTrip from './AddTrip.jsx';
 import Map from './Map.jsx';
 import TripForm from './TripForm.jsx';
+import { Grid, TextField, Button, Paper } from '@material-ui/core';
+import logo from '../images/journalLogo.png';
 
 function Main (props) {
-    //'my itinerary': Day1, Day2, etc
     const [totalDays, updateDays] = useState('');
-    const [location, locationSetter] = useState('');
     const [journalEntry, journalUpdater] = useState('');
-
     const [tripDetailOrAddTrip, setTripDetailOrAddTrip] = useState('tripDetail'); // to conditionally render either TripDetail or AddTrip component
     // const [deleter, entryDeleter] = useState('');
     // const [editor, entryEditor] = useState('');
@@ -56,8 +53,7 @@ function Main (props) {
     //     setCommentList(comments);
     //   });
 
-    //   // determine whether to render AddTrip or TripDetails component:
-    //   //are we rendering ttwo maps of one map depending on addTrip/tripDetail existance or route to diff pg
+    //   // determine whether to render AddTrip or TripDetails component: ('PastTrips' ==> 'currentTrip?')
     //   renderTripDetailOrAddTrip = tripDetailOrAddTrip === 'tripDetail' ? <TripDetail /> : <AddTrip />;
 
     // }, []);
@@ -66,21 +62,23 @@ function Main (props) {
       //with map with editing and deleting ability
       
     return (
-      <div>
-        {/* {props.userName}, you're on your way to: <br/> */}
+      <Paper>
           <img src={logo} alt='Travel Planner logo'/> 
-          <h2>My Trip Journal...</h2>
+          <h2>I want to ...</h2><br/>
           <Map />
-          {/* <MapBox /> */}
           {renderTripDetailOrAddTrip}
-           
-           <AddTrip/>
-          {/* <Button id='addTripButton' onClick={() => {}}>Add a Trip</Button> */}
-           <TripForm/>
+          {/* button will possiblity redirect to page <Main/>  where the journal will cond render 
+          Will need to import styling for margins etc
+          */}
+          {/* Will render <TripForm/> onClick */}
+          <Button onClick={() => {}} variant="outlined" size="large">Write About a New Trip </Button> 
+           {/* Will render past trips from db  onClick*/}
+          <Button onClick={() => {}} variant="outlined" size="large">Take Me To Past Trips!</Button> 
+           {/* Will render most recent trip onClick?? */}
+          <Button onClick={() => {}} variant="outlined" size="large">Take Me To My Current Trip!</Button> 
           {/* <button class='SubmitButton' onClick={handleSubmission}>Edit An Entry</button> {/**currently handleSubmission is not set up to edit or delete  */}
           {/* <button class='SubmitButton' onClick={handleSubmission}>Delete An Entry </button> */}
-          {/* <label for='html'></label><br/> */}
-      </div>
+      </Paper>
     )
   }
 

@@ -1,4 +1,4 @@
-import logo from '../images/journalLogo.png';
+//import logo from './images/journalLogo.png';
 import React, {useState, useEffect, useCallback} from 'react';
 import {useHistory} from 'react-router-dom';
 
@@ -39,7 +39,9 @@ function Login(props) {
     const history = useHistory();
 
     return (
-    <div>login page</div>
+      // <img src={{logo}} width="200" height="200"></img>
+    <div> 
+      login page</div>
     )
   }
   //conditionally render this component based on user selection?

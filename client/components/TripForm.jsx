@@ -14,15 +14,10 @@
 import { useState, useEffect } from "react";
 import React from 'react';
 import style from '../index.css';
-import { Grid, TextField, Button, Paper } from '@material-ui/core';
-//import logo from '../images/journalLogo';
-// const cardStyling = {
-//   bgcolor: 'grey',
-//   boxShadow: 1,
-//   borderRadius: 0,
-//   p: 15,
-//   minWidth: 100,
-// }
+import { Grid, TextField, Button, Paper, Card, CardContent } from '@material-ui/core';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import logo from '../images/journalLogo.png';
 
 // import { makeStyles } from '@mui/styles';
 //for mui styles import..
@@ -39,29 +34,39 @@ import { Grid, TextField, Button, Paper } from '@material-ui/core';
 //   },
 // });
 
+
 function TripForm() {
     const [] = useState('');
     const [tripList, updateTripList] = useState('');
+    const entryDate = `${new Date().getMonth()+1}/${new Date().getDay()}/${new Date().getFullYear()}`;
     //const [tripCoordinates, updateCoordinates] = useState('');
     // const classes = useStyles(); --- to use once mui styles properly imported
     return (
-      <Paper elevation={5} style={{margin:"50px"}}>
-        <Grid container direction="column" alignItems="center" justify="center" minHeight="100vh" spacing="5" background-color="grey">
-      {/*instead of rendering all entries, make it render only the entry corresponding to currently selected pin on map */}  
-          {/* className='divScroll'> */}
-      <Grid item>
-        Trip Entry 
-          <TextField variant="outlined" minHeight="9em" fullWidth style={{ marginBottom:"2em" }}>
-            Trip Detail 
-          </TextField>
-             {/* </Card> */} 
-             <Button variant="contained" size="large">Add An Entry</Button>
-             {/* {tripList === null? "create a trip": <input></input>} */}
-      </Grid>
-     
-    </Grid>
+      <Paper elevation={5} style={{margin:"50px", height:"75%"}}>
+        <img src={logo} alt="logo" width="200" height="300"/>
+        <Card style={{marginTop:"100px", padding:"50px", height:"75%"}}>
+          <CardContent>
+            <CardHeader
+            title="Trip Journal"
+            />
+            <Grid container direction="column" justifyContent="center" spacing="5" >
+                {/*instead of rendering all entries, make it render only the entry corresponding to currently selected pin on map */}  
+                {/* className='divScroll'> */}
+              <Grid item>
+                {/* Field used to entry journal entries */}
+                <TextField minHeight="9em" fullWidth style={{ marginBottom:"2em", width:"75%", textAlign:"center"}}
+                multiline
+                rows={2}
+                rowsMax={15}
+                />
+                <br/>
+                <Button variant="contained" style={{ marginBottom:"2em"}} color="primary" size="large">Add An Entry</Button>
+                  {/* {tripList === null? "create a trip": <input></input>} */}
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
       </Paper>
-    
     )
 }
 

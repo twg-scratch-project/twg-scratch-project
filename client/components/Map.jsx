@@ -6,7 +6,7 @@ import Geocoder from 'react-map-gl-geocoder'
 import marker from '../images/marker.png';
 
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiZWNrc2RlZWVlZSIsImEiOiJja3VoZzU2aWcyZHk5Mm5xamVjYjJmYzBoIn0.jeBXbfS27jfUNY1XikYJ8w';
+const MAPBOX_TOKEN = '';
 
 const SearchMap = () => {
   const [selected, setSelected] = useState({latitude: null, longitude: null})
@@ -60,14 +60,14 @@ const SearchMap = () => {
             _toggle();
         }
         }
-        //  onClear={() => {setViewport({
-        //     latitude: 40.7128,
-        //     longitude: -74.0060,
-        //     zoom: 8
-        //   });
-        //   setSelected({latitude: 0, longitude: 0});
-        // }
-        // }
+         onClear={() => {setViewport({
+            latitude: 40.7128,
+            longitude: -74.0060,
+            zoom: 8
+          });
+          setSelected({latitude: 0, longitude: 0});
+        }
+        }
           position="top-center"
           marker={false}
         />

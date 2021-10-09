@@ -1,4 +1,19 @@
 const mongoose = require("mongoose");
+const TripSchema = new mongoose.Schema(
+  {
+  locationName: String, 
+  coordinates: {latitude: String, longitude: String},
+  startDate: {
+      type: Date,
+      required: true
+    },
+  endDate: {
+    type: Date,
+    required: true
+  },
+  description: String, 
+  }
+)
 
 const UserSchema = new mongoose.Schema(
   {
@@ -15,25 +30,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    //trips: [TripSchema]
+    trips: [{type: TripSchema, required: false}]
   }
 );
 
-// const TripSchema = new mongoose.Schema(
-//   {
-//   locationName: String, 
-//   coordinates: {latitude: String, longitude: String},
-//   startDate: {
-//       type: Date,
-//       required: true
-//     },
-//   endDate: {
-//     type: Date,
-//     required: true
-//   },
-//   description: String, 
-//   }
-// )
 
 
 module.exports = mongoose.model("user", UserSchema);

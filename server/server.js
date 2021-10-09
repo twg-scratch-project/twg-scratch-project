@@ -17,7 +17,7 @@ const PORT = process.env.PORT;
 
 // importing and connecting to DB in MongoDB
 // Ideally, server should not run until the db is connected
-const connectDB = require('./routes/config/db');
+const connectDB = require('./config/db.js');
 
 let server;
 connectDB().then(() => {

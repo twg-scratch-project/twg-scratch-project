@@ -64,7 +64,7 @@ div {
     font-family: 'Architects Daughter';
 } */
 
-button {
+/* button {
   width: 153px;
   height: 21px;
   background-color: white;
@@ -72,7 +72,7 @@ button {
   border-width: 2px;
   outline: none;
   font-family: "Architects Daughter";
-}
+} */
 
 .SubmitButton {
   width: 153px;
@@ -149,3 +149,20 @@ input {
   overflow-y: auto;
   text-align: justify;
 }
+
+.map-component {
+  margin: 10vh 20vw 10vh 20vw;
+  height: 60vh;
+}
+
+.map-page {
+  height: 100vh;
+  width: 100vw;
+}
+
+.marker {
+ height: 40px;
+ width: 25px;
+}
+
+

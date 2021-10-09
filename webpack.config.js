@@ -10,8 +10,11 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            '/api': 'http://localhost:3000',
+            '/api/**': 'http://localhost:3000',
         },
+        proxy: {
+          '/auth/**': 'http://localhost:3000',
+      },
         static: {
             directory: __dirname,
         },

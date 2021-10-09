@@ -30,6 +30,7 @@ apiController.findUser = async (req, res, next) => {
 
 apiController.getTrips = async (req, res, next) => {
     try {
+        console.log('jdhhd')
         const {id} = req.params;
         const trips = await User.findById(mongoose.Types.ObjectId(id)).select("trips").sort({startDate: 1})
         const todayDate = new Date();

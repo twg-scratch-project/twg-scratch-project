@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import Main from "./Main.jsx";
 import MapBox from "./MapBox.jsx"
-
+import AddTrip from "./AddTrip.jsx";
 import Map from "./Map.jsx";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -36,6 +36,9 @@ function App() {
           </Route>
           <Route path="/TripDetail">
             <TripDetail/>
+          </Route>
+          <Route path="/AddTrip">
+            <AddTrip/>
           </Route>
           <Route path="/map">
             <Map />

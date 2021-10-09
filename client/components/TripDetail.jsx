@@ -4,7 +4,11 @@ import logo from '../images/journalLogo.png';
 
 function TripDetail (props) {
     return (
-        <div>Test</div>
+        <div style={{backgroundColor:"green", width:"50%", height:"50%"}}>
+            Trip Detail<br/>
+            Where are you going? <br/>
+            What are your dates? <br/>
+        </div>
     )
   }
 

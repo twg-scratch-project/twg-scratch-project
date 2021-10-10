@@ -29,6 +29,7 @@ apiController.findUser = async (req, res, next) => {
 }
 
 apiController.getTrips = async (req, res, next) => {
+   console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%request body: ', req.body)
     try {
         console.log('jdhhd')
         const {id} = req.params;

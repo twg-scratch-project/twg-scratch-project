@@ -8,21 +8,49 @@ import marker from '../images/marker.png';
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiZWNrc2RlZWVlZSIsImEiOiJja3VoZzU2aWcyZHk5Mm5xamVjYjJmYzBoIn0.jeBXbfS27jfUNY1XikYJ8w';
 
-const SearchMap = () => {
+const Map = ({listToDisplay, tripDetailOrAddTrip, curSelectedTripObj, setCurSelectedTrip}) => {
+  console.log("listToDisplay",listToDisplay)
   const [selected, setSelected] = useState({latitude: null, longitude: null})
-  const [viewport, setViewport] = useState({
-    latitude: 40.7128,
-    longitude: -74.0060,
-    zoom: 8
-  });
+  const [viewport, setViewport] = useState(
+    {
+      latitude: listToDisplay[0].coordinates.latitude,
+      longitude: listToDisplay[0].coordinates.longitude,
+      zoom: 1
+    }
+  )
 
-  console.log(selected)
-  
+
+    // {
+    //   latitude: 40.7128,
+    //   longitude: -74.0060,
+    //   zoom: 8
+    // });
+
+  useEffect(() => {
+    setSelected({latitude: null, longitude: null});
+  }, [tripDetailOrAddTrip])
+
+  // useEffect(() => {
+  //   setViewport({latitude: listToDisplay[0].coordinates.latitude, longitude: listToDisplay[0].coordinates.latitude, zoom:6});
+  // }, [listToDisplay])
+  const markerClick = (e) => {
+    console.log('e.target.id: ', e)
+    for (let trip of listToDisplay) {
+      if (trip._id === e.target.id) {
+        setViewport({
+          latitude: trip.coordinates.latitude, 
+          longitude: trip.coordinates.longitude,
+          zoom: 4 
+        })
+      }
+    }
+    setCurSelectedTrip(e.target.id);
+  }
+
+
   const mapRef = useRef();
   const handleViewportChange = useCallback(
-
-    (newViewport) => {setViewport(newViewport);    
-    
+    (newViewport) => {console.log(newViewport); setViewport(newViewport);    
     },
     []
   );
@@ -34,8 +62,7 @@ const SearchMap = () => {
 
   return (
     <div className='map-page'>
-    <div className='map-component'
-    >
+    <div className='map-component'>
       <MapGL
         ref={mapRef}
         {...viewport}
@@ -44,15 +71,35 @@ const SearchMap = () => {
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
        >
-{ selected.latitude &&
+
+        {/* TRIP DETAILS MODE */}
+        {tripDetailOrAddTrip === 'tripDetail' && 
+
+        listToDisplay.map((el, i) => { return (
+          <Marker 
+            id={el._id}
+            key={i}
+            latitude={el.coordinates.latitude}
+            offsetTop={-30}
+            offsetLeft={-10}
+            longitude={el.coordinates.longitude}
+            onClick={(e) => markerClick(e)}
+            >
+            <img src={marker} id={el._id} className='marker' alt='marker' />
+          </Marker>)
+        })}
+
+        {/* ADD TRIP MODE */}
+        { selected.latitude &&
            <Marker 
-           latitude={selected.latitude}
-           offsetTop={-30}
-           offsetLeft={-10}
-           longitude={selected.longitude}>
-               <img src={marker} className='marker' alt='marker' />
-               </Marker>
-}
+            latitude={selected.latitude}
+            offsetTop={-30}
+            offsetLeft={-10}
+            longitude={selected.longitude}>
+            <img src={marker} className='marker' alt='marker' />
+          </Marker>
+        }
+        {tripDetailOrAddTrip === 'addTrip' && 
         <Geocoder
           mapRef={mapRef}
           mapboxApiAccessToken={MAPBOX_TOKEN}
@@ -75,6 +122,7 @@ const SearchMap = () => {
           //position="top-center"
           marker={false}
         />
+      }
       </MapGL>
     </div>
     {selected.latitude  && 
@@ -83,4 +131,4 @@ const SearchMap = () => {
   );
 };
 
-export default SearchMap
+export default Map

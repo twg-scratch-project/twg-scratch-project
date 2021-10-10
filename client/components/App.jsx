@@ -4,9 +4,9 @@ import Main from "./Main.jsx";
 
 import Registration from "./Registration.jsx";
 
-import MapBox from "./MapBox.jsx"
+// import MapBox from "./MapBox.jsx"
 
-import Map from "./Map.jsx";
+// import Map from "./Map.jsx";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -34,22 +34,10 @@ function App() {
           <Route path="/Login">
             <Login />
           </Route>
-
-
-          <Route path="/map">
-            <Map />
-          </Route>
-
-          <Route path="/Registration">
-            <Registration onChange={regSubmit} />
-          </Route>
           <Route path="/Main">
             <Main />
           </Route>
           {/* Tester route made by c */}
-          <Route path="/Playgrounds">
-            <MapBox />
-          </Route>
           <Route exact path="/">
             <Login />
           </Route>

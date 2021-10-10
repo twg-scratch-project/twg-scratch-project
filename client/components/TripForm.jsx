@@ -17,6 +17,7 @@ import style from '../index.css';
 import { Grid, TextField, Button, Paper, Card, CardContent } from '@material-ui/core';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
 import logo from '../images/journalLogo.png';
 
 // import { makeStyles } from '@mui/styles';
@@ -70,6 +71,9 @@ function TripForm(props) {
                 <br/>
                 <Button variant="contained" style={{ marginBottom:"2em"}} color="primary" size="large">Add An Entry</Button>
                   {/* {tripList === null? "create a trip": <input></input>} */}
+                  <Grid item> 
+                <Button variant="outlined" startIcon={<DeleteIcon />} size="large">DELETE ENTRY</Button>
+                </Grid>
               </Grid>
             </Grid>
           </CardContent>

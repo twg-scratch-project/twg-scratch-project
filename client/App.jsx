@@ -10,7 +10,7 @@ function App(props) {
   const [email, setUserEmail] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
-  const [journalEntry, journalUpdater] = useState('');
+  const [journalEntry, setJournalEntry] = useState('');
   return (
     <Router>
       <div>
@@ -25,7 +25,7 @@ function App(props) {
           <LandingPage/>
           </Route>
           <Route path="/tripform">
-            <TripForm journalUpdater={journalUpdater} journalEntry={journalEntry}/>
+            <TripForm journalUpdater={setJournalEntry} journalEntry={journalEntry}/>
           </Route>
         </Switch>
       </div>

@@ -17,26 +17,27 @@ const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelected
       zoom: 1
     }
   )
-
-
     // {
     //   latitude: 40.7128,
     //   longitude: -74.0060,
     //   zoom: 8
     // });
- useEffect(() => {setViewport({
+ useEffect(() => {if (tripDetailOrAddTrip === 'tripDetail') {setViewport({
   latitude: listToDisplay[0].coordinates.latitude,
   longitude: listToDisplay[0].coordinates.longitude,
   zoom: 1
-});
+});}
+else {
+  setViewport({
+    latitude: 40.7306,
+    longitude: -73.9866,
+    zoom: 9
+  });
+}
 setSelected({latitude: null, longitude: null});
 }, [tripDetailOrAddTrip, upcomingOrPast]
  )
 
-
-  // useEffect(() => {
-  //   setViewport({latitude: listToDisplay[0].coordinates.latitude, longitude: listToDisplay[0].coordinates.latitude, zoom:6});
-  // }, [listToDisplay])
   const markerClick = (e) => {
     for (let trip of listToDisplay) {
       if (trip._id === e.target.id) {
@@ -52,18 +53,15 @@ setSelected({latitude: null, longitude: null});
     }
   }
 
-
   const mapRef = useRef();
   const handleViewportChange = useCallback(
     (newViewport) => {setViewport(newViewport);    
-    },
-    []
+    },[]
   );
 
   useEffect(() => {
     document.getElementsByClassName('mapboxgl-ctrl-geocoder--input')[0] ? document.getElementsByClassName('mapboxgl-ctrl-geocoder--input')[0].value = null : null
   })
-
 
   return (
     <div className='map-page'>

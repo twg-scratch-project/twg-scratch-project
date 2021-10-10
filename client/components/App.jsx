@@ -29,11 +29,7 @@ function App() {
   //for reg component: firstName={regObj.regInfo.firstName} userEmail={regObj.regInfo.email} lastName={regObj.regInfo.lastName} password={regObj.regInfo.password} onChange={regSubmit}
   return (
     <Router>
-      <div>
         <Switch>
-          <Route path="/Login">
-            <Login />
-          </Route>
           <Route path="/Main">
             <Main />
           </Route>
@@ -45,7 +41,6 @@ function App() {
             {/* 404 Here */}
           </Route>
         </Switch>
-      </div>
     </Router>
   );
 }

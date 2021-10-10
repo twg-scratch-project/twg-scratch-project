@@ -6,7 +6,7 @@ import Geocoder from 'react-map-gl-geocoder'
 import marker from '../images/marker.png';
 
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiZWNrc2RlZWVlZSIsImEiOiJja3VoZzU2aWcyZHk5Mm5xamVjYjJmYzBoIn0.jeBXbfS27jfUNY1XikYJ8w';
+const MAPBOX_TOKEN = '';
 
 const Map = ({listToDisplay, tripDetailOrAddTrip, curSelectedTripObj, setCurSelectedTrip}) => {
   console.log("listToDisplay",listToDisplay)
@@ -40,7 +40,8 @@ const Map = ({listToDisplay, tripDetailOrAddTrip, curSelectedTripObj, setCurSele
         setViewport({
           latitude: trip.coordinates.latitude, 
           longitude: trip.coordinates.longitude,
-          zoom: 4 
+          zoom: 4,
+          transitionDuration: 2000,
         })
       }
     }

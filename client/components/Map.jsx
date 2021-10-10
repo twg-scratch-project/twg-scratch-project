@@ -8,8 +8,7 @@ import marker from '../images/marker.png';
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
 const MAPBOX_TOKEN = '';
 
-const Map = ({listToDisplay, tripDetailOrAddTrip, curSelectedTripObj, setCurSelectedTrip}) => {
-  console.log("listToDisplay",listToDisplay)
+const Map = ({listToDisplay, tripDetailOrAddTrip, setCurSelectedTrip}) => {
   const [selected, setSelected] = useState({latitude: null, longitude: null})
   const [viewport, setViewport] = useState(
     {
@@ -34,7 +33,6 @@ const Map = ({listToDisplay, tripDetailOrAddTrip, curSelectedTripObj, setCurSele
   //   setViewport({latitude: listToDisplay[0].coordinates.latitude, longitude: listToDisplay[0].coordinates.latitude, zoom:6});
   // }, [listToDisplay])
   const markerClick = (e) => {
-    console.log('e.target.id: ', e)
     for (let trip of listToDisplay) {
       if (trip._id === e.target.id) {
         setViewport({
@@ -43,15 +41,16 @@ const Map = ({listToDisplay, tripDetailOrAddTrip, curSelectedTripObj, setCurSele
           zoom: 4,
           transitionDuration: 2000,
         })
+
+        setCurSelectedTrip(trip);
       }
     }
-    setCurSelectedTrip(e.target.id);
   }
 
 
   const mapRef = useRef();
   const handleViewportChange = useCallback(
-    (newViewport) => {console.log(newViewport); setViewport(newViewport);    
+    (newViewport) => {setViewport(newViewport);    
     },
     []
   );

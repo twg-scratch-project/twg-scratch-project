@@ -15,17 +15,17 @@ function Main (props) {
   const [tripDetailOrAddTrip, setTripDetailOrAddTrip] = useState('tripDetail'); // to conditionally render either TripDetail or AddTrip component
   const [curSelectedTrip, setCurSelectedTrip] = useState({});
   const [isLoading, setIsloading] = useState(true);
+
+  console.log('curSelectedTrip', curSelectedTrip)
   
   let renderTripDetailOrAddTrip;
   let listToDisplay;
 
-  console.log('upcomingTrips: ', upcomingTrips);
   useEffect(() => {
     // GET all trips from DB corresponding to current user
     fetch("/api/gettrips/6160bc7c7768777ca716ee68")
-    .then(res => {console.log(res); return res.json()})
+    .then(res => {return res.json()})
     .then(response => {
-      console.log('response, ', response)
       setUpcomingTrips(response.upcomingTrips);
       setPastTrips(response.pastTrips);
       // determine default selected trip:
@@ -38,9 +38,7 @@ function Main (props) {
   // determine whether to display markers for upcoming or past trips
   listToDisplay = upcomingOrPast === 'upcoming' ? upcomingTrips : pastTrips;
   // determine whether to render AddTrip or TripDetails component:
-  let curSelectedTripObj;
-  listToDisplay.forEach(el => {if (el._id === curSelectedTrip) curSelectedTripObj = el});
-  renderTripDetailOrAddTrip = tripDetailOrAddTrip === 'tripDetail' ? <TripDetail props={curSelectedTripObj}/> : <AddTrip setAllTrips={setAllTrips}/>;
+  renderTripDetailOrAddTrip = tripDetailOrAddTrip === 'tripDetail' ? <TripDetail curSelectedTrip={curSelectedTrip}/> : <AddTrip setAllTrips={setAllTrips}/>;
     
   return (
     <div>
@@ -51,11 +49,10 @@ function Main (props) {
       <div>
       <Map 
       listToDisplay={listToDisplay} 
-      curSelectedTripObj={curSelectedTripObj} 
       setCurSelectedTrip={setCurSelectedTrip} 
       tripDetailOrAddTrip={tripDetailOrAddTrip} />
       </div>
-      
+      {renderTripDetailOrAddTrip}
       <div>
         {/* <button class='SubmitButton' onClick={handleSubmission}>Edit An Entry</button> {/**currently handleSubmission is not set up to edit or delete  */}
         {/* <button class='SubmitButton' onClick={handleSubmission}>Delete An Entry </button> */}

@@ -35,12 +35,18 @@ import logo from '../images/journalLogo.png';
 // });
 
 
-function TripForm() {
-    const [] = useState('');
+function TripForm(props) {
     const [tripList, updateTripList] = useState('');
+    // const [journalEntry, journalUpdater] = useState('');
     const entryDate = `${new Date().getMonth()+1}/${new Date().getDay()}/${new Date().getFullYear()}`;
     //const [tripCoordinates, updateCoordinates] = useState('');
     // const classes = useStyles(); --- to use once mui styles properly imported
+    const journalFunction = (e) => props.journalUpdater(() => 
+    {
+      console.log(e.target.value)
+      return e.target.value
+    });
+
     return (
       <Paper elevation={5} style={{margin:"50px", height:"75%"}}>
         <img src={logo} alt="logo" width="200" height="300"/>
@@ -56,8 +62,10 @@ function TripForm() {
                 {/* Field used to entry journal entries */}
                 <TextField minHeight="9em" fullWidth style={{ marginBottom:"2em", width:"75%", textAlign:"center"}}
                 multiline
-                rows={2}
+                minRows={2}
                 rowsMax={15}
+                value={props.journalEntry}
+                onChange={journalFunction}
                 />
                 <br/>
                 <Button variant="contained" style={{ marginBottom:"2em"}} color="primary" size="large">Add An Entry</Button>

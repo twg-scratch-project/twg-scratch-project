@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; 
 import { Grid, TextField, Button, Paper } from '@material-ui/core';
 //import logo from '../images/journalLogo';  
-import Map from "./Map.jsx";
+// import Map from "./Map.jsx";
           
 
 function AddTrip(props) {
@@ -34,7 +34,8 @@ function AddTrip(props) {
        {/* <div className="cell"> */}
             {/* <Grid item> <Map/> </Grid> */}
              <Grid item>
-               <span>My Trip To: [location]?</span> <br />
+
+               <span></span> <br />
              {/* <input
                type="text"
                onChange={(e) => setTrip(e.target.value)}

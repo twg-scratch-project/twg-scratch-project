@@ -5,12 +5,12 @@ import LandingPage from "./components/LandingPage.jsx";
 import TripForm from "./components/TripForm.jsx";//for testing only
 import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 
-function App() {
+function App(props) {
 
   const [email, setUserEmail] = useState('');
   const [isRegistered, setIsRegistered] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
-
+  const [journalEntry, journalUpdater] = useState('');
   return (
     <Router>
       <div>
@@ -25,7 +25,7 @@ function App() {
           <LandingPage/>
           </Route>
           <Route path="/tripform">
-            <TripForm/>
+            <TripForm journalUpdater={journalUpdater} journalEntry={journalEntry}/>
           </Route>
         </Switch>
       </div>

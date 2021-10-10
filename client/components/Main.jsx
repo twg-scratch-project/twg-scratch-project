@@ -47,8 +47,14 @@ function Main (props) {
       { !isLoading && 
       <>
       <div>
+        <button type='button' onClick={() => {if(upcomingOrPast === 'past') {setCurSelectedTrip(upcomingTrips[0]); setUpcomingOrPast('upcoming')}}}> See Upcoming Trips</button>
+        <button type='button' onClick={() => {if(upcomingOrPast === 'upcoming') {setCurSelectedTrip(pastTrips[0]); setUpcomingOrPast('past')}}}> See Past Trips</button>
+        <button type='button' onClick={() => setTripDetailOrAddTrip('addTrip')}> Add A Trip</button>
+
+
       <Map 
       listToDisplay={listToDisplay} 
+      upcomingOrPast={upcomingOrPast}
       setCurSelectedTrip={setCurSelectedTrip} 
       tripDetailOrAddTrip={tripDetailOrAddTrip} />
       </div>

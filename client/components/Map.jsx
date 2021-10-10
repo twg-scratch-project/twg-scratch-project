@@ -8,7 +8,7 @@ import marker from '../images/marker.png';
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
 const MAPBOX_TOKEN = '';
 
-const Map = ({listToDisplay, tripDetailOrAddTrip, setCurSelectedTrip}) => {
+const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelectedTrip}) => {
   const [selected, setSelected] = useState({latitude: null, longitude: null})
   const [viewport, setViewport] = useState(
     {
@@ -24,10 +24,15 @@ const Map = ({listToDisplay, tripDetailOrAddTrip, setCurSelectedTrip}) => {
     //   longitude: -74.0060,
     //   zoom: 8
     // });
+ useEffect(() => {setViewport({
+  latitude: listToDisplay[0].coordinates.latitude,
+  longitude: listToDisplay[0].coordinates.longitude,
+  zoom: 1
+});
+setSelected({latitude: null, longitude: null});
+}, [tripDetailOrAddTrip, upcomingOrPast]
+ )
 
-  useEffect(() => {
-    setSelected({latitude: null, longitude: null});
-  }, [tripDetailOrAddTrip])
 
   // useEffect(() => {
   //   setViewport({latitude: listToDisplay[0].coordinates.latitude, longitude: listToDisplay[0].coordinates.latitude, zoom:6});

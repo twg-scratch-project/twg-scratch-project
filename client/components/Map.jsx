@@ -10,6 +10,7 @@ const MAPBOX_TOKEN = '';
 
 const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelectedTrip}) => {
   const [selected, setSelected] = useState({latitude: null, longitude: null})
+  const [trips, setTrips] = useState(listToDisplay)
   const [viewport, setViewport] = useState(
     {
       latitude: listToDisplay[0].coordinates.latitude,
@@ -31,10 +32,11 @@ else {
   setViewport({
     latitude: 40.7306,
     longitude: -73.9866,
-    zoom: 9
+    zoom: 1
   });
 }
 setSelected({latitude: null, longitude: null});
+setTrips(listToDisplay)
 }, [tripDetailOrAddTrip, upcomingOrPast]
  )
 
@@ -78,7 +80,7 @@ setSelected({latitude: null, longitude: null});
         {/* TRIP DETAILS MODE */}
         {tripDetailOrAddTrip === 'tripDetail' && 
 
-        listToDisplay.map((el, i) => { return (
+        trips.map((el, i) => { return (
           <Marker 
             id={el._id}
             key={i}

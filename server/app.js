@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const colors = require('colors');
 const cookieParser = require('cookie-parser');
 const AppError = require('./utils/appError');
+const router= require('./routes/index')
 
 const app = express();
 
@@ -18,6 +19,8 @@ if (process.env.NODE_ENV === 'development') {
 // ROUTES
 // API
 // User route
+app.use('/auth', router.auth);
+app.use('/api', router.api);
 
 
 // IMPORTANT: Make sure to write all route handling BEFORE this one.

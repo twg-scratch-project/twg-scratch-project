@@ -61,14 +61,14 @@ const SearchMap = () => {
             _toggle();
         }
         }
-        //  onClear={() => {setViewport({
-        //     latitude: 40.7128,
-        //     longitude: -74.0060,
-        //     zoom: 8
-        //   });
-        //   setSelected({latitude: 0, longitude: 0});
-        // }
-        // }
+         onClear={() => {setViewport({
+            latitude: 40.7128,
+            longitude: -74.0060,
+            zoom: 8
+          });
+          setSelected({latitude: 0, longitude: 0});
+        }
+        }
           position="top-center"
           marker={false}
         />

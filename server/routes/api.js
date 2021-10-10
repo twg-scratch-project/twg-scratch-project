@@ -1,13 +1,25 @@
 const express = require('express');
-
 const router = express.Router();
+const apiController = require('../controllers/apiController');
 
-const authRouter = require('./auth');
-const userRouter = require('./users');
-const tripRouter = require('./trip');
+router.get('/getuser/:email', apiController.findUser, (req, res, next) => {
+  const user = res.locals.user;
+  res.status(200).json({user});
+})
 
-router.use('/auth', authRouter);
-router.use('/users', userRouter);
-router.use('/trips', tripRouter);
+router.get('/gettrips/:id', apiController.getTrips, (req, res, next) =>  {
+const trips = req.body.trips;
+   res.status(200).json(trips);
+})
+
+router.put('/addtrip/:id', apiController.addTrip, apiController.getTrips, (req, res, next) => {
+    const trips = req.body.trips;
+    res.status(200).json(trips);
+})
+
+router.put('/deletetrip/:id', apiController.deleteTrip, apiController.getTrips, (req, res, next) => {
+    const trips = req.body.trips;
+    res.status(200).json(trips);
+})
 
 module.exports = router;

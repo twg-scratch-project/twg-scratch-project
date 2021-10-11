@@ -8,18 +8,29 @@ import AddTrip from './AddTrip.jsx'
 import Map from './Map.jsx'
 
 function Main (props) {  
-  //const [allTrips, setAllTrips] = useState([]);
+  const defaultTrip =  {
+    locationName : 'No trips available! Click the Add Trip button to get started.',
+    coordinates : {latitude: 40.7128, longitude: -74.0060},
+    startDate : 'No start date selected',
+    endDate : 'No end date selected',
+    description : 'This is where the description goes.', // in production these could be empty string, values included here for testing
+    default: 'this is the default trip object' // to conditionally render no markers if default
+  }
   const [upcomingTrips, setUpcomingTrips] = useState([]);
   const [pastTrips, setPastTrips] = useState([]);
   const [upcomingOrPast, setUpcomingOrPast] = useState('upcoming');
   const [tripDetailOrAddTrip, setTripDetailOrAddTrip] = useState('tripDetail'); // to conditionally render either TripDetail or AddTrip component
-  const [curSelectedTrip, setCurSelectedTrip] = useState({});
+  const [curSelectedTrip, setCurSelectedTrip] = useState(defaultTrip);
   const [isLoading, setIsLoading] = useState(true);
 
   console.log('curSelectedTrip', curSelectedTrip)
   
   let renderTripDetailOrAddTrip;
   let listToDisplay;
+
+  
+
+
 
   useEffect(() => {
     // GET all trips from DB corresponding to current user
@@ -60,7 +71,9 @@ function Main (props) {
         listToDisplay={listToDisplay} 
         upcomingOrPast={upcomingOrPast}
         setCurSelectedTrip={setCurSelectedTrip} 
-        tripDetailOrAddTrip={tripDetailOrAddTrip} />
+        tripDetailOrAddTrip={tripDetailOrAddTrip} 
+        defaultTrip={defaultTrip}
+        />
       </div>
       {renderTripDetailOrAddTrip}
       <div>

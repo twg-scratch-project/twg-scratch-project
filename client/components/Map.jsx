@@ -6,42 +6,42 @@ import Geocoder from 'react-map-gl-geocoder'
 import marker from '../images/marker.png';
 
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
-const MAPBOX_TOKEN = '';
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiZWNrc2RlZWVlZSIsImEiOiJja3VoZzU2aWcyZHk5Mm5xamVjYjJmYzBoIn0.jeBXbfS27jfUNY1XikYJ8w';
 
-const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelectedTrip}) => {
-  const [selected, setSelected] = useState({latitude: null, longitude: null}) // for addTrip mode only
-  const [trips, setTrips] = useState(listToDisplay)
+const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelectedTrip, defaultTrip}) => {
+  const myTrips = listToDisplay[0] ? listToDisplay : [defaultTrip];
+  const [selected, setSelected] = useState({latitude: null, longitude: null}); // for addTrip mode only
+  const [trips, setTrips] = useState(listToDisplay); // is this necessary? if listToDisplay has changed, then Map will have re-rendered with passed in value of listToDisplay already. so we can just access listToDisplay rather than duplicating it into a local state.
   const [viewport, setViewport] = useState(
     {
-      latitude: listToDisplay[0].coordinates.latitude,
-      longitude: listToDisplay[0].coordinates.longitude,
+      latitude: myTrips[0].coordinates.latitude,
+      longitude: myTrips[0].coordinates.longitude,
       zoom: 1
     }
-  )
+  );
     // {
     //   latitude: 40.7128,
     //   longitude: -74.0060,
     //   zoom: 8
     // });
- useEffect(() => {
-  if (tripDetailOrAddTrip === 'tripDetail') {
-    setViewport({
-      latitude: listToDisplay[0].coordinates.latitude,
-      longitude: listToDisplay[0].coordinates.longitude,
-      zoom: 1
-    });
-  }
-  else {
-    setViewport({
-      latitude: 40.7306,
-      longitude: -73.9866,
-      zoom: 1
-    });
-  }
-setSelected({latitude: null, longitude: null});
-setTrips(listToDisplay)
-}, [tripDetailOrAddTrip, upcomingOrPast]
- )
+  useEffect(() => {
+    if (tripDetailOrAddTrip === 'tripDetail') {
+      setViewport({
+        latitude: myTrips[0].coordinates.latitude,
+        longitude: myTrips[0].coordinates.longitude,
+        zoom: 1
+      });
+    }
+    else {
+      setViewport({
+        latitude: 40.7306,
+        longitude: -73.9866,
+        zoom: 1
+      });
+    }
+    setSelected({latitude: null, longitude: null});
+    setTrips(listToDisplay) // is this necessary? if listToDisplay has changed, then Map will have re-rendered with passed in value of listToDisplay already. so we can just access listToDisplay rather than duplicating it into a local state.
+  }, [tripDetailOrAddTrip, upcomingOrPast]);
 
   const markerClick = (e) => {
     for (let trip of listToDisplay) {
@@ -82,7 +82,7 @@ setTrips(listToDisplay)
 
         {/* TRIP DETAILS MODE */}
         {tripDetailOrAddTrip === 'tripDetail' && 
-
+        // could change 'trips' to listToDisplay:
         trips.map((el, i) => { return (
           <Marker 
             id={el._id}

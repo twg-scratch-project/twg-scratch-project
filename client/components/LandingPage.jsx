@@ -1,9 +1,39 @@
 //import logo from './images/journalLogo.png';
 import React, {useState, useEffect, useCallback} from 'react';
 import {useHistory} from 'react-router-dom';
+import style from '../index.css';
+import { Grid, TextField, Button, Paper, Card, CardContent } from '@material-ui/core';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Checkbox from '@material-ui/core/Checkbox';
+import logo from '../images/journalLogo.png';
+import { makeStyles } from '@material-ui/core/styles';
+import { ViewHeadlineTwoTone } from '@mui/icons-material';
+import { ClassNames } from '@emotion/react';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    height: '100vh',
+  },
+  image:{
+    backgroundImage:'url(https://www.istockphoto.com/photo/two-lounge-chairs-under-tent-on-beach-gm489833698-74881435)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+  paper: {
+    margin: theme.spacing(4),
+    flexDirection: 'column',
+    display: 'flex'
+  },
+  form: {
+    width: '100%',
+    marginTop: auto
+  }
+}))
 
 function Login(props) {
-
+  const classes = useStyles;
   const loginUser = (username, password) => {
     fetch("/api/auth", {
       method: "POST",
@@ -35,13 +65,54 @@ function Login(props) {
     const [password, setPassword] = useState('');
     const [name, setUserName] = useState('');
     const [loginFail, setLoginFail] = useState(false);
-
     const history = useHistory();
 
+    
     return (
       // <img src={{logo}} width="200" height="200"></img>
-    <div> 
-      login page</div>
+      <form>
+        <Paper>
+        <Grid container className={classes.root}>
+          <Grid item className={classes.image}/>
+          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={4} square>Login</Grid>
+          <TextField
+          required
+          variant="outlined"
+          fullWidth
+          label="Email Address"
+          name="email"
+          autoComplete="email"
+          margin="normal"
+          autofocus
+          >
+          </TextField>
+          <TextField
+          required
+          variant="outlined"
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          margin="normal"
+          autoComplete="current-password"
+          >
+          </TextField>
+          <Button variant="outlined"
+          fullWidth
+          color="primary"
+          variant="contained"
+          style={{margin:"6"}}
+          >Login</Button>
+          <Button variant="outlined"
+          style={{margin:"6"}}
+          fullWidth
+          color="primary"
+          variant="contained"
+          >Register</Button>
+        </Grid>
+      </Paper>
+      </form>
+
     )
   }
   //conditionally render this component based on user selection?

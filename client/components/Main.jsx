@@ -14,7 +14,7 @@ function Main (props) {
   const [upcomingOrPast, setUpcomingOrPast] = useState('upcoming');
   const [tripDetailOrAddTrip, setTripDetailOrAddTrip] = useState('tripDetail'); // to conditionally render either TripDetail or AddTrip component
   const [curSelectedTrip, setCurSelectedTrip] = useState({});
-  const [isLoading, setIsloading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log('curSelectedTrip', curSelectedTrip)
   
@@ -26,12 +26,16 @@ function Main (props) {
     fetch("/api/gettrips/6160bc7c7768777ca716ee68")
     .then(res => {return res.json()})
     .then(response => {
-      setUpcomingTrips(response.upcomingTrips);
-      setPastTrips(response.pastTrips);
       // determine default selected trip:
-      const firstUpcomingTrip = response.upcomingTrips[0];
-      setCurSelectedTrip(firstUpcomingTrip);
-      setIsloading(false)
+      if (response.pastTrips) { 
+        setPastTrips(response.pastTrips);
+      }
+      if (response.upcomingTrips) {
+        setUpcomingTrips(response.upcomingTrips);
+        const firstUpcomingTrip = response.upcomingTrips[0];
+        setCurSelectedTrip(firstUpcomingTrip);
+      } 
+      setIsLoading(false);
     });
   }, []);
   
@@ -46,17 +50,17 @@ function Main (props) {
       {isLoading && <div>loading</div>}
       { !isLoading && 
       <>
-      <div>
-        <button type='button' onClick={() => {if(upcomingOrPast === 'past') {setCurSelectedTrip(upcomingTrips[0]); setUpcomingOrPast('upcoming')}; setTripDetailOrAddTrip('tripDetail')}}> See Upcoming Trips</button>
-        <button type='button' onClick={() => {if(upcomingOrPast === 'upcoming') {setCurSelectedTrip(pastTrips[0]); setUpcomingOrPast('past')}; setTripDetailOrAddTrip('tripDetail')}}> See Past Trips</button>
+      <div>                                                   
+        <button type='button' onClick={() => {if(upcomingOrPast === 'past') {setCurSelectedTrip(upcomingTrips[0] ? upcomingTrips[0] : []); setUpcomingOrPast('upcoming')}; setTripDetailOrAddTrip('tripDetail')}}> See Upcoming Trips</button>
+        <button type='button' onClick={() => {if(upcomingOrPast === 'upcoming') {setCurSelectedTrip(pastTrips[0] ? pastTrips[0] : []); setUpcomingOrPast('past')}; setTripDetailOrAddTrip('tripDetail')}}> See Past Trips</button>
         <button type='button' onClick={() => setTripDetailOrAddTrip('addTrip')}> Add A Trip</button>
 
 
       <Map 
-      listToDisplay={listToDisplay} 
-      upcomingOrPast={upcomingOrPast}
-      setCurSelectedTrip={setCurSelectedTrip} 
-      tripDetailOrAddTrip={tripDetailOrAddTrip} />
+        listToDisplay={listToDisplay} 
+        upcomingOrPast={upcomingOrPast}
+        setCurSelectedTrip={setCurSelectedTrip} 
+        tripDetailOrAddTrip={tripDetailOrAddTrip} />
       </div>
       {renderTripDetailOrAddTrip}
       <div>

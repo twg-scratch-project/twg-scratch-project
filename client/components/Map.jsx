@@ -9,7 +9,7 @@ import marker from '../images/marker.png';
 const MAPBOX_TOKEN = '';
 
 const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelectedTrip}) => {
-  const [selected, setSelected] = useState({latitude: null, longitude: null})
+  const [selected, setSelected] = useState({latitude: null, longitude: null}) // for addTrip mode only
   const [trips, setTrips] = useState(listToDisplay)
   const [viewport, setViewport] = useState(
     {
@@ -23,18 +23,21 @@ const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelected
     //   longitude: -74.0060,
     //   zoom: 8
     // });
- useEffect(() => {if (tripDetailOrAddTrip === 'tripDetail') {setViewport({
-  latitude: listToDisplay[0].coordinates.latitude,
-  longitude: listToDisplay[0].coordinates.longitude,
-  zoom: 1
-});}
-else {
-  setViewport({
-    latitude: 40.7306,
-    longitude: -73.9866,
-    zoom: 1
-  });
-}
+ useEffect(() => {
+  if (tripDetailOrAddTrip === 'tripDetail') {
+    setViewport({
+      latitude: listToDisplay[0].coordinates.latitude,
+      longitude: listToDisplay[0].coordinates.longitude,
+      zoom: 1
+    });
+  }
+  else {
+    setViewport({
+      latitude: 40.7306,
+      longitude: -73.9866,
+      zoom: 1
+    });
+  }
 setSelected({latitude: null, longitude: null});
 setTrips(listToDisplay)
 }, [tripDetailOrAddTrip, upcomingOrPast]

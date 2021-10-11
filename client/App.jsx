@@ -11,6 +11,11 @@ function App(props) {
   const [isRegistered, setIsRegistered] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [journalEntry, setJournalEntry] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [name, setUserName] = useState('');
+  // const [loginFail, setLoginFail] = useState(false);
+ 
+
   return (
     <Router>
       <div>

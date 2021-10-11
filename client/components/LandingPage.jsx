@@ -12,6 +12,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ViewHeadlineTwoTone } from '@mui/icons-material';
 import { ClassNames } from '@emotion/react';
 
+// Still updating this component and the others!
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
@@ -33,6 +35,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function Login(props) {
+  const regComp = () => {
+    //render reg component onClick
+  }
+
   const classes = useStyles;
   const loginUser = (username, password) => {
     fetch("/api/auth", {
@@ -62,10 +68,6 @@ function Login(props) {
 
   };
 
-    const [password, setPassword] = useState('');
-    const [name, setUserName] = useState('');
-    const [loginFail, setLoginFail] = useState(false);
-    const history = useHistory();
 
     
     return (
@@ -108,6 +110,7 @@ function Login(props) {
           fullWidth
           color="primary"
           variant="contained"
+          onClick={regComp}
           >Register</Button>
         </Grid>
       </Paper>

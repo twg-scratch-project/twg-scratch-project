@@ -65,17 +65,17 @@ function Main (props) {
       <Paper>
           <img src={logo} alt='Travel Planner logo'/> 
           <h2>I want to ...</h2><br/>
-          <Map />
+          <Map/>
           {renderTripDetailOrAddTrip}
           {/* button will possiblity redirect to page <Main/>  where the journal will cond render 
           Will need to import styling for margins etc
           */}
           {/* Will render <TripForm/> onClick */}
-          <Button onClick={() => {}} variant="outlined" size="large">Write About a New Trip </Button> 
+          <Button onClick={() => {}} variant="outlined" style={{margin:"6"}} size="large">Write About a New Trip </Button> 
            {/* Will render past trips from db  onClick*/}
-          <Button onClick={() => {}} variant="outlined" size="large">Take Me To Past Trips!</Button> 
+          <Button onClick={() => {}} variant="outlined" style={{margin:"6"}} size="large">Go to a Past Trip!</Button> 
            {/* Will render most recent trip onClick?? */}
-          <Button onClick={() => {}} variant="outlined" size="large">Take Me To My Current Trip!</Button> 
+          <Button onClick={() => {}} variant="outlined" style={{margin:"6"}} size="large">Write About My Current Trip!</Button> 
           {/* <button class='SubmitButton' onClick={handleSubmission}>Edit An Entry</button> {/**currently handleSubmission is not set up to edit or delete  */}
           {/* <button class='SubmitButton' onClick={handleSubmission}>Delete An Entry </button> */}
       </Paper>

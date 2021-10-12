@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import Main from "./Main.jsx";
+import test from "./test";
 
 import Registration from "./Registration.jsx";
 
@@ -33,12 +34,11 @@ function App() {
           <Route path="/Main">
             <Main />
           </Route>
-          {/* Tester route made by c */}
           <Route exact path="/">
             <Login />
           </Route>
           <Route>
-            {/* 404 Here */}
+            <test/>
           </Route>
         </Switch>
     </Router>

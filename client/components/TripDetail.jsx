@@ -1,19 +1,25 @@
 
 import React, { useState, useEffect } from "react"; 
-import logo from '../images/journalLogo';
-import {useState} from "react";  
+// import logo from '../images/journalLogo';
 
-function TripDetail(props) {
-  const [tripList, updateTripList] = useState('');
-  const [tripCoordinates, updateCoordinates] = useState('');
-  const handleSubmission = e => {};
+
+function TripDetail({curSelectedTrip}) { // props = current selected trip object
+  // const [tripCoordinates, updateCoordinates] = useState('');
+  //const handleSubmission = e => {};
+  
+  // SELECT DEFAULT VALUES WHEN NO TRIP IS PRESENT
+
+
+  const { locationName, coordinates, startDate, endDate, description} = curSelectedTrip;
+
+
   return (
     <div className="allEntries"> {/*instead of rendering all entries, make it render only the entry corresponding to currently selected pin on map */}  
       <div className="cell" className='divScroll'>
-        <input type={submit}></input>
-      </div><br/>
+      {locationName} 
+      </div>
   </div>
   )
   
 }
-  
+export default TripDetail;

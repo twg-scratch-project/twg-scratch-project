@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import Main from "./Main.jsx";
-import test from "./test";
-
-import Registration from "./Registration.jsx";
-
-// import MapBox from "./MapBox.jsx"
-
-// import Map from "./Map.jsx";
-
+import Test from "./test.jsx";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 
@@ -35,11 +28,11 @@ function App() {
             <Main />
           </Route>
           <Route exact path="/">
-            <Login />
+          <Test/>
           </Route>
-          <Route>
-            <test/>
-          </Route>
+          {/* <Route exact path="/test">
+            <Test/>
+          </Route> */}
         </Switch>
     </Router>
   );

@@ -14,9 +14,10 @@ passport.use(new GoogleStrategy({
     const defaultUser = {
         name: profile.displayName,
         email: profile.emails[0].value,
-        googleId: profile.id,
+        googleId: profile
     }
     try {
+        console.log(profile)
         // Look up user to see if they're already registered
         const user = await User.findOne({googleId: profile.id})
         if(user) return done(null, user)

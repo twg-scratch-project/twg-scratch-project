@@ -2,7 +2,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import MapGL, {Marker} from 'react-map-gl'
-import Geocoder from 'react-map-gl-geocoder'
+// import Geocoder from 'react-map-gl-geocoder'
 import marker from '../images/marker.png';
 
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
@@ -45,7 +45,7 @@ const SearchMap = () => {
                <img src={marker} className='marker' alt='marker' />
                </Marker>
 }
-        <Geocoder
+        {/* <Geocoder
           mapRef={mapRef}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           onViewportChange={handleViewportChange}
@@ -70,7 +70,7 @@ const SearchMap = () => {
         }
           position="top-center"
           marker={false}
-        />
+        /> */}
       </MapGL>
     </div>
     {selected.latitude  && 

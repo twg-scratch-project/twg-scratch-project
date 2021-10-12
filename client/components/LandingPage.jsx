@@ -1,31 +1,15 @@
 //import logo from './images/journalLogo.png';
 import * as React from 'react';
-// import {useHistory} from 'react-router-dom';
-// import CssBaseline from '@mui/material/CssBaseline';
-// import style from '../index.css';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
-// import Link from '@mui/material/Link';
-// import Box from '@mui/material/Box';
-// import { Grid, TextField, Button, Paper, Card, CardContent } from '@material-ui/core';
-// import CardHeader from '@mui/material/CardHeader';
-// import Typography from '@mui/material/Typography';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { makeStyles } from '@material-ui/core/styles';
-
+import {useHistory} from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-// Still updating this component and the others!
 
 // const useStyles = makeStyles(theme => ({
 //   root: {
@@ -61,7 +45,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-function test(props) {
+function LandingPage(props) {
 
   function SignInSide() {
     const handleSubmit = (event) => {
@@ -85,10 +69,9 @@ function test(props) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: 'url(https://media.nationalgeographic.org/assets/photos/000/206/20669.jpg)',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundColor: 'green',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -107,13 +90,17 @@ function test(props) {
               <LockOutlinedIcon />
             </Avatar> */}
             <Typography component="h1" variant="h5">
+              <h1>Travel Journal</h1>
+            </Typography>
+            <Typography component="h1" variant="h4">
               Sign in
             </Typography>
             <Box component="form" noValidate onSubmit={SignInSide} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
-                fullWidth
+                // fullWidth
+                style={{width:"125%"}}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -123,7 +110,8 @@ function test(props) {
               <TextField
                 margin="normal"
                 required
-                fullWidth
+                // fullWidth
+                style={{width:"125%"}}
                 name="password"
                 label="Password"
                 type="password"
@@ -132,7 +120,9 @@ function test(props) {
               />
               <Button
                 type="submit"
-                fullWidth
+                // fullWidth
+                color="primary"
+                style={{width:"125%"}}
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
@@ -140,7 +130,15 @@ function test(props) {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                {/* needs ref here! */}
+                  <Link
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    color:'navy'
+                  }}
+                  > 
                     CREATE AN ACCOUNT
                   </Link>
                 </Grid>
@@ -153,6 +151,7 @@ function test(props) {
     </ThemeProvider>
   );
   }
+
   //conditionally render this component based on user selection?
   // function Registration(props) {
 
@@ -183,9 +182,9 @@ function test(props) {
   // }
   //     return (
   //       <div>
-  //         <h1> <a href='http://localhost:8080/Login'> <img src={logo} alt='Travel Planner logo'/> </a> </h1>
-  //         <div className="document"> 
-  //           <form action="" method="post">
+  //         <h1> Registration </h1>
+  //         <div > 
+  //           <form >
   //             <div>
   //               <h2>Travel Planner Registration</h2>
   //               <p>
@@ -210,4 +209,4 @@ function test(props) {
       
   //     )
   //   }
-  export default test;
+  export default LandingPage;

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login.jsx";
 import Main from "./Main.jsx";
-import Test from "./test.jsx";
+import Test from "./LandingPage.jsx";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import LandingPage from "./LandingPage.jsx";
 
 
 function App() {
@@ -15,11 +16,6 @@ function App() {
   const [isLoggedIn, setLoginStatus] = useState(false);
   const [travelers, updateTravelers] = useState([]);
 
-  function regSubmit(regObj) {
-    //stores users reg info
-
-    console.log("reg deets ", regDetails);
-  }
   //for reg component: firstName={regObj.regInfo.firstName} userEmail={regObj.regInfo.email} lastName={regObj.regInfo.lastName} password={regObj.regInfo.password} onChange={regSubmit}
   return (
     <Router>
@@ -28,11 +24,8 @@ function App() {
             <Main />
           </Route>
           <Route exact path="/">
-          <Test/>
+          <LandingPage/>
           </Route>
-          {/* <Route exact path="/test">
-            <Test/>
-          </Route> */}
         </Switch>
     </Router>
   );

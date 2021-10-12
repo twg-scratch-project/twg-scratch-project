@@ -4,7 +4,9 @@ import Main from "./Main.jsx";
 
 import Registration from "./Registration.jsx";
 
-import MapBox from "./MapBox.jsx"
+// import MapBox from "./MapBox.jsx"
+
+// import Map from "./Map.jsx";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -21,28 +23,17 @@ function App() {
 
   function regSubmit(regObj) {
     //stores users reg info
-    storeRegInfo(regObj);
 
     console.log("reg deets ", regDetails);
   }
   //for reg component: firstName={regObj.regInfo.firstName} userEmail={regObj.regInfo.email} lastName={regObj.regInfo.lastName} password={regObj.regInfo.password} onChange={regSubmit}
   return (
     <Router>
-      <div>
         <Switch>
-          <Route path="/Login">
-            <Login />
-          </Route>
-          <Route path="/Registration">
-            <Registration onChange={regSubmit} />
-          </Route>
           <Route path="/Main">
             <Main />
           </Route>
           {/* Tester route made by c */}
-          <Route path="/Playgrounds">
-            <MapBox />
-          </Route>
           <Route exact path="/">
             <Login />
           </Route>
@@ -50,7 +41,6 @@ function App() {
             {/* 404 Here */}
           </Route>
         </Switch>
-      </div>
     </Router>
   );
 }

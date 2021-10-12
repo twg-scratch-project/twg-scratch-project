@@ -4,6 +4,9 @@ import {useHistory} from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -95,7 +98,7 @@ function LandingPage(props) {
             <Typography component="h1" variant="h4">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={SignInSide} sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={SignInSide} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -106,6 +109,7 @@ function LandingPage(props) {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                variant="standard"
               />
               <TextField
                 margin="normal"
@@ -117,6 +121,7 @@ function LandingPage(props) {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                variant="standard"
               />
               <Button
                 type="submit"
@@ -129,6 +134,7 @@ function LandingPage(props) {
                 Sign In
               </Button>
               <Grid container>
+                
                 <Grid item xs>
                 {/* needs ref here! */}
                   <Link
@@ -141,6 +147,8 @@ function LandingPage(props) {
                   > 
                     CREATE AN ACCOUNT
                   </Link>
+                  <br/>
+                  <Registration/>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
@@ -153,60 +161,37 @@ function LandingPage(props) {
   }
 
   //conditionally render this component based on user selection?
-  // function Registration(props) {
+  function Registration(props) {
 
-  //   const [password, setUserPassword] = useState('');
-  //   const [fullname, setfirstName] = useState('');
-  //   const [email, setEmail] = useState('');
-  //   const [mobile, setMobile] = useState('');
-  
-  //   const submitFunc = (e) => {
-  //     e.preventDefault();
-  //     console.log('name and pass ', firstName, lastName, mobile, password)
-  //     fetch('/users/login', {
-  //         method: 'POST',
-  //         mode: 'cors',
-  //         headers: {
-  //             "Content-type": "application/json"
-  //         },
-  //         body: JSON.stringify(
-  //             {
-  //             fullname,
-  //             email,
-  //             password
-  //             })
-  //     })
-  //     .then(response => response.json())
-  //     .then( data => console.log(data))
-  //     .catch(() => console.log('fetch error has occurred'))
-  // }
-  //     return (
-  //       <div>
-  //         <h1> Registration </h1>
-  //         <div > 
-  //           <form >
-  //             <div>
-  //               <h2>Travel Planner Registration</h2>
-  //               <p>
-  //                 <label for="name"></label>
-  //                 <input type="text" value={fullname} onChange={e => setfirstName(e.target.value)} placeholder="First Name"></input><br/>
-  //               </p>
-  //                 <label for="email"></label>
-  //                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email"></input>
-  //               <p>
-  //                 <label for="password"> </label>
-  //                 <input type="password" required password={password} onChange={e => setUserPassword(e.target.value)} placeholder="Password"></input><br/>
-  //               </p>
-  //               <p>
-  //                 <label for="mobile"> </label>
-  //                 <input type="phone" required mobile={mobile} onChange={e => setMobile(e.target.value)} placeholder="Mobile"></input><br/>
-  //               </p>
-  //               <button className="SubmitButton" onClick={submitFunc}>Submit</button>
-  //             </div>
-  //           </form>
-  //         </div>
-  //       </div>
-      
-  //     )
-  //   }
+        return (
+          <Card sx={{ maxWidth: 750 }}>
+            <CardContent sx={{ fontSize: 14, 
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            }} color="text.secondary" >
+              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              Registration
+              </Typography>
+              <Typography >
+              Name
+              </Typography>
+              <TextField
+              variant="standard"
+              >
+              </TextField>
+              <Typography color="text.secondary">
+                Email
+              </Typography>
+              <TextField
+              variant="standard"
+              >
+              </TextField>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Register!</Button>
+            </CardActions>
+          </Card>
+        );
+    }
   export default LandingPage;

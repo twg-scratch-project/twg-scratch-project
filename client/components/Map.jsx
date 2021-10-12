@@ -6,12 +6,12 @@ import Geocoder from 'react-map-gl-geocoder'
 import marker from '../images/marker.png';
 
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
-const MAPBOX_TOKEN = '';
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiZWNrc2RlZWVlZSIsImEiOiJja3VoZzU2aWcyZHk5Mm5xamVjYjJmYzBoIn0.jeBXbfS27jfUNY1XikYJ8w';
 
 const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelectedTrip, defaultTrip}) => {
   const myTrips = listToDisplay[0] ? listToDisplay : [defaultTrip];
   const [selected, setSelected] = useState({latitude: null, longitude: null}); // for addTrip mode only
-  const [trips, setTrips] = useState(listToDisplay); // is this necessary? if listToDisplay has changed, then Map will have re-rendered with passed in value of listToDisplay already. so we can just access listToDisplay rather than duplicating it into a local state.
+  const [trips, setTrips] = useState(listToDisplay);
   const [viewport, setViewport] = useState(
     {
       latitude: myTrips[0].coordinates.latitude,
@@ -40,7 +40,7 @@ const Map = ({listToDisplay, tripDetailOrAddTrip, upcomingOrPast, setCurSelected
       });
     }
     setSelected({latitude: null, longitude: null});
-    setTrips(listToDisplay) // is this necessary? if listToDisplay has changed, then Map will have re-rendered with passed in value of listToDisplay already. so we can just access listToDisplay rather than duplicating it into a local state.
+    setTrips(listToDisplay) 
   }, [tripDetailOrAddTrip, upcomingOrPast]);
 
   const markerClick = (e) => {

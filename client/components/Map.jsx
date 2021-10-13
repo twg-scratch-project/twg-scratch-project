@@ -2,11 +2,11 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import MapGL, {Marker} from 'react-map-gl'
-// import Geocoder from 'react-map-gl-geocoder'
+import Geocoder from 'react-map-gl-geocoder'
 import marker from '../images/marker.png';
 
 // Ways to set Mapbox token: https://uber.github.io/react-map-gl/#/Documentation/getting-started/about-mapbox-tokens
-const MAPBOX_TOKEN = '';
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiZWNrc2RlZWVlZSIsImEiOiJja3VoZzU2aWcyZHk5Mm5xamVjYjJmYzBoIn0.jeBXbfS27jfUNY1XikYJ8w';
 
 const Map = ({listToDisplay, tripDetailOrAddTrip, selected, setSelected, upcomingOrPast, setCurSelectedTrip, defaultTrip}) => {
   const myTrips = listToDisplay[0] ? listToDisplay : [defaultTrip];

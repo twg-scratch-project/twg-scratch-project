@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 import Main from "./Main.jsx";
-import Login from "./Login.jsx";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import LandingPage from "./LandingPage.jsx";
 
 import {AuthProvider} from "../context/authContext.jsx"
 
@@ -30,9 +29,8 @@ function App() {
             <Route path="/main">
               <Main />
             </Route>  
-
             <Route exact path="/">
-              <Login />
+          <LandingPage/>
             </Route>
             <Route>
               {/* 404 Here */}

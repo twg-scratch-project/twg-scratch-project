@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Main from "./Main.jsx";
-import Map from "./Map.jsx";
 import Login from "./Login.jsx";
-import Registration from "./Registration.jsx";
-import Playground from "./Playground.jsx"
 
 import {AuthProvider} from "../context/authContext.jsx"
 
@@ -18,7 +15,6 @@ function App() {
 
   const [isLoggedIn, setLoginStatus] = useState(false);
   const [travelers, updateTravelers] = useState([]);
-
   function regSubmit(regObj) {
     //stores users reg info
 
@@ -30,22 +26,11 @@ function App() {
       <Router>
         <div>
           <Switch>
-            <Route path="/Login">
-              <Login />
-            </Route>
-            <Route path="/map">
-              <Map />
-            </Route>
-            <Route path="/Registration">
-              <Registration onChange={regSubmit} />
-            </Route>
-            <Route path="/Main">
+          
+            <Route path="/main">
               <Main />
-            </Route>
-            {/* Tester route made by c */}
-            <Route path="/playgrounds">
-              <Playground />
-            </Route>
+            </Route>  
+
             <Route exact path="/">
               <Login />
             </Route>

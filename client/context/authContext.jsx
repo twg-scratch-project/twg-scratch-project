@@ -1,7 +1,8 @@
 
-import React, {createContext, useState} from 'react'
+import React, {createContext, useState, useEffect} from 'react'
+import { MuiThemeProvider } from '@material-ui/core';
+import { Theme } from "./Theme.js"
 
-//Tester
 const AuthContext = createContext();
 
 function AuthProvider({children}) {
@@ -9,6 +10,14 @@ function AuthProvider({children}) {
     const [isAuth, setIsAuth] = useState(false);
     const [userID, setUserID] = useState('');
 
+    // useEffect(() => {
+    //     (async () => {
+    //         const response = await fetch("")
+    //         const data = await response.json();
+    //         console.log(data);
+    //         // set state with data
+    //     })();
+    //   }, []);
 
     const globalData = {
         isAuth,
@@ -23,9 +32,11 @@ function AuthProvider({children}) {
 
 
     return (
-        <AuthContext.Provider value={globalData}>
-            {children}
-        </AuthContext.Provider>
+        <MuiThemeProvider theme={Theme}>
+            <AuthContext.Provider value={globalData}>
+                {children}
+            </AuthContext.Provider>
+        </MuiThemeProvider>
     )
 }
 

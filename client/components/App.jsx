@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import Main from "./Main.jsx";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import LandingPage from "./LandingPage.jsx";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/authContext.jsx";
-
-
+import Main from "./Main.jsx";
+import LandingPage from "./LandingPage.jsx";
+import Playground from "./Playground.jsx"
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const {isAuth, toggleIsAuth} = useContext(AuthContext);
+  const {isAuth, toggleIsAuth, setUserID} = useContext(AuthContext);
+
   useEffect(() => {
     (
       async() => {
@@ -18,7 +18,7 @@ function App() {
           console.log('data', data)
         
           if (!isAuth) {
-            if(data.isAuth) {toggleIsAuth()}
+            if(data.isAuth) {toggleIsAuth(); setUserID(data.userID)}
           }
           if(isAuth) {
             if(!data.isAuth) {toggleIsAuth()}
@@ -30,7 +30,7 @@ function App() {
         finally {setIsLoading(false)}
       }
     )()
-  }, []
+  }, [isAuth]
   )
 
   return (
@@ -39,14 +39,18 @@ function App() {
         {!isLoading && 
         <div>
           <Switch>
+
             <Route path="/main">
-              <Main />
+              {isAuth ? <Main /> : <Redirect to='/' />}
             </Route>  
+
             <Route exact path="/">
-              {isAuth === false && 
-              <LandingPage /> }
-              {isAuth === true && <Main />}
-            </Route>
+              {isAuth ? <Redirect to='/main'/> : <LandingPage /> }
+              </Route>
+            {/* Test route for C*/}
+        <Route path="/playgrounds">
+          <Playground/>
+        </Route>
             <Route>
               {/* 404 Here */}
             </Route>

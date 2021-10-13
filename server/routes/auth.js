@@ -29,10 +29,10 @@ router.get('/', authController.protectRoute, (req, res) => {
   <----- Base passport-local(email) auth ----->
 */
 router.get('/verify', authController.verifyAuth, (req, res, next) => {
-  return res.status(201).json({isAuth:true})
+  return res.status(201).json({isAuth:true, userID: req.user._id})
 });
 // Don't need final middleware after passport.authenticate("", redirects)
-router.post('/login', passport.authenticate('local', redirects), (req, res) => {
+router.post('/login', authController.check, passport.authenticate('local', redirects), (req, res) => {
   console.log('Authenticated')
   res.redirect('/auth/')
 });

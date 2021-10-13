@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Login from "./Login.jsx";
-import Main from "./Main.jsx";
-
-import Registration from "./Registration.jsx";
-
-// import MapBox from "./MapBox.jsx"
-
-// import Map from "./Map.jsx";
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import Main from "./Main.jsx";
+import Map from "./Map.jsx";
+import Login from "./Login.jsx";
+import Registration from "./Registration.jsx";
+import Playground from "./Playground.jsx"
+
+import {AuthProvider} from "../context/authContext.jsx"
 
 function App() {
   //assign useState with its val
@@ -28,20 +26,36 @@ function App() {
   }
   //for reg component: firstName={regObj.regInfo.firstName} userEmail={regObj.regInfo.email} lastName={regObj.regInfo.lastName} password={regObj.regInfo.password} onChange={regSubmit}
   return (
-    <Router>
-        <Switch>
-          <Route path="/Main">
-            <Main />
-          </Route>
-          {/* Tester route made by c */}
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route>
-            {/* 404 Here */}
-          </Route>
-        </Switch>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div>
+          <Switch>
+            <Route path="/Login">
+              <Login />
+            </Route>
+            <Route path="/map">
+              <Map />
+            </Route>
+            <Route path="/Registration">
+              <Registration onChange={regSubmit} />
+            </Route>
+            <Route path="/Main">
+              <Main />
+            </Route>
+            {/* Tester route made by c */}
+            <Route path="/playgrounds">
+              <Playground />
+            </Route>
+            <Route exact path="/">
+              <Login />
+            </Route>
+            <Route>
+              {/* 404 Here */}
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

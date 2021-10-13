@@ -10,7 +10,7 @@ const colors = require('colors');
 const AppError = require('./utils/appError');
 const router= require('./routes/index')
 require('./auth/passportLocal.js')
-require('./auth/passportGoogle.js')
+//require('./auth/passportGoogle.js')
 
 const app = express();
 

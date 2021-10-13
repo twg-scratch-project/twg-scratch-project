@@ -20,7 +20,6 @@ function App() {
 
   const [isLoggedIn, setLoginStatus] = useState(false);
   const [travelers, updateTravelers] = useState([]);
-
   function regSubmit(regObj) {
     //stores users reg info
 
@@ -30,12 +29,12 @@ function App() {
   return (
     <Router>
         <Switch>
-          <Route path="/Main">
-            <Main />
+          <Route path="/main">
+            <Main/> 
           </Route>
           {/* Tester route made by c */}
           <Route exact path="/">
-            <Login />
+            <Login/>
           </Route>
           <Route>
             {/* 404 Here */}

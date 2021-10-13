@@ -1,4 +1,5 @@
-import React, {createContext, useState, useMemo} from 'react'
+
+import React, {createContext, useState} from 'react'
 
 //Tester
 const AuthContext = createContext();
@@ -9,7 +10,7 @@ function AuthProvider({children}) {
     const [userID, setUserID] = useState('');
 
 
-    const globalData = useMemo (() => ({
+    const globalData = {
         isAuth,
         toggleIsAuth: function(){
             setIsAuth(prevState => !prevState)
@@ -18,7 +19,8 @@ function AuthProvider({children}) {
         setUserID: function(arg){
             setUserID(arg)
         },
-    }), [isAuth, userID])
+    }
+
 
     return (
         <AuthContext.Provider value={globalData}>

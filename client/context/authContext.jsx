@@ -1,5 +1,6 @@
 import React, {createContext, useState} from 'react'
 
+//Tester
 const AuthContext = createContext();
 
 function AuthProvider({children}) {

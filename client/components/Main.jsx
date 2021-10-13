@@ -6,7 +6,9 @@ import React, { useEffect, useContext, useState } from 'react';
 import TripDetail from './TripDetail.jsx'
 import AddTrip from './AddTrip.jsx'
 import Map from './Map.jsx'
+import AppHeader from './AppHeader.jsx'
 import {AuthContext } from '../context/authContext.jsx';
+
 
 function Main (props) {  
   const defaultTrip =  {
@@ -36,7 +38,7 @@ function Main (props) {
 
   useEffect(() => {
     // GET all trips from DB corresponding to current user
-    fetch("/api/gettrips/6164dd6d1e10fcc835c58d67")
+    fetch("/api/gettrips/6160bc7c7768777ca716ee68")
     .then(res => {return res.json()})
     .then(response => { console.log('response', response)
       // determine default selected trip:
@@ -62,6 +64,7 @@ function Main (props) {
       {isLoading && <div>loading</div>}
       { !isLoading && 
       <>
+      <AppHeader />
       <div>                                                   
         <button type='button' onClick={() => {if(upcomingOrPast === 'past') {setCurSelectedTrip(upcomingTrips[0] ? upcomingTrips[0] : defaultTrip); setUpcomingOrPast('upcoming')}; setTripDetailOrAddTrip('tripDetail')}}> See Upcoming Trips</button>
         <button type='button' onClick={() => {if(upcomingOrPast === 'upcoming') {setCurSelectedTrip(pastTrips[0] ? pastTrips[0] : defaultTrip); setUpcomingOrPast('past')}; setTripDetailOrAddTrip('tripDetail')}}> See Past Trips</button>

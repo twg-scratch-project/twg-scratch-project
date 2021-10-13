@@ -12,7 +12,7 @@ import {
 
 import { AuthContext } from '../context/authContext.jsx'
 
-import AppHeader from "./c-MUI-components/AppHeader.jsx"
+//import AppHeader from "./AppHeader.jsx"
 import AddTripForm from './c-MUI-components/AddTripForm.jsx'
 import TripList from "./c-MUI-components/TripList.jsx"
 import TripDetail from './c-MUI-components/TripDetail.jsx'
@@ -22,8 +22,7 @@ import TripDetail from './c-MUI-components/TripDetail.jsx'
 const Playground = () => {
     const context = useContext(AuthContext)
     return (<>
-        <AppHeader></AppHeader>
-        <GoogleButton onClick={()=> {
+       <GoogleButton onClick={()=> {
             console.log('Google button clicked. Is authenticated?', context.isAuth)
             context.toggleIsAuth()    
         }} />

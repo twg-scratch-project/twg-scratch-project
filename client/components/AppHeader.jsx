@@ -6,8 +6,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // Delete this later
 import useTheme from '@material-ui/core/styles/useTheme';
 
-import { AuthContext } from '../../context/authContext.jsx'
-
+import { AuthContext } from '../context/authContext.jsx'
+import Button from "./c-MUI-components/LogoutButton.jsx"
 
 export default function AppHeader() {
   /* 
@@ -20,20 +20,9 @@ export default function AppHeader() {
   // Delete this later
   console.log('Material UI theme object. Logged from <AppHeader />\n', useTheme())
 
-  const userIcon = (
-    <IconButton color="inherit">
-        <AccountCircleIcon />
-    </IconButton>)
-
-  const login = (
-      <Link to='/' style={{ textDecoration: 'none' }}>
-        <Typography variant="h6" color="textSecondary">
-            Login
-        </Typography>
-      </Link>
-  )
+  
   return (
-    <div className={classes.root}>
+    <div >
       <AppBar position="fixed">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
@@ -42,7 +31,7 @@ export default function AppHeader() {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Travel App
           </Typography>
-          {context.isAuth ? userIcon : login }
+          <Button />
         </Toolbar>
       </AppBar>
       {/* 

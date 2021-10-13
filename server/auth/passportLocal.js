@@ -16,12 +16,12 @@ const passwordUtils = require('../utils/passwordUtils.js')
     -- done: callback with parameters (error, user)
 */
 const inputFields = {
-    usernameField: "name",
+    usernameField: "email",
     passwordField: "password"
 }
 const verifyCallback =  async (username, password, done) => {
     try {
-        const user = await User.findOne({name:username});
+        const user = await User.findOne({email:username});
         if(!user) return done(null, false)
         if(!(await passwordUtils.verifyPassword(password, user.password))) return done(null, false);
         return done(null, user)

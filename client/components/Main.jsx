@@ -1,11 +1,12 @@
 //onclick functions to be established here and passed as props??
 //planning page for trip
 
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 // import logo from '../images/journalLogo.png';
 import TripDetail from './TripDetail.jsx'
 import AddTrip from './AddTrip.jsx'
 import Map from './Map.jsx'
+import {AuthContext } from '../context/authContext.jsx';
 
 function Main (props) {  
   const defaultTrip =  {
@@ -17,6 +18,7 @@ function Main (props) {
     default: 'this is the default trip object' // to conditionally render no markers if default
   }
   const [upcomingTrips, setUpcomingTrips] = useState([]);
+  const [selected, setSelected] = useState({name: null, latitude: null, longitude: null}); // for addTrip mode only
   const [pastTrips, setPastTrips] = useState([]);
   const [upcomingOrPast, setUpcomingOrPast] = useState('upcoming');
   const [tripDetailOrAddTrip, setTripDetailOrAddTrip] = useState('tripDetail'); // to conditionally render either TripDetail or AddTrip component
@@ -24,6 +26,10 @@ function Main (props) {
   const [isLoading, setIsLoading] = useState(true);
 
   console.log('curSelectedTrip', curSelectedTrip)
+  console.log('selected', selected);
+
+  const {isAuth, userID} = useContext(AuthContext)
+  console.log('userID', userID)
   
   let renderTripDetailOrAddTrip;
   let listToDisplay;
@@ -48,7 +54,7 @@ function Main (props) {
   // determine whether to display markers for upcoming or past trips
   listToDisplay = upcomingOrPast === 'upcoming' ? upcomingTrips : pastTrips;
   // determine whether to render AddTrip or TripDetails component:
-  renderTripDetailOrAddTrip = tripDetailOrAddTrip === 'tripDetail' ? <TripDetail curSelectedTrip={curSelectedTrip}/> : <AddTrip/>;
+  renderTripDetailOrAddTrip = tripDetailOrAddTrip === 'tripDetail' ? <TripDetail curSelectedTrip={curSelectedTrip}/> : <AddTrip selected={selected}/>;
     
   return (
     <div>
@@ -68,6 +74,8 @@ function Main (props) {
         setCurSelectedTrip={setCurSelectedTrip} 
         tripDetailOrAddTrip={tripDetailOrAddTrip} 
         defaultTrip={defaultTrip}
+        selected={selected}
+        setSelected={setSelected}
         />
       </div>
       {renderTripDetailOrAddTrip}

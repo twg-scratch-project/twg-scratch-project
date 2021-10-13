@@ -5,38 +5,35 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CreateIcon from '@mui/icons-material/Create';
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     height: '100vh',
-//   },
-//   image:{
-//     backgroundImage:'',
-//     backgroundSize: 'cover',
-//     backgroundPosition: 'center',
-//   },
-//   paper: {
-//     margin: theme.spacing(4),
-//     flexDirection: 'column',
-//     display: 'flex'
-//   },
-//   form: {
-//     width: '100%',
-//     marginTop: auto
-//   }
-// }))
 
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontSize: '2rem',
+        },
+      },
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Architects Daughter',
+      'cursive',
+    ].join(','),
+    fontSize: 16,
+  },
+});
 
 function Copyright(props) {
-  
 
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -45,8 +42,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-const theme = createTheme();
 
 function LandingPage(props) {
 
@@ -89,16 +84,96 @@ function LandingPage(props) {
               alignItems: 'center',
             }}
           >
-            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar> */}
             <Typography component="h1" variant="h5">
-              <h1>Travel Journal</h1>
-            </Typography>
-            <Typography component="h1" variant="h4">
-              Sign in
+              <h1>Travel Journal <CreateIcon/> </h1>
             </Typography>
             <Box component="form" onSubmit={SignInSide} sx={{ mt: 1 }}>
+               <TextField
+                margin="normal"
+                required
+                // fullWidth
+                style={{width:"125%"}}
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                variant="standard"
+              />
+              <TextField
+                margin="normal"
+                required
+                // fullWidth
+                style={{width:"125%"}}
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                variant="standard"
+              /> 
+              {/* conditionally render this component based on user selection? */}
+               <Button
+                type="submit"
+                // fullWidth
+                color="primary"
+                style={{width:"125%"}}
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Me In!
+              </Button> 
+              {/* <Register/> */}
+              <Grid container>
+                <Grid item xs>
+                {/* needs ref here if we want to use string instd button! */}
+                  {/* <Link
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                  href="#" underline="hover"
+                  > 
+                    Register
+                  </Link> */}
+                  <br/>
+                </Grid>
+              </Grid>
+              <Copyright sx={{ mt: 5 }} />
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  );
+  }
+function Register(){
+    return (
+      <ThemeProvider>
+              <TextField
+                margin="normal"
+                required
+                // fullWidth
+                style={{width:"125%"}}
+                id="FirstName"
+                label="First Name"
+                name="firstName"
+                autoComplete="firstName"
+                autoFocus
+                variant="standard"
+              />
+              <TextField
+                margin="normal"
+                required
+                // fullWidth
+                style={{width:"125%"}}
+                id="LastName"
+                label="Last Name"
+                name="lastname"
+                // autoComplete="lastName"
+                autoFocus
+                variant="standard"
+              />
               <TextField
                 margin="normal"
                 required
@@ -122,8 +197,8 @@ function LandingPage(props) {
                 id="password"
                 autoComplete="current-password"
                 variant="standard"
-              />
-              <Button
+              /> 
+               <Button
                 type="submit"
                 // fullWidth
                 color="primary"
@@ -131,67 +206,11 @@ function LandingPage(props) {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
-              </Button>
-              <Grid container>
-                
-                <Grid item xs>
-                {/* needs ref here! */}
-                  <Link
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    color:'navy'
-                  }}
-                  > 
-                    CREATE AN ACCOUNT
-                  </Link>
-                  <br/>
-                  <Registration/>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
-  );
-  }
+                Register!
+              </Button>  
+      </ThemeProvider>
 
-  //conditionally render this component based on user selection?
-  function Registration(props) {
+    )
 
-        return (
-          <Card sx={{ maxWidth: 750 }}>
-            <CardContent sx={{ fontSize: 14, 
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            }} color="text.secondary" >
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              Registration
-              </Typography>
-              <Typography >
-              Name
-              </Typography>
-              <TextField
-              variant="standard"
-              >
-              </TextField>
-              <Typography color="text.secondary">
-                Email
-              </Typography>
-              <TextField
-              variant="standard"
-              >
-              </TextField>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Register!</Button>
-            </CardActions>
-          </Card>
-        );
-    }
+}
   export default LandingPage;

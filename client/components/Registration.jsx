@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import React from 'react';
 import style from '../index.css';
-import logo from '../images/journalLogo.png';
+// import logo from '../images/journalLogo.png';
 
 function Registration(props) {
 

@@ -1,19 +1,41 @@
 import React, {useContext} from 'react'
 import GoogleButton from 'react-google-button'
+import { 
+    Typography, 
+    Grid,
+    Container,
+    Card,
+    CardActionArea, 
+    CardContent,
+    CardMedia
+} from "@mui/material"
 
 import { AuthContext } from '../context/authContext.jsx'
 
-import AddTripForm from './AddTripForm/index.jsx'
+import AppHeader from "./c-MUI-components/AppHeader.jsx"
+import AddTripForm from './c-MUI-components/AddTripForm.jsx'
+import TripList from "./c-MUI-components/TripList.jsx"
+import TripDetail from './c-MUI-components/TripDetail.jsx'
+
+// Test Environment for C. Can delete later. Not important.
 
 const Playground = () => {
     const context = useContext(AuthContext)
     return (<>
+        <AppHeader></AppHeader>
         <GoogleButton onClick={()=> {
             console.log('Google button clicked. Is authenticated?', context.isAuth)
             context.toggleIsAuth()    
         }} />
         {context.isAuth ? <h2>Welcome, user</h2> : <h2>Please sign in.</h2>}
-        <AddTripForm></AddTripForm>
+        ADD TRIP COMPONENT:
+        <AddTripForm />
+        <br/>
+        TRIP LIST COMPONENT (LIST OF TRIPCARDS):
+        <TripList />
+        <br/>
+        TRIP DETAIL COMPONENT (TRIPCARD ONCLICK): 
+        <TripDetail />
     </>)
 }
 

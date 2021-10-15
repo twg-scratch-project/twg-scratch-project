@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Login from "./Login.jsx";
-import JournalForm from "./JournalForm.jsx";
-
-import Registration from "./Registration.jsx";
-import UserProfile from "./UserProfile.jsx";
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//create a sextion to add friends
+
+import Main from "./Main.jsx";
+import Map from "./Map.jsx";
+import Login from "./Login.jsx";
+import Registration from "./Registration.jsx";
+import Playground from "./Playground.jsx"
+
+import {AuthProvider} from "../context/authContext.jsx"
 
 function App() {
   //assign useState with its val
@@ -20,34 +21,41 @@ function App() {
 
   function regSubmit(regObj) {
     //stores users reg info
-    storeRegInfo(regObj);
 
     console.log("reg deets ", regDetails);
   }
   //for reg component: firstName={regObj.regInfo.firstName} userEmail={regObj.regInfo.email} lastName={regObj.regInfo.lastName} password={regObj.regInfo.password} onChange={regSubmit}
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/Login">
-            <Login />
-          </Route>
-          <Route path="/JournalForm">
-            <JournalForm />
-          </Route>
-          <Route path="/MyTripJournal"></Route>
-          <Route path="/Registration">
-            <Registration onChange={regSubmit} />
-          </Route>
-          <Route path="/UserProfile">
-            <UserProfile />
-          </Route>
-          <Route path="/">
-            <Login />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div>
+          <Switch>
+            <Route path="/Login">
+              <Login />
+            </Route>
+            <Route path="/map">
+              <Map />
+            </Route>
+            <Route path="/Registration">
+              <Registration onChange={regSubmit} />
+            </Route>
+            <Route path="/Main">
+              <Main />
+            </Route>
+            {/* Tester route made by c */}
+            <Route path="/playgrounds">
+              <Playground />
+            </Route>
+            <Route exact path="/">
+              <Login />
+            </Route>
+            <Route>
+              {/* 404 Here */}
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
